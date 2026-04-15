@@ -347,11 +347,54 @@ proc sql;
     order by total_revenue desc;
 quit;
 
-/* 6.6 计算总体统计 */
+/* 6.6 计算总体统计 - 修复：使用Data Step创建带常量的数据集 */
+data work.overall_stats;
+    set work.clean_sales end=last;
+    
+    retain total_orders total_customers total_units_sold 
+           total_revenue total_discount_given total_final_revenue 
+           total_estimated_profit sum_order_value sum_discount 0;
+    retain first_order_date '31DEC9999'd last_order_date '01JAN1960'd;
+    
+    total_orders + 1;
+    if not missing(customer_id) then do;
+        /* 简单计数，实际应该用distinct，但这里简化处理 */
+    end;
+    total_units_sold + quantity;
+    total_revenue + total_amount;
+    total_discount_given + discount_amount;
+    total_final_revenue + final_amount;
+    total_estimated_profit + estimated_profit;
+    sum_order_value + final_amount;
+    sum_discount + discount;
+    
+    if order_date < first_order_date then first_order_date = order_date;
+    if order_date > last_order_date then last_order_date = order_date;
+    
+    if last then do;
+        length category $20;
+        category = '总体';
+        avg_order_value = sum_order_value / total_orders;
+        avg_discount_rate = sum_discount / total_orders;
+        
+        format 
+            total_revenue total_discount_given total_final_revenue 
+            total_estimated_profit avg_order_value dollar12.2
+            avg_discount_rate percent8.2
+            first_order_date last_order_date yymmdd10.;
+        
+        output;
+    end;
+    
+    keep category total_orders total_units_sold total_revenue 
+         total_discount_given total_final_revenue total_estimated_profit
+         avg_order_value avg_discount_rate first_order_date last_order_date;
+run;
+
+/* 或者使用更简单的方法：先Proc SQL汇总，再添加category */
 proc sql;
-    create table work.overall_stats as
+    create table work.overall_stats_temp as
     select 
-        '总体' as category $20,
         count(distinct order_id) as total_orders,
         count(distinct customer_id) as total_customers,
         sum(quantity) as total_units_sold,
@@ -365,6 +408,12 @@ proc sql;
         max(order_date) as last_order_date format=yymmdd10.
     from work.clean_sales;
 quit;
+
+data work.overall_stats;
+    length category $20;
+    set work.overall_stats_temp;
+    category = '总体';
+run;
 
 %put 数据分析完成;
 
@@ -397,37 +446,96 @@ data work.detailed_orders;
         age_group order_size value_category has_discount;
 run;
 
-/* 8.2 合并所有汇总数据为一个输出 */
-data work.final_output;
-    set 
-        work.overall_stats(in=a)
-        work.region_summary(in=b)
-        work.product_summary(in=c)
-        work.membership_summary(in=d)
-        work.age_group_summary(in=e)
-        work.order_size_summary(in=f);
-    
-    length summary_type $30;
-    
-    if a then summary_type = '总体统计';
-    else if b then summary_type = '地区汇总';
-    else if c then summary_type = '产品汇总';
-    else if d then summary_type = '会员等级汇总';
-    else if e then summary_type = '年龄分组汇总';
-    else if f then summary_type = '订单大小汇总';
-    
-    /* 统一变量名 */
-    if missing(category) then do;
-        if not missing(region) then category = region;
-        else if not missing(product) then category = product;
-        else if not missing(membership_level) then category = membership_level;
-        else if not missing(age_group) then category = age_group;
-        else if not missing(order_size) then category = order_size;
-    end;
-    
+/* 8.2 重新设计汇总数据输出 - 每个汇总表单独处理，确保变量一致 */
+
+/* 总体统计 */
+data work.overall_for_export;
+    length summary_type $30 category $50;
+    set work.overall_stats;
+    summary_type = '总体统计';
+    category = '总体';
+    metric1 = total_orders;
+    metric2 = total_revenue;
+    metric3 = avg_order_value;
     label 
         summary_type = '汇总类型'
-        category = '分类';
+        category = '分类'
+        metric1 = '订单数'
+        metric2 = '总金额'
+        metric3 = '平均订单金额';
+    keep summary_type category metric1 metric2 metric3;
+run;
+
+/* 地区汇总 */
+data work.region_for_export;
+    length summary_type $30 category $50;
+    set work.region_summary;
+    summary_type = '地区汇总';
+    category = region;
+    metric1 = total_orders;
+    metric2 = total_final_revenue;
+    metric3 = avg_order_value;
+    keep summary_type category metric1 metric2 metric3;
+run;
+
+/* 产品汇总 */
+data work.product_for_export;
+    length summary_type $30 category $50;
+    set work.product_summary;
+    summary_type = '产品汇总';
+    category = product;
+    metric1 = total_orders;
+    metric2 = total_final_revenue;
+    metric3 = avg_unit_price;
+    keep summary_type category metric1 metric2 metric3;
+run;
+
+/* 会员等级汇总 */
+data work.membership_for_export;
+    length summary_type $30 category $50;
+    set work.membership_summary;
+    summary_type = '会员等级汇总';
+    category = membership_level;
+    metric1 = total_orders;
+    metric2 = total_spent;
+    metric3 = avg_spent_per_order;
+    keep summary_type category metric1 metric2 metric3;
+run;
+
+/* 年龄分组汇总 */
+data work.age_for_export;
+    length summary_type $30 category $50;
+    set work.age_group_summary;
+    summary_type = '年龄分组汇总';
+    category = age_group;
+    metric1 = total_orders;
+    metric2 = total_spent;
+    metric3 = avg_age;
+    keep summary_type category metric1 metric2 metric3;
+run;
+
+/* 订单大小汇总 */
+data work.ordersize_for_export;
+    length summary_type $30 category $50;
+    set work.order_size_summary;
+    summary_type = '订单大小汇总';
+    category = order_size;
+    metric1 = order_count;
+    metric2 = total_revenue;
+    metric3 = avg_revenue_per_order;
+    keep summary_type category metric1 metric2 metric3;
+run;
+
+/* 合并所有汇总数据 */
+data work.final_output;
+    set 
+        work.overall_for_export
+        work.region_for_export
+        work.product_for_export
+        work.membership_for_export
+        work.age_for_export
+        work.ordersize_for_export;
+    format metric2 metric3 dollar12.2;
 run;
 
 /* ================================================
@@ -474,6 +582,11 @@ title3 '七、详细订单数据（前10条）';
 proc print data=work.detailed_orders(obs=10) label noobs;
 run;
 
+/* 最终输出数据 */
+title3 '八、汇总输出数据';
+proc print data=work.final_output label noobs;
+run;
+
 title;
 
 /* ================================================
@@ -491,7 +604,7 @@ proc export data=work.detailed_orders
     putnames=yes;
 run;
 
-/* 同时导出汇总数据到单独的CSV */
+/* 导出汇总数据 */
 proc export data=work.final_output
     outfile="&output_path.sales_summary.csv"
     dbms=csv
@@ -509,14 +622,3 @@ run;
 %put 输出文件1: &output_file;
 %put 输出文件2: &output_path.sales_summary.csv;
 %put ================================================;
-
-/* 清理临时数据集（可选） */
-/*
-proc datasets lib=work nolist;
-    delete raw_sales clean_sales sales_by_region sales_by_product 
-           sales_by_membership region_summary product_summary 
-           membership_summary age_group_summary order_size_summary
-           overall_stats final_amount_stats quantity_stats
-           detailed_orders final_output;
-quit;
-*/

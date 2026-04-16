@@ -93,7 +93,9 @@ SAS Studio 综合演示程序
     宏功能：将数据集导出为CSV文件
     参数：
         dataset: 输入数据集名称
-        columns: 可选参数，指定要导出的列，多个列用逗号分隔
+        columns: 可选参数，指定要导出的列，多个列用空格分隔（推荐）或逗号分隔
+                 如果使用逗号分隔，需要用 %str() 引用，例如：columns=%str(make,model)
+                 如果不指定 columns，则导出所有列
     */
     
     %let log_path = /home/u64403577/test/log;
@@ -122,8 +124,8 @@ SAS Studio 综合演示程序
     
     %put 正在导出数据集 &dataset 到 &outfile;
     
-    %if &columns. ne %then %do;
-        %let columns = %sysfunc(compress(&columns));
+    %if %length(&columns) > 0 %then %do;
+        %let columns = %sysfunc(translate(&columns, ' ', ','));
         
         data work._temp_export_;
             set &dataset;

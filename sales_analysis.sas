@@ -88,6 +88,76 @@ SAS Studio 综合演示程序
     title;
 %mend print_summary;
 
+%macro export_to_csv(dataset=, columns=);
+    /*
+    宏功能：将数据集导出为CSV文件
+    参数：
+        dataset: 输入数据集名称
+        columns: 可选参数，指定要导出的列，多个列用空格分隔（推荐）或逗号分隔
+                 如果使用逗号分隔，需要用 %str() 引用，例如：columns=%str(make,model)
+                 如果不指定 columns，则导出所有列
+    */
+    
+    %let log_path = /home/u64403577/test/log;
+    
+    %local rc did;
+    %let rc = %sysfunc(filename(ref, &log_path));
+    %let did = %sysfunc(dopen(&ref));
+    %if &did = 0 %then %do;
+        %put 日志目录不存在，正在创建: &log_path;
+        %sysexec mkdir -p &log_path;
+    %end;
+    %else %do;
+        %let rc = %sysfunc(dclose(&did));
+    %end;
+    %let rc = %sysfunc(filename(ref));
+    
+    %local dsname;
+    %if %index(&dataset, .) > 0 %then %do;
+        %let dsname = %scan(&dataset, 2, .);
+    %end;
+    %else %do;
+        %let dsname = &dataset;
+    %end;
+    
+    %let outfile = &log_path/&dsname..csv;
+    
+    %put 正在导出数据集 &dataset 到 &outfile;
+    
+    %if %length(&columns) > 0 %then %do;
+        %let columns = %sysfunc(translate(&columns, ' ', ','));
+        
+        data work._temp_export_;
+            set &dataset;
+            keep &columns;
+        run;
+        
+        proc export data=work._temp_export_
+            outfile="&outfile"
+            dbms=csv
+            replace;
+            delimiter=',';
+            putnames=yes;
+        run;
+        
+        proc datasets library=work nolist;
+            delete _temp_export_;
+        run;
+        quit;
+    %end;
+    %else %do;
+        proc export data=&dataset
+            outfile="&outfile"
+            dbms=csv
+            replace;
+            delimiter=',';
+            putnames=yes;
+        run;
+    %end;
+    
+    %put 数据集 &dataset 已成功导出到 &outfile;
+%mend export_to_csv;
+
 /* ================================================
    第三部分：读取CSV数据 (Data Step)
    ================================================ */
@@ -174,6 +244,7 @@ data work.raw_sales;
 run;
 
 %put 原始数据读取完成，观测数: &sysnobs;
+%export_to_csv(dataset=work.raw_sales);
 
 /* ================================================
    第四部分：数据清洗和转换 (Data Step)
@@ -239,6 +310,7 @@ data work.clean_sales;
 run;
 
 %put 数据清洗完成，观测数: &sysnobs;
+%export_to_csv(dataset=work.clean_sales);
 
 /* ================================================
    第五部分：数据排序 (Proc Sort)
@@ -262,6 +334,9 @@ proc sort data=work.clean_sales out=work.sales_by_membership;
 run;
 
 %put 数据排序完成;
+%export_to_csv(dataset=work.sales_by_region);
+%export_to_csv(dataset=work.sales_by_product);
+%export_to_csv(dataset=work.sales_by_membership);
 
 /* ================================================
    第六部分：数据分析 (Proc SQL)
@@ -416,6 +491,12 @@ data work.overall_stats;
 run;
 
 %put 数据分析完成;
+%export_to_csv(dataset=work.region_summary);
+%export_to_csv(dataset=work.product_summary);
+%export_to_csv(dataset=work.membership_summary);
+%export_to_csv(dataset=work.age_group_summary);
+%export_to_csv(dataset=work.order_size_summary);
+%export_to_csv(dataset=work.overall_stats);
 
 /* ================================================
    第七部分：使用宏程序进行额外分析
@@ -425,9 +506,11 @@ run;
 
 /* 按地区计算最终金额统计 */
 %calculate_stats(dataset=work.clean_sales, var=final_amount, group_var=region);
+%export_to_csv(dataset=work.clean_sales_stats);
 
 /* 按产品计算数量统计 */
 %calculate_stats(dataset=work.clean_sales, var=quantity, group_var=product);
+%export_to_csv(dataset=work.clean_sales_stats);
 
 /* ================================================
    第八部分：创建最终输出数据集
@@ -445,6 +528,7 @@ data work.detailed_orders;
         customer_id customer_name age gender membership_level
         age_group order_size value_category has_discount;
 run;
+%export_to_csv(dataset=work.detailed_orders);
 
 /* 8.2 重新设计汇总数据输出 - 每个汇总表单独处理，确保变量一致 */
 
@@ -465,6 +549,7 @@ data work.overall_for_export;
         metric3 = '平均订单金额';
     keep summary_type category metric1 metric2 metric3;
 run;
+%export_to_csv(dataset=work.overall_for_export);
 
 /* 地区汇总 */
 data work.region_for_export;
@@ -477,6 +562,7 @@ data work.region_for_export;
     metric3 = avg_order_value;
     keep summary_type category metric1 metric2 metric3;
 run;
+%export_to_csv(dataset=work.region_for_export);
 
 /* 产品汇总 */
 data work.product_for_export;
@@ -489,6 +575,7 @@ data work.product_for_export;
     metric3 = avg_unit_price;
     keep summary_type category metric1 metric2 metric3;
 run;
+%export_to_csv(dataset=work.product_for_export);
 
 /* 会员等级汇总 */
 data work.membership_for_export;
@@ -501,6 +588,7 @@ data work.membership_for_export;
     metric3 = avg_spent_per_order;
     keep summary_type category metric1 metric2 metric3;
 run;
+%export_to_csv(dataset=work.membership_for_export);
 
 /* 年龄分组汇总 */
 data work.age_for_export;
@@ -513,6 +601,7 @@ data work.age_for_export;
     metric3 = avg_age;
     keep summary_type category metric1 metric2 metric3;
 run;
+%export_to_csv(dataset=work.age_for_export);
 
 /* 订单大小汇总 */
 data work.ordersize_for_export;
@@ -525,6 +614,7 @@ data work.ordersize_for_export;
     metric3 = avg_revenue_per_order;
     keep summary_type category metric1 metric2 metric3;
 run;
+%export_to_csv(dataset=work.ordersize_for_export);
 
 /* 合并所有汇总数据 */
 data work.final_output;
@@ -537,6 +627,7 @@ data work.final_output;
         work.ordersize_for_export;
     format metric2 metric3 dollar12.2;
 run;
+%export_to_csv(dataset=work.final_output);
 
 /* ================================================
    第九部分：打印结果报告

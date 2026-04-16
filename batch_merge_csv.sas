@@ -1,6 +1,6 @@
 /*
 ================================================================================
-批量合并CSV文件程序 (最终版)
+批量合并CSV文件程序 (最终修复版)
 ================================================================================
 功能：
 1. 自动读取指定目录下的所有CSV文件
@@ -38,71 +38,86 @@
 
 %put 正在读取目录: &input_dir;
 
-data work.csv_file_list;
-    length full_path $500 filename $200 file_ext $10;
+/* 先尝试使用宏函数获取目录信息 */
+%macro get_file_list;
+    %local dir_ref did num_entries i entry_name ext full_path;
     
     /* 分配目录引用 */
-    rc = filename('dir_ref', "&input_dir");
+    %let rc = %sysfunc(filename(dir_ref, &input_dir));
     
     /* 打开目录 */
-    did = dopen('dir_ref');
+    %let did = %sysfunc(dopen(&dir_ref));
     
-    if did = 0 then do;
-        put '错误：无法打开目录 ' "&input_dir";
-        put '错误信息: ' sysmsg();
-        stop;
-    end;
+    %if &did = 0 %then %do;
+        %put 错误：无法打开目录 &input_dir;
+        %put 请检查目录路径是否正确以及是否有读取权限;
+        %return;
+    %end;
     
-    /* 获取目录中的文件数量 */
-    num_files = dnum(did);
-    put '目录中共有 ' num_files ' 个条目';
+    /* 获取目录中的条目数量 */
+    %let num_entries = %sysfunc(dnum(&did));
+    %put 目录中共有 &num_entries 个条目（文件和子目录）;
+    
+    /* 创建空的文件列表数据集 */
+    proc sql noprint;
+        create table work.csv_file_list (
+            full_path char(500),
+            filename char(200)
+        );
+    quit;
     
     /* 遍历所有条目 */
-    do i = 1 to num_files;
+    %do i = 1 %to &num_entries;
         /* 获取条目名称 */
-        entry_name = dread(did, i);
+        %let entry_name = %sysfunc(dread(&did, &i));
         
         /* 提取文件扩展名 */
-        last_dot = findc(entry_name, '.', -length(entry_name));
-        if last_dot > 0 then do;
-            file_ext = upcase(substr(entry_name, last_dot + 1));
-        end;
-        else do;
-            file_ext = '';
-        end;
+        %let last_dot = %sysfunc(findc(&entry_name, ., -%length(&entry_name)));
+        
+        %if &last_dot > 0 %then %do;
+            %let ext = %upcase(%substr(&entry_name, &last_dot + 1));
+        %end;
+        %else %do;
+            %let ext = ;
+        %end;
         
         /* 只处理CSV文件 */
-        if file_ext = 'CSV' then do;
+        %if &ext = CSV %then %do;
             /* 构建完整路径 */
-            full_path = "&input_dir" || strip(entry_name);
-            filename = entry_name;
+            %let full_path = &input_dir&entry_name;
             
-            output;
-            put '找到CSV文件: ' entry_name;
-        end;
-    end;
+            %put 找到CSV文件: &entry_name;
+            
+            /* 添加到数据集 */
+            proc sql noprint;
+                insert into work.csv_file_list
+                values("&full_path", "&entry_name");
+            quit;
+        %end;
+    %end;
     
     /* 关闭目录 */
-    rc = dclose(did);
-    rc = filename('dir_ref', '');
+    %let rc = %sysfunc(dclose(&did));
+    %let rc = %sysfunc(filename(dir_ref, ));
     
-    keep full_path filename;
-run;
+    /* 检查找到的文件数量 */
+    proc sql noprint;
+        select count(*) into :total_files from work.csv_file_list;
+    quit;
+    
+    %put ================================================;
+    %if &total_files = 0 %then %do;
+        %put 错误：在目录 &input_dir 中未找到任何CSV文件;
+        %put 请检查目录路径是否正确;
+    %end;
+    %else %do;
+        %put 成功找到 &total_files 个CSV文件;
+    %end;
+    %put ================================================;
+%mend get_file_list;
 
-/* 检查找到的文件数量 */
-proc sql noprint;
-    select count(*) into :total_files from work.csv_file_list;
-quit;
-
-%put ================================================;
-%if &total_files = 0 %then %do;
-    %put 错误：在目录 &input_dir 中未找到任何CSV文件;
-    %put 请检查目录路径是否正确;
-%end;
-%else %do;
-    %put 成功找到 &total_files 个CSV文件;
-%end;
-%put ================================================;
+/* 执行获取文件列表的宏 */
+%get_file_list;
 
 /* 显示文件列表 */
 %if &total_files > 0 %then %do;
@@ -262,16 +277,23 @@ quit;
     %put 开始处理所有CSV文件...;
     %put ================================================;
     
-    data _null_;
-        set work.csv_file_list;
+    /* 使用宏变量循环处理文件 */
+    %local i current_path current_name;
+    
+    /* 先将文件列表读入宏变量 */
+    proc sql noprint;
+        select full_path, filename into :path1-, :name1-
+        from work.csv_file_list;
+    quit;
+    
+    /* 循环处理每个文件 */
+    %do i = 1 %to &total_files;
+        %let current_path = &&path&i;
+        %let current_name = &&name&i;
         
-        length macro_call $1000;
-        macro_call = '%process_csv_file(file_path=' || trim(full_path) || 
-                     ', file_name=' || trim(filename) || ');';
-        
-        put '执行: ' macro_call;
-        call execute(macro_call);
-    run;
+        %put 处理第 &i 个文件，共 &total_files 个;
+        %process_csv_file(file_path=&current_path, file_name=&current_name);
+    %end;
 %end;
 
 /* ================================================

@@ -1,302 +1,288 @@
 /*
 ================================================================================
-批量合并CSV文件程序 (最终修复版)
+批量合并CSV文件程序 (最终版)
 ================================================================================
 功能：
-1. 手动指定要合并的CSV文件列表（最可靠的方式）
+1. 自动读取指定目录下的所有CSV文件
 2. 为每个文件添加元数据标记（文件名、列名、列数等）
 3. 将所有文件合并成一个CSV文件，便于一次导出
 4. 格式设计确保可以用Python完全还原
 
-重要说明：
-由于SAS Studio环境限制，此版本使用手动指定文件列表的方式，
-这是最可靠、最不会遇到权限问题的方法。
+目录配置：
+- 输入目录：/home/u64403577/test/log/
+- 输出文件：/home/u64403577/test/log/merged_csv_files.csv
 
 使用方法：
-1. 在 file_list 数据集中手动添加要合并的文件路径
-2. 修改 output_file 为合并后的输出文件路径
-3. 在SAS Studio中运行此程序
+1. 确保所有CSV文件都在 /home/u64403577/test/log/ 目录下
+2. 在SAS Studio中运行此程序
+3. 导出生成的 merged_csv_files.csv 文件
 ================================================================================
 */
 
 /* ================================================
-   第一步：用户配置 - 请修改这里
+   第一步：配置参数
    ================================================ */
 
-/* 配置：合并后的输出文件路径 */
-%let output_file = /home/u64403577/test/merged_csv_files.csv;
+%let input_dir = /home/u64403577/test/log/;     /* 输入目录，包含所有CSV文件 */
+%let output_file = /home/u64403577/test/log/merged_csv_files.csv;  /* 输出文件 */
+
+%put ================================================;
+%put 批量合并CSV文件程序开始执行;
+%put 输入目录: &input_dir;
+%put 输出文件: &output_file;
+%put ================================================;
 
 /* ================================================
-   第二步：手动指定要合并的文件列表
+   第二步：获取目录中的所有CSV文件列表
    ================================================ */
-/* 
-   请在下面的数据步骤中添加你的CSV文件路径
-   每行一个文件，格式如下：
-   
-   full_path = '/完整/路径/到/你的/文件1.csv';
-   output;
-   
-   full_path = '/完整/路径/到/你的/文件2.csv';
-   output;
-   
-   ... 添加更多文件 ...
-*/
 
-data work.file_list;
-    length full_path $500 filename $200;
+%put 正在读取目录: &input_dir;
+
+data work.csv_file_list;
+    length full_path $500 filename $200 file_ext $10;
     
-    /* 示例文件 - 请替换为你的实际文件路径 */
-    /* 注意：路径必须是SAS Studio可以访问的完整路径 */
+    /* 分配目录引用 */
+    rc = filename('dir_ref', "&input_dir");
     
-    /* 示例1：取消下面这行的注释并修改路径 */
-    * full_path = '/home/u64403577/test/sales_data.csv';
+    /* 打开目录 */
+    did = dopen('dir_ref');
     
-    /* 示例2：添加更多文件 */
-    * full_path = '/home/u64403577/test/customer_data.csv';
-    * output;
+    if did = 0 then do;
+        put '错误：无法打开目录 ' "&input_dir";
+        put '错误信息: ' sysmsg();
+        stop;
+    end;
     
-    /* ====== 在这里添加你的文件 ====== */
+    /* 获取目录中的文件数量 */
+    num_files = dnum(did);
+    put '目录中共有 ' num_files ' 个条目';
     
-    /* 例如：
-    full_path = '/home/你的用户名/你的目录/file1.csv';
-    output;
-    
-    full_path = '/home/你的用户名/你的目录/file2.csv';
-    output;
-    
-    full_path = '/home/你的用户名/你的目录/file3.csv';
-    output;
-    */
-    
-    /* ====== 文件添加结束 ====== */
-    
-    /* 提取文件名（从完整路径中） */
-    if not missing(full_path) then do;
-        /* 查找最后一个斜杠的位置 */
-        last_slash = findc(full_path, '/', -length(full_path));
-        if last_slash > 0 then do;
-            filename = substr(full_path, last_slash + 1);
+    /* 遍历所有条目 */
+    do i = 1 to num_files;
+        /* 获取条目名称 */
+        entry_name = dread(did, i);
+        
+        /* 提取文件扩展名 */
+        last_dot = findc(entry_name, '.', -length(entry_name));
+        if last_dot > 0 then do;
+            file_ext = upcase(substr(entry_name, last_dot + 1));
         end;
         else do;
-            /* 如果没有斜杠，整个路径就是文件名 */
-            filename = full_path;
+            file_ext = '';
         end;
         
-        /* 确保是CSV文件 */
-        if upcase(scan(filename, -1, '.')) = 'CSV' then do;
+        /* 只处理CSV文件 */
+        if file_ext = 'CSV' then do;
+            /* 构建完整路径 */
+            full_path = "&input_dir" || strip(entry_name);
+            filename = entry_name;
+            
             output;
-            put '已添加文件: ' full_path;
-        end;
-        else do;
-            put '警告：跳过非CSV文件: ' full_path;
+            put '找到CSV文件: ' entry_name;
         end;
     end;
+    
+    /* 关闭目录 */
+    rc = dclose(did);
+    rc = filename('dir_ref', '');
     
     keep full_path filename;
 run;
 
-/* 检查文件列表 */
+/* 检查找到的文件数量 */
 proc sql noprint;
-    select count(*) into :file_count from work.file_list;
+    select count(*) into :total_files from work.csv_file_list;
 quit;
 
 %put ================================================;
-%if &file_count = 0 %then %do;
-    %put 错误：未找到任何CSV文件！;
-    %put 请在 data work.file_list 数据步骤中添加你的文件路径;
-    %put 程序结束。;
-    %goto end_program;
+%if &total_files = 0 %then %do;
+    %put 错误：在目录 &input_dir 中未找到任何CSV文件;
+    %put 请检查目录路径是否正确;
 %end;
 %else %do;
-    %put 成功添加 &file_count 个CSV文件，准备合并;
+    %put 成功找到 &total_files 个CSV文件;
 %end;
 %put ================================================;
 
 /* 显示文件列表 */
-title '要合并的文件列表';
-proc print data=work.file_list label noobs;
-    label 
-        full_path = '完整路径'
-        filename = '文件名';
-run;
-title;
+%if &total_files > 0 %then %do;
+    title '要合并的CSV文件列表';
+    proc print data=work.csv_file_list label noobs;
+        label 
+            full_path = '完整路径'
+            filename = '文件名';
+    run;
+    title;
+%end;
 
 /* ================================================
-   第三步：创建合并文件并写入元数据头部
+   第三步：定义处理单个文件的宏
    ================================================ */
 
-%put 开始创建合并文件: &output_file;
-
-data _null_;
-    file "&output_file" lrecl=32767;
+%macro process_csv_file(file_path=, file_name=);
+    %if &file_path = %str() %then %return;
     
-    /* 写入合并文件的元数据头部 */
-    /* 格式：__MERGED_CSV_METADATA__|version=1.0|created=YYYY-MM-DD|total_files=N */
-    length header_line $200;
-    today_char = put(today(), yymmdd10.);
-    file_count_char = put(&file_count, best.);
-    header_line = '__MERGED_CSV_METADATA__|version=1.0|created=' || 
-                   strip(today_char) || '|total_files=' || strip(file_count_char);
-    put header_line;
-    
-    put '合并文件头已写入，包含 ' file_count_char ' 个文件';
-run;
-
-/* ================================================
-   第四步：定义处理单个文件的宏
-   ================================================ */
-
-%macro process_single_csv(full_path=, filename=);
     %put ----------------------------------------;
-    %put 正在处理文件: &filename;
-    %put 完整路径: &full_path;
+    %put 处理文件: &file_name;
+    %put 完整路径: &file_path;
     
-    /* 步骤1：读取文件的第一行（表头）来获取列名 */
-    data work._temp_header;
-        infile "&full_path" dlm=',' dsd truncover lrecl=32767 obs=1;
+    /* 步骤1：读取文件的第一行（表头）获取列名 */
+    data work._temp_col_info;
+        infile "&file_path" dlm=',' dsd truncover lrecl=32767 obs=1;
         
-        /* 定义足够多的字符变量来存储列名（最多200列） */
+        /* 定义足够多的字符变量（最多200列） */
         length c1-c200 $256;
         
         /* 读取第一行 */
         input c1-c200;
         
-        /* 收集所有非空列名 */
-        length all_columns $32767;
-        array col_names[*] c1-c200;
-        all_columns = '';
-        col_count = 0;
+        /* 收集列名 */
+        length column_names $32767;
+        array cols[*] c1-c200;
+        column_names = '';
+        num_cols = 0;
         
-        do i = 1 to dim(col_names);
-            if not missing(col_names[i]) then do;
-                col_count + 1;
-                if all_columns = '' then do;
-                    all_columns = trim(left(col_names[i]));
+        do j = 1 to dim(cols);
+            if not missing(cols[j]) then do;
+                num_cols + 1;
+                if column_names = '' then do;
+                    column_names = trim(left(cols[j]));
                 end;
                 else do;
-                    all_columns = trim(all_columns) || ',' || trim(left(col_names[i]));
+                    column_names = trim(column_names) || ',' || trim(left(cols[j]));
                 end;
             end;
         end;
         
-        /* 保存结果 */
-        keep all_columns col_count;
+        keep column_names num_cols;
     run;
     
     /* 获取列名和列数 */
-    %local file_columns file_col_count;
+    %local cols_info col_count;
     
     proc sql noprint;
-        select all_columns, col_count into :file_columns, :file_col_count
-        from work._temp_header;
+        select column_names, num_cols into :cols_info, :col_count
+        from work._temp_col_info;
     quit;
     
-    /* 处理空值情况 */
     %if &sqlobs = 0 %then %do;
-        %let file_columns = ;
-        %let file_col_count = 0;
+        %let cols_info = ;
+        %let col_count = 0;
     %end;
     
-    %put 文件 &filename 有 &file_col_count 列;
-    %put 列名: &file_columns;
+    %put 列数: &col_count;
+    %put 列名: &cols_info;
     
-    /* 步骤2：计算数据行数（不包括表头） */
-    %local file_row_count;
-    %let file_row_count = 0;
+    /* 步骤2：计算数据行数 */
+    %local row_count;
+    %let row_count = 0;
     
     data _null_;
-        infile "&full_path" truncover end=eof;
+        infile "&file_path" truncover end=eof;
         input;
         
-        /* 第一行是表头，跳过 */
+        /* 跳过表头行 */
         if _n_ > 1 then do;
-            row_count + 1;
+            rcnt + 1;
         end;
         
         if eof then do;
-            call symputx('file_row_count', row_count);
+            call symputx('row_count', rcnt);
         end;
     run;
     
-    %put 文件 &filename 有 &file_row_count 行数据;
+    %put 数据行数: &row_count;
     
-    /* 步骤3：写入文件开始标记到合并文件 */
+    /* 步骤3：写入文件开始标记 */
     data _null_;
         file "&output_file" lrecl=32767 mod;
         
-        length start_line $32767;
-        start_line = '__FILE_START__|filename=' || trim("&filename") || 
-                     '|column_count=' || trim(put(&file_col_count, best.)) ||
-                     '|row_count=' || trim(put(&file_row_count, best.)) ||
-                     '|columns=' || trim("&file_columns");
-        put start_line;
-        
-        put '已写入文件开始标记: ' "&filename";
+        length start_tag $32767;
+        start_tag = '__FILE_START__|filename=' || trim("&file_name") || 
+                    '|column_count=' || trim(put(&col_count, best.)) ||
+                    '|row_count=' || trim(put(&row_count, best.)) ||
+                    '|columns=' || trim("&cols_info");
+        put start_tag;
     run;
     
-    /* 步骤4：读取并写入所有数据行（跳过表头） */
+    /* 步骤4：写入所有数据行（跳过表头） */
     data _null_;
-        infile "&full_path" truncover lrecl=32767 firstobs=2;
+        infile "&file_path" truncover lrecl=32767 firstobs=2;
         file "&output_file" lrecl=32767 mod;
         
         input;
-        put _infile_;  /* 直接写入原始行 */
+        put _infile_;
     run;
-    
-    %put 已写入 &file_row_count 行数据;
     
     /* 步骤5：写入文件结束标记 */
     data _null_;
         file "&output_file" lrecl=32767 mod;
         
-        length end_line $200;
-        end_line = '__FILE_END__|filename=' || trim("&filename");
-        put end_line;
-        
-        put '已写入文件结束标记: ' "&filename";
-        put '文件 ' "&filename" ' 处理完成';
+        length end_tag $200;
+        end_tag = '__FILE_END__|filename=' || trim("&file_name");
+        put end_tag;
     run;
+    
+    %put 文件 &file_name 处理完成;
+    %put ----------------------------------------;
     
     /* 清理临时数据集 */
     proc datasets library=work nolist;
-        delete _temp_header;
+        delete _temp_col_info;
     run;
     quit;
+%mend process_csv_file;
+
+/* ================================================
+   第四步：创建合并文件并写入文件头
+   ================================================ */
+
+%if &total_files > 0 %then %do;
+    %put 开始创建合并文件: &output_file;
     
-    %put ----------------------------------------;
-%mend process_single_csv;
+    data _null_;
+        file "&output_file" lrecl=32767;
+        
+        length header_line $200;
+        today_str = put(today(), yymmdd10.);
+        header_line = '__MERGED_CSV_METADATA__|version=1.0|created=' || 
+                      strip(today_str) || '|total_files=' || strip(put(&total_files, best.));
+        put header_line;
+        
+        put '合并文件头已写入，包含 ' &total_files ' 个文件';
+    run;
+%end;
 
 /* ================================================
    第五步：遍历文件列表并处理每个文件
    ================================================ */
 
-%put ================================================;
-%put 开始合并所有文件...;
-%put ================================================;
-
-/* 使用数据步骤生成宏调用 */
-data _null_;
-    set work.file_list;
+%if &total_files > 0 %then %do;
+    %put ================================================;
+    %put 开始处理所有CSV文件...;
+    %put ================================================;
     
-    length macro_call $1000;
-    macro_call = '%process_single_csv(full_path=' || trim(full_path) || 
-                 ', filename=' || trim(filename) || ');';
-    
-    put '执行: ' macro_call;
-    call execute(macro_call);
-run;
+    data _null_;
+        set work.csv_file_list;
+        
+        length macro_call $1000;
+        macro_call = '%process_csv_file(file_path=' || trim(full_path) || 
+                     ', file_name=' || trim(filename) || ');';
+        
+        put '执行: ' macro_call;
+        call execute(macro_call);
+    run;
+%end;
 
 /* ================================================
    第六步：程序结束
    ================================================ */
 
-%end_program:
-
 %put ================================================;
-%if &file_count > 0 %then %do;
+%if &total_files > 0 %then %do;
     %put 批量合并完成！;
     %put 输出文件: &output_file;
-    %put 共合并 &file_count 个文件;
+    %put 共合并 &total_files 个CSV文件;
 %end;
 %else %do;
     %put 程序未执行任何合并操作;
@@ -305,7 +291,7 @@ run;
 
 /* 清理临时数据集 */
 proc datasets library=work nolist;
-    delete file_list;
+    delete csv_file_list;
 run;
 quit;
 

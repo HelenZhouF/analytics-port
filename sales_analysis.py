@@ -31,6 +31,13 @@ def ensure_dir(directory):
         os.makedirs(directory)
 
 
+def round2(value):
+    """四舍五入到2位小数，解决浮点精度问题"""
+    if pd.isna(value):
+        return value
+    return round(value, 2)
+
+
 def format_currency(value):
     """将数值格式化为货币格式（带$和千分位）"""
     if pd.isna(value):
@@ -86,9 +93,16 @@ def calculate_stats(df, var, group_var, output_name):
         'std_var': f'std_{var}'
     })
     
+    stats[f'avg_{var}'] = stats[f'avg_{var}'].apply(round2)
+    stats[f'std_{var}'] = stats[f'std_{var}'].apply(round2)
+    
     stats = stats.sort_values(by=f'total_{var}', ascending=False)
     
-    export_to_csv(stats, f'{output_name}.csv')
+    stats_export = stats.copy()
+    stats_export[f'avg_{var}'] = stats_export[f'avg_{var}'].apply(lambda x: f"{x:.2f}")
+    stats_export[f'std_{var}'] = stats_export[f'std_{var}'].apply(lambda x: f"{x:.2f}")
+    
+    export_to_csv(stats_export, f'{output_name}.csv')
     return stats
 
 
@@ -143,7 +157,7 @@ def main():
     
     raw_sales['age_group'] = raw_sales['age'].apply(get_age_group)
     
-    raw_sales['order_value'] = raw_sales['quantity'] * raw_sales['unit_price']
+    raw_sales['order_value'] = (raw_sales['quantity'] * raw_sales['unit_price']).apply(round2)
     
     def get_value_category(value):
         if value < 500:
@@ -171,9 +185,9 @@ def main():
     
     clean_sales = raw_sales.copy()
     
-    clean_sales['total_amount'] = clean_sales['quantity'] * clean_sales['unit_price']
-    clean_sales['discount_amount'] = clean_sales['total_amount'] * clean_sales['discount']
-    clean_sales['discounted_amount'] = clean_sales['total_amount'] - clean_sales['discount_amount']
+    clean_sales['total_amount'] = (clean_sales['quantity'] * clean_sales['unit_price']).apply(round2)
+    clean_sales['discount_amount'] = (clean_sales['total_amount'] * clean_sales['discount']).apply(round2)
+    clean_sales['discounted_amount'] = (clean_sales['total_amount'] - clean_sales['discount_amount']).apply(round2)
     
     def get_member_discount_bonus(level):
         if level == 'Platinum':
@@ -189,10 +203,10 @@ def main():
     
     clean_sales['final_discount'] = clean_sales['discount'] + clean_sales['member_discount_bonus']
     clean_sales.loc[clean_sales['final_discount'] > 0.2, 'final_discount'] = 0.2
-    clean_sales['final_amount'] = clean_sales['total_amount'] * (1 - clean_sales['final_discount'])
+    clean_sales['final_amount'] = (clean_sales['total_amount'] * (1 - clean_sales['final_discount'])).apply(round2)
     
     clean_sales['gross_margin'] = 0.3
-    clean_sales['estimated_profit'] = clean_sales['final_amount'] * clean_sales['gross_margin']
+    clean_sales['estimated_profit'] = (clean_sales['final_amount'] * clean_sales['gross_margin']).apply(round2)
     
     clean_sales['has_discount'] = np.where(clean_sales['discounted_amount'] > 0, '是', '否')
     
@@ -285,6 +299,8 @@ def main():
         avg_discount_rate=('discount', 'mean')
     ).reset_index()
     
+    region_summary['avg_order_value'] = region_summary['avg_order_value'].apply(round2)
+    
     region_summary = region_summary.sort_values(by='total_final_revenue', ascending=False)
     
     region_summary_export = region_summary.copy()
@@ -324,6 +340,8 @@ def main():
         avg_member_discount=('member_discount_bonus', 'mean')
     ).reset_index()
     
+    membership_summary['avg_spent_per_order'] = membership_summary['avg_spent_per_order'].apply(round2)
+    
     membership_summary = membership_summary.sort_values(by='total_spent', ascending=False)
     
     membership_summary_export = membership_summary.copy()
@@ -340,6 +358,8 @@ def main():
         avg_age=('age', 'mean')
     ).reset_index()
     
+    age_group_summary['avg_age'] = age_group_summary['avg_age'].apply(round2)
+    
     age_group_summary = age_group_summary.sort_values(by='total_spent', ascending=False)
     
     age_group_summary_export = age_group_summary.copy()
@@ -353,6 +373,8 @@ def main():
         total_revenue=('final_amount', 'sum'),
         avg_revenue_per_order=('final_amount', 'mean')
     ).reset_index()
+    
+    order_size_summary['avg_revenue_per_order'] = order_size_summary['avg_revenue_per_order'].apply(round2)
     
     order_size_summary = order_size_summary.sort_values(by='total_revenue', ascending=False)
     
@@ -371,7 +393,7 @@ def main():
         'total_discount_given': [clean_sales['discount_amount'].sum()],
         'total_final_revenue': [clean_sales['final_amount'].sum()],
         'total_estimated_profit': [clean_sales['estimated_profit'].sum()],
-        'avg_order_value': [clean_sales['final_amount'].mean()],
+        'avg_order_value': [round2(clean_sales['final_amount'].mean())],
         'avg_discount_rate': [clean_sales['discount'].mean()],
         'first_order_date': [clean_sales['order_date'].min().strftime('%Y-%m-%d')],
         'last_order_date': [clean_sales['order_date'].max().strftime('%Y-%m-%d')]

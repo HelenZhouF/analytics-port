@@ -1,0 +1,5 @@
+region,total_orders,unique_customers,total_quantity,total_revenue,total_discount,total_final_revenue,total_profit,avg_order_value,avg_discount_rate
+East,5,5,27,"$12,049.73",$523.99,"$11,397.75","$3,419.32","$2,279.55",4.40%
+South,5,5,17,"$11,199.83",$458.99,"$10,620.34","$3,186.10","$2,124.07",4.40%
+North,5,5,21,"$10,649.79",$459.49,"$10,095.05","$3,028.52","$2,019.01",4.40%
+West,5,5,36,"$7,899.64",$521.97,"$7,294.67","$2,188.40","$1,458.93",6.60%

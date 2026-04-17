@@ -1,0 +1,2 @@
+﻿category,total_orders,total_customers,total_units_sold,total_revenue,total_discount_given,total_final_revenue,total_estimated_profit,avg_order_value,avg_discount_rate,first_order_date,last_order_date
+总体,20,20,101,"$41,798.99","$1,964.44","$39,407.81","$11,822.34","$1,970.39",4.95%,2024-01-15,2024-02-03

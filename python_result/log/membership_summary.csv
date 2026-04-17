@@ -1,0 +1,4 @@
+﻿membership_level,total_orders,customer_count,total_spent,avg_spent_per_order,avg_member_discount
+Gold,7,7,"$16,323.68","$2,331.95",1.00%
+Silver,7,7,"$15,008.40","$2,144.06",0.50%
+Platinum,6,6,"$8,075.73","$1,345.95",2.00%

@@ -1,0 +1,21 @@
+﻿order_id,order_date,region,product,quantity,unit_price,discount,customer_id,customer_name,age,gender,membership_level,order_month,age_group,order_value,value_category
+1001,2024-01-15,North,Laptop,2,$899.99,5.00%,C001,Zhang Wei,35,Male,Gold,2024-01,30-39,1799.98,中价值
+1002,2024-01-16,South,Smartphone,5,$699.99,3.00%,C002,Li Na,28,Female,Silver,2024-01,18-29,3499.95,高价值
+1003,2024-01-17,East,Tablet,3,$399.99,2.00%,C003,Wang Ming,42,Male,Platinum,2024-01,40-49,1199.97,中价值
+1004,2024-01-18,West,Headphones,10,$149.99,8.00%,C004,Chen Fang,31,Female,Gold,2024-01,30-39,1499.9,中价值
+1005,2024-01-19,North,Smartphone,4,$699.99,4.00%,C005,Liu Qiang,45,Male,Silver,2024-01,40-49,2799.96,高价值
+1006,2024-01-20,South,Laptop,1,$899.99,6.00%,C006,Yang Ying,29,Female,Platinum,2024-01,18-29,899.99,中价值
+1007,2024-01-21,East,Tablet,6,$399.99,3.00%,C007,Zhao Jun,38,Male,Gold,2024-01,30-39,2399.94,高价值
+1008,2024-01-22,West,Headphones,8,$149.99,7.00%,C008,Huang Li,33,Female,Silver,2024-01,30-39,1199.92,中价值
+1009,2024-01-23,North,Tablet,2,$399.99,2.00%,C009,Zhou Tao,40,Male,Platinum,2024-01,40-49,799.98,中价值
+1010,2024-01-24,South,Smartphone,3,$699.99,5.00%,C010,Wu Mei,27,Female,Gold,2024-01,18-29,2099.9700000000003,高价值
+1011,2024-01-25,East,Laptop,4,$899.99,5.00%,C011,Zheng Hua,36,Male,Silver,2024-01,30-39,3599.96,高价值
+1012,2024-01-26,West,Headphones,12,$149.99,9.00%,C012,Sun Lan,30,Female,Platinum,2024-01,30-39,1799.88,中价值
+1013,2024-01-27,North,Smartphone,6,$699.99,4.00%,C013,Qian Feng,43,Male,Gold,2024-01,40-49,4199.9400000000005,高价值
+1014,2024-01-28,South,Tablet,5,$399.99,3.00%,C014,Fang Hong,32,Female,Silver,2024-01,30-39,1999.95,中价值
+1015,2024-01-29,East,Headphones,9,$149.99,8.00%,C015,Yuan Gang,39,Male,Platinum,2024-01,30-39,1349.91,中价值
+1016,2024-01-30,West,Laptop,2,$899.99,6.00%,C016,Xie Jing,26,Female,Gold,2024-01,18-29,1799.98,中价值
+1017,2024-01-31,North,Headphones,7,$149.99,7.00%,C017,Han Dong,37,Male,Silver,2024-01,30-39,1049.93,中价值
+1018,2024-02-01,South,Laptop,3,$899.99,5.00%,C018,Fan Ying,34,Female,Platinum,2024-02,30-39,2699.9700000000003,高价值
+1019,2024-02-02,East,Smartphone,5,$699.99,4.00%,C019,Peng Bo,41,Male,Gold,2024-02,40-49,3499.95,高价值
+1020,2024-02-03,West,Tablet,4,$399.99,3.00%,C020,Su Mei,28,Female,Silver,2024-02,18-29,1599.96,中价值

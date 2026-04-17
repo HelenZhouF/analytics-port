@@ -1,0 +1,5 @@
+﻿product,total_orders,total_quantity,avg_quantity,min_quantity,max_quantity,std_quantity
+Headphones,5,46,9.2,7,12,1.9235384061671343
+Smartphone,5,23,4.6,3,6,1.140175425099138
+Tablet,5,20,4.0,2,6,1.5811388300841898
+Laptop,5,12,2.4,1,4,1.1401754250991378

@@ -32,17 +32,18 @@ def ensure_dir(directory):
 
 
 def round2(value):
-    """四舍五入到2位小数，解决浮点精度问题"""
+    """四舍五入到2位小数"""
     if pd.isna(value):
         return value
     return round(value, 2)
 
 
 def format_currency(value):
-    """将数值格式化为货币格式（带$和千分位）"""
+    """将数值格式化为货币格式（带$和千分位，四舍五入到2位）"""
     if pd.isna(value):
         return value
-    return f"${value:,.2f}"
+    rounded = round2(value)
+    return f"${rounded:,.2f}"
 
 
 def format_percent(value):
@@ -157,7 +158,7 @@ def main():
     
     raw_sales['age_group'] = raw_sales['age'].apply(get_age_group)
     
-    raw_sales['order_value'] = (raw_sales['quantity'] * raw_sales['unit_price']).apply(round2)
+    raw_sales['order_value'] = raw_sales['quantity'] * raw_sales['unit_price']
     
     def get_value_category(value):
         if value < 500:
@@ -171,6 +172,7 @@ def main():
     
     raw_sales_export = raw_sales.copy()
     raw_sales_export['order_date'] = raw_sales_export['order_date'].dt.strftime('%Y-%m-%d')
+    raw_sales_export['order_value'] = raw_sales_export['order_value'].apply(round2)
     raw_sales_export['unit_price'] = raw_sales_export['unit_price'].apply(format_currency)
     raw_sales_export['discount'] = raw_sales_export['discount'].apply(format_percent)
     
@@ -185,9 +187,9 @@ def main():
     
     clean_sales = raw_sales.copy()
     
-    clean_sales['total_amount'] = (clean_sales['quantity'] * clean_sales['unit_price']).apply(round2)
-    clean_sales['discount_amount'] = (clean_sales['total_amount'] * clean_sales['discount']).apply(round2)
-    clean_sales['discounted_amount'] = (clean_sales['total_amount'] - clean_sales['discount_amount']).apply(round2)
+    clean_sales['total_amount'] = clean_sales['quantity'] * clean_sales['unit_price']
+    clean_sales['discount_amount'] = clean_sales['total_amount'] * clean_sales['discount']
+    clean_sales['discounted_amount'] = clean_sales['total_amount'] - clean_sales['discount_amount']
     
     def get_member_discount_bonus(level):
         if level == 'Platinum':
@@ -203,10 +205,10 @@ def main():
     
     clean_sales['final_discount'] = clean_sales['discount'] + clean_sales['member_discount_bonus']
     clean_sales.loc[clean_sales['final_discount'] > 0.2, 'final_discount'] = 0.2
-    clean_sales['final_amount'] = (clean_sales['total_amount'] * (1 - clean_sales['final_discount'])).apply(round2)
+    clean_sales['final_amount'] = clean_sales['total_amount'] * (1 - clean_sales['final_discount'])
     
     clean_sales['gross_margin'] = 0.3
-    clean_sales['estimated_profit'] = (clean_sales['final_amount'] * clean_sales['gross_margin']).apply(round2)
+    clean_sales['estimated_profit'] = clean_sales['final_amount'] * clean_sales['gross_margin']
     
     clean_sales['has_discount'] = np.where(clean_sales['discounted_amount'] > 0, '是', '否')
     
@@ -226,6 +228,7 @@ def main():
     
     clean_sales_export = clean_sales.copy()
     clean_sales_export['order_date'] = clean_sales_export['order_date'].dt.strftime('%Y-%m-%d')
+    clean_sales_export['order_value'] = clean_sales_export['order_value'].apply(round2)
     clean_sales_export['unit_price'] = clean_sales_export['unit_price'].apply(format_currency)
     clean_sales_export['discount'] = clean_sales_export['discount'].apply(format_percent)
     clean_sales_export['total_amount'] = clean_sales_export['total_amount'].apply(format_currency)
@@ -265,6 +268,7 @@ def main():
     def sort_export(df, filename):
         df_export = df.copy()
         df_export['order_date'] = df_export['order_date'].dt.strftime('%Y-%m-%d')
+        df_export['order_value'] = df_export['order_value'].apply(round2)
         df_export['unit_price'] = df_export['unit_price'].apply(format_currency)
         df_export['discount'] = df_export['discount'].apply(format_percent)
         df_export['total_amount'] = df_export['total_amount'].apply(format_currency)
@@ -298,8 +302,6 @@ def main():
         avg_order_value=('final_amount', 'mean'),
         avg_discount_rate=('discount', 'mean')
     ).reset_index()
-    
-    region_summary['avg_order_value'] = region_summary['avg_order_value'].apply(round2)
     
     region_summary = region_summary.sort_values(by='total_final_revenue', ascending=False)
     
@@ -340,8 +342,6 @@ def main():
         avg_member_discount=('member_discount_bonus', 'mean')
     ).reset_index()
     
-    membership_summary['avg_spent_per_order'] = membership_summary['avg_spent_per_order'].apply(round2)
-    
     membership_summary = membership_summary.sort_values(by='total_spent', ascending=False)
     
     membership_summary_export = membership_summary.copy()
@@ -358,8 +358,6 @@ def main():
         avg_age=('age', 'mean')
     ).reset_index()
     
-    age_group_summary['avg_age'] = age_group_summary['avg_age'].apply(round2)
-    
     age_group_summary = age_group_summary.sort_values(by='total_spent', ascending=False)
     
     age_group_summary_export = age_group_summary.copy()
@@ -373,8 +371,6 @@ def main():
         total_revenue=('final_amount', 'sum'),
         avg_revenue_per_order=('final_amount', 'mean')
     ).reset_index()
-    
-    order_size_summary['avg_revenue_per_order'] = order_size_summary['avg_revenue_per_order'].apply(round2)
     
     order_size_summary = order_size_summary.sort_values(by='total_revenue', ascending=False)
     
@@ -393,7 +389,7 @@ def main():
         'total_discount_given': [clean_sales['discount_amount'].sum()],
         'total_final_revenue': [clean_sales['final_amount'].sum()],
         'total_estimated_profit': [clean_sales['estimated_profit'].sum()],
-        'avg_order_value': [round2(clean_sales['final_amount'].mean())],
+        'avg_order_value': [clean_sales['final_amount'].mean()],
         'avg_discount_rate': [clean_sales['discount'].mean()],
         'first_order_date': [clean_sales['order_date'].min().strftime('%Y-%m-%d')],
         'last_order_date': [clean_sales['order_date'].max().strftime('%Y-%m-%d')]
@@ -448,6 +444,10 @@ def main():
     
     export_to_csv(detailed_orders_export, 'detailed_orders.csv')
     
+    # ================================================
+    # for_export 表 - 输出原始高精度数值（不带$符号）
+    # ================================================
+    
     overall_for_export = pd.DataFrame({
         'summary_type': ['总体统计'],
         'category': ['总体'],
@@ -456,11 +456,7 @@ def main():
         'metric3': [overall_stats['avg_order_value'].iloc[0]]
     })
     
-    overall_for_export_export = overall_for_export.copy()
-    overall_for_export_export['metric2'] = overall_for_export_export['metric2'].apply(format_currency)
-    overall_for_export_export['metric3'] = overall_for_export_export['metric3'].apply(format_currency)
-    
-    export_to_csv(overall_for_export_export, 'overall_for_export.csv')
+    export_to_csv(overall_for_export, 'overall_for_export.csv')
     
     region_for_export = region_summary[['region', 'total_orders', 'total_final_revenue', 'avg_order_value']].copy()
     region_for_export['summary_type'] = '地区汇总'
@@ -472,11 +468,7 @@ def main():
     })
     region_for_export = region_for_export[['summary_type', 'category', 'metric1', 'metric2', 'metric3']]
     
-    region_for_export_export = region_for_export.copy()
-    region_for_export_export['metric2'] = region_for_export_export['metric2'].apply(format_currency)
-    region_for_export_export['metric3'] = region_for_export_export['metric3'].apply(format_currency)
-    
-    export_to_csv(region_for_export_export, 'region_for_export.csv')
+    export_to_csv(region_for_export, 'region_for_export.csv')
     
     product_for_export = product_summary[['product', 'total_orders', 'total_final_revenue', 'avg_unit_price']].copy()
     product_for_export['summary_type'] = '产品汇总'
@@ -488,11 +480,7 @@ def main():
     })
     product_for_export = product_for_export[['summary_type', 'category', 'metric1', 'metric2', 'metric3']]
     
-    product_for_export_export = product_for_export.copy()
-    product_for_export_export['metric2'] = product_for_export_export['metric2'].apply(format_currency)
-    product_for_export_export['metric3'] = product_for_export_export['metric3'].apply(format_currency)
-    
-    export_to_csv(product_for_export_export, 'product_for_export.csv')
+    export_to_csv(product_for_export, 'product_for_export.csv')
     
     membership_for_export = membership_summary[['membership_level', 'total_orders', 'total_spent', 'avg_spent_per_order']].copy()
     membership_for_export['summary_type'] = '会员等级汇总'
@@ -504,11 +492,7 @@ def main():
     })
     membership_for_export = membership_for_export[['summary_type', 'category', 'metric1', 'metric2', 'metric3']]
     
-    membership_for_export_export = membership_for_export.copy()
-    membership_for_export_export['metric2'] = membership_for_export_export['metric2'].apply(format_currency)
-    membership_for_export_export['metric3'] = membership_for_export_export['metric3'].apply(format_currency)
-    
-    export_to_csv(membership_for_export_export, 'membership_for_export.csv')
+    export_to_csv(membership_for_export, 'membership_for_export.csv')
     
     age_for_export = age_group_summary[['age_group', 'total_orders', 'total_spent', 'avg_age']].copy()
     age_for_export['summary_type'] = '年龄分组汇总'
@@ -520,10 +504,7 @@ def main():
     })
     age_for_export = age_for_export[['summary_type', 'category', 'metric1', 'metric2', 'metric3']]
     
-    age_for_export_export = age_for_export.copy()
-    age_for_export_export['metric2'] = age_for_export_export['metric2'].apply(format_currency)
-    
-    export_to_csv(age_for_export_export, 'age_for_export.csv')
+    export_to_csv(age_for_export, 'age_for_export.csv')
     
     ordersize_for_export = order_size_summary[['order_size', 'order_count', 'total_revenue', 'avg_revenue_per_order']].copy()
     ordersize_for_export['summary_type'] = '订单大小汇总'
@@ -535,11 +516,11 @@ def main():
     })
     ordersize_for_export = ordersize_for_export[['summary_type', 'category', 'metric1', 'metric2', 'metric3']]
     
-    ordersize_for_export_export = ordersize_for_export.copy()
-    ordersize_for_export_export['metric2'] = ordersize_for_export_export['metric2'].apply(format_currency)
-    ordersize_for_export_export['metric3'] = ordersize_for_export_export['metric3'].apply(format_currency)
+    export_to_csv(ordersize_for_export, 'ordersize_for_export.csv')
     
-    export_to_csv(ordersize_for_export_export, 'ordersize_for_export.csv')
+    # ================================================
+    # final_output - 输出格式化的货币值（带$符号，四舍五入到2位）
+    # ================================================
     
     final_output = pd.concat([
         overall_for_export,

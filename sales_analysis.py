@@ -13,12 +13,22 @@
 
 输入文件：sales_data.csv
 输出文件：sales_summary.csv, sales_analysis_result.csv
+所有中间过程和结果都输出到 python_result 目录
 """
 
 import pandas as pd
 import numpy as np
 import os
 from datetime import datetime
+
+OUTPUT_DIR = 'python_result'
+LOG_DIR = os.path.join(OUTPUT_DIR, 'log')
+
+
+def ensure_dir(directory):
+    """确保目录存在"""
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
 
 def format_currency(value):
@@ -42,13 +52,12 @@ def parse_currency(value):
     return float(value)
 
 
-def export_to_csv(df, filename, log_dir='log'):
+def export_to_csv(df, filename, log_dir=LOG_DIR):
     """
     将DataFrame导出为CSV文件到log目录
     模拟SAS的export_to_csv宏
     """
-    if not os.path.exists(log_dir):
-        os.makedirs(log_dir)
+    ensure_dir(log_dir)
     
     filepath = os.path.join(log_dir, filename)
     df.to_csv(filepath, index=False, encoding='utf-8-sig')
@@ -84,14 +93,17 @@ def calculate_stats(df, var, group_var, output_name):
 
 
 def main():
+    ensure_dir(OUTPUT_DIR)
+    ensure_dir(LOG_DIR)
+    
     print("=" * 50)
     print("程序开始执行")
     print(f"执行时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 50)
     
     input_file = 'sales_data.csv'
-    output_file = 'sales_analysis_result.csv'
-    summary_file = 'sales_summary.csv'
+    output_file = os.path.join(OUTPUT_DIR, 'sales_analysis_result.csv')
+    summary_file = os.path.join(OUTPUT_DIR, 'sales_summary.csv')
     
     print(f"输入文件: {input_file}")
     print(f"输出文件1: {output_file}")

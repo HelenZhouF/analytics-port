@@ -1,0 +1,5 @@
+﻿product,total_orders,total_quantity_sold,total_revenue,total_final_revenue,avg_unit_price,avg_discount
+Smartphone,5,23,"$16,099.77","$15,340.28",$699.99,4.00%
+Laptop,5,12,"$10,799.88","$10,106.89",$899.99,5.40%
+Tablet,5,20,"$7,999.80","$7,697.81",$399.99,2.60%
+Headphones,5,46,"$6,899.54","$6,262.83",$149.99,7.80%

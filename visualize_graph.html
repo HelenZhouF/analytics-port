@@ -333,117 +333,235 @@
             position: fixed;
             right: 20px;
             top: 80px;
-            width: 300px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            padding: 15px;
+            width: 380px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 0;
             display: none;
             z-index: 1000;
-            max-height: calc(100vh - 100px);
-            overflow-y: auto;
+            max-height: calc(100vh - 120px);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
         }
 
         .node-details.visible {
             display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .node-details-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
         }
 
         .node-details-title {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
-            color: #333;
             word-break: break-all;
+            max-width: 280px;
+            line-height: 1.4;
         }
 
         .node-details-close {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             border: none;
-            background: #f0f0f0;
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
+            color: white;
+            transition: all 0.2s;
         }
 
         .node-details-close:hover {
-            background: #e0e0e0;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .node-details-body {
+            padding: 20px;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .detail-section {
+            margin-bottom: 20px;
+        }
+
+        .detail-section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #f0f0f0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .detail-item {
+            display: flex;
             margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px dashed #f0f0f0;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
         }
 
         .detail-label {
-            font-size: 11px;
+            font-size: 12px;
+            font-weight: 500;
             color: #888;
-            text-transform: uppercase;
-            margin-bottom: 3px;
+            min-width: 80px;
+            flex-shrink: 0;
         }
 
         .detail-value {
             font-size: 13px;
             color: #333;
             word-break: break-word;
+            flex: 1;
         }
 
         .detail-value pre {
             margin: 0;
             white-space: pre-wrap;
-            font-family: inherit;
+            font-family: 'Consolas', monospace;
             font-size: 12px;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
         }
 
         .connections-section {
-            margin-top: 15px;
-            padding-top: 10px;
-            border-top: 1px solid #eee;
+            margin-top: 10px;
         }
 
-        .connections-title {
+        .connections-subtitle {
             font-size: 12px;
             font-weight: 600;
             color: #555;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .connections-subtitle .count {
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
         }
 
         .connections-list {
             max-height: 200px;
             overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .connections-list:last-child {
+            margin-bottom: 0;
         }
 
         .connection-item {
-            padding: 6px 8px;
-            margin-bottom: 4px;
-            background: #f5f5f5;
-            border-radius: 4px;
-            font-size: 12px;
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            margin-bottom: 6px;
+            background: #fafafa;
+            border-radius: 8px;
+            font-size: 13px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
         }
 
         .connection-item:hover {
-            background: #e8e8e8;
+            background: #f0f4ff;
+            transform: translateX(4px);
         }
 
         .connection-item.include {
-            border-left: 3px solid #2196f3;
+            border-left-color: #2196f3;
         }
 
         .connection-item.dependency {
-            border-left: 3px solid #f44336;
+            border-left-color: #f44336;
+        }
+
+        .connection-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .connection-icon.include {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .connection-icon.dependency {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .connection-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .connection-name {
+            font-weight: 500;
+            color: #333;
+            word-break: break-all;
+            margin-bottom: 2px;
+        }
+
+        .connection-type {
+            font-size: 11px;
+            color: #888;
+        }
+
+        .connection-arrow {
+            font-size: 14px;
+            color: #aaa;
+            margin-left: 8px;
         }
 
         .legend {
@@ -793,20 +911,24 @@
                             selector: 'node',
                             style: {
                                 'label': 'data(label)',
-                                'text-valign': 'center',
+                                'text-valign': 'bottom',
                                 'text-halign': 'center',
                                 'background-color': '#667eea',
-                                'color': '#333',
-                                'text-outline-width': 2,
-                                'text-outline-color': '#fff',
-                                'font-size': '10px',
-                                'width': '60px',
-                                'height': '60px',
+                                'color': '#1a1a2e',
+                                'text-outline-width': 3,
+                                'text-outline-color': '#ffffff',
+                                'text-outline-opacity': 1,
+                                'font-size': '14px',
+                                'font-weight': 'bold',
+                                'width': '70px',
+                                'height': '70px',
                                 'shape': 'ellipse',
-                                'border-width': 2,
+                                'border-width': 3,
                                 'border-color': '#5568d3',
                                 'text-wrap': 'ellipsis',
-                                'text-max-width': '55px'
+                                'text-max-width': '120px',
+                                'text-margin-y': '8px',
+                                'min-zoomed-font-size': '8px'
                             }
                         },
                         {
@@ -814,9 +936,11 @@
                             style: {
                                 'background-color': '#e91e63',
                                 'border-color': '#c2185b',
-                                'width': '70px',
-                                'height': '70px',
-                                'font-size': '11px'
+                                'width': '80px',
+                                'height': '80px',
+                                'font-size': '15px',
+                                'font-weight': 'bold',
+                                'text-max-width': '130px'
                             }
                         },
                         {
@@ -851,8 +975,12 @@
                             selector: 'node:selected',
                             style: {
                                 'background-color': '#ffeb3b',
-                                'border-color': '#ffc107',
-                                'border-width': 3
+                                'border-color': '#ff9800',
+                                'border-width': 4,
+                                'color': '#d32f2f',
+                                'text-outline-color': '#fffde7',
+                                'font-size': '16px',
+                                'font-weight': 'bold'
                             }
                         },
                         {
@@ -1281,30 +1409,34 @@
             
             const connections = getNodeConnections(node);
             
-            let detailsHTML = `
-                <div class="detail-item">
-                    <div class="detail-label">Task</div>
-                    <div class="detail-value">${data.task || 'N/A'}</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Owner</div>
-                    <div class="detail-value">${data.owner || 'N/A'}</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Type</div>
-                    <div class="detail-value">
-                        ${data.type || 'N/A'}
-                        ${data.main_program === 'Y' ? '<span class="badge main">Main</span>' : ''}
+            let detailsHTML = '<div class="node-details-body">';
+            
+            detailsHTML += `
+                <div class="detail-section">
+                    <div class="detail-section-title">Basic Information</div>
+                    <div class="detail-item">
+                        <div class="detail-label">Task</div>
+                        <div class="detail-value">${data.task || 'N/A'}</div>
                     </div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Path</div>
-                    <div class="detail-value">${data.path || 'N/A'}</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Lines of Code</div>
-                    <div class="detail-value">${data.rows || 0}</div>
-                </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Owner</div>
+                        <div class="detail-value">${data.owner || 'N/A'}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Type</div>
+                        <div class="detail-value">
+                            ${data.type || 'N/A'}
+                            ${data.main_program === 'Y' ? '<span class="badge main">Main</span>' : ''}
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Path</div>
+                        <div class="detail-value">${data.path || 'N/A'}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Lines of Code</div>
+                        <div class="detail-value">${data.rows || 0}</div>
+                    </div>
             `;
             
             if (data.comments) {
@@ -1315,17 +1447,33 @@
                     </div>
                 `;
             }
+            
+            detailsHTML += '</div>';
 
             if (connections.incoming.length > 0 || connections.outgoing.length > 0) {
-                detailsHTML += '<div class="connections-section">';
+                detailsHTML += '<div class="detail-section connections-section">';
+                detailsHTML += '<div class="detail-section-title">Connected Nodes</div>';
                 
                 if (connections.outgoing.length > 0) {
+                    const includeCount = connections.outgoing.filter(c => c.type === 'include').length;
+                    const dependencyCount = connections.outgoing.filter(c => c.type === 'dependency').length;
+                    
                     detailsHTML += `
-                        <div class="connections-title">Outgoing (This node →)</div>
+                        <div class="connections-subtitle">
+                            <span>Outgoing (This node →)</span>
+                            <span class="count">${connections.outgoing.length}</span>
+                        </div>
                         <div class="connections-list">
                             ${connections.outgoing.map(c => `
                                 <div class="connection-item ${c.type}" data-node="${c.target}">
-                                    → ${c.target} <small>(${c.type}: ${c.label})</small>
+                                    <div class="connection-icon ${c.type}">
+                                        ${c.type === 'include' ? '📎' : '🔗'}
+                                    </div>
+                                    <div class="connection-info">
+                                        <div class="connection-name">${c.target}</div>
+                                        <div class="connection-type">${c.type}: ${c.label || 'N/A'}</div>
+                                    </div>
+                                    <div class="connection-arrow">→</div>
                                 </div>
                             `).join('')}
                         </div>
@@ -1334,11 +1482,21 @@
                 
                 if (connections.incoming.length > 0) {
                     detailsHTML += `
-                        <div class="connections-title" style="margin-top: 15px;">Incoming (→ This node)</div>
+                        <div class="connections-subtitle">
+                            <span>Incoming (→ This node)</span>
+                            <span class="count">${connections.incoming.length}</span>
+                        </div>
                         <div class="connections-list">
                             ${connections.incoming.map(c => `
                                 <div class="connection-item ${c.type}" data-node="${c.source}">
-                                    ← ${c.source} <small>(${c.type}: ${c.label})</small>
+                                    <div class="connection-icon ${c.type}">
+                                        ${c.type === 'include' ? '📎' : '🔗'}
+                                    </div>
+                                    <div class="connection-info">
+                                        <div class="connection-name">${c.source}</div>
+                                        <div class="connection-type">${c.type}: ${c.label || 'N/A'}</div>
+                                    </div>
+                                    <div class="connection-arrow">←</div>
                                 </div>
                             `).join('')}
                         </div>
@@ -1347,6 +1505,8 @@
                 
                 detailsHTML += '</div>';
             }
+            
+            detailsHTML += '</div>';
             
             document.getElementById('nodeDetailsContent').innerHTML = detailsHTML;
             document.getElementById('nodeDetails').classList.add('visible');

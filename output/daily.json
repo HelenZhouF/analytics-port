@@ -33,6 +33,18 @@
                     "name": "Loop_Status",
                     "lib": "rm"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\Loop_Status.txt",
+                    "from": "Loop_Status",
+                    "name": "Loop_Status.txt"
+                },
+                {
+                    "path": "E:\\Daily_IW_Check.txt",
+                    "from": "Sample_Chk",
+                    "name": "Daily_IW_Check.txt"
+                }
             ]
         }
     },
@@ -69,6 +81,18 @@
                     "libname": "rm.Loop_TP_Status",
                     "name": "Loop_TP_Status",
                     "lib": "rm"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\Loop_TP_Status.txt",
+                    "from": "Loop_TP_Status",
+                    "name": "Loop_TP_Status.txt"
+                },
+                {
+                    "path": "E:\\Daily_TP_Check.txt",
+                    "from": "Sample_Chk",
+                    "name": "Daily_TP_Check.txt"
                 }
             ]
         }
@@ -142,7 +166,26 @@
                 "path": "&BACKEND_PATH.\\MACRO\\Generate_Exception_Deposit_Dep10.txt",
                 "name": "Generate_Exception_Deposit_Dep10.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "&FRONTEND_PATH.\\DATA\\EXCEPT_DEPOSIT\\FIXED_DEP_Discretion_Statistics_&AS_OF_DT..xls",
+                    "from": "temp",
+                    "name": "FIXED_DEP_Discretion_Statistics_&AS_OF_DT..xls"
+                },
+                {
+                    "path": "E:\\XX\\FIXED_DEP_EXCEPTION_REPORT\\BACKEND\\DATA\\Rate\\Read_Mid_Rate.vbs",
+                    "from": "Report_vbs",
+                    "name": "Read_Mid_Rate.vbs"
+                },
+                {
+                    "path": "E:\\XX\\FIXED_DEP_EXCEPTION_REPORT\\BACKEND\\DATA\\Rate\\Read_Mid_Rate.vbs",
+                    "from": "Report_call",
+                    "name": "Read_Mid_Rate.vbs"
+                }
+            ]
+        }
     },
     "libname.sas": {
         "item_no": 3,
@@ -545,6 +588,38 @@
                     "lib": "WORK",
                     "from": "IW.VI_IADRM_CUSTOMER_NOID_CBG"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "&Fee_Amort_Path.\\AMFFMRP2_&RptDate..CSV",
+                    "from": "WORK.AMFFMRP2",
+                    "name": "AMFFMRP2_&RptDate..CSV"
+                },
+                {
+                    "path": "E:\\XX\\Fee_Income_Report\\Data\\Output\\FEE_SUMMARY_AS_OF_&Year.&Month.&Date..xls",
+                    "from": "Report",
+                    "name": "FEE_SUMMARY_AS_OF_&Year.&Month.&Date..xls"
+                },
+                {
+                    "path": "E:\\XX\\Fee_Income_Report\\Data\\Output\\FEE_SUMMARY_&Year.&Month.&Date..xls",
+                    "from": "Report",
+                    "name": "FEE_SUMMARY_&Year.&Month.&Date..xls"
+                },
+                {
+                    "path": "E:\\XX\\Fee_Income_Report\\Data\\Output\\FEE_EXCEPT_&Year.&Month.&Date..xls",
+                    "from": "Report",
+                    "name": "FEE_EXCEPT_&Year.&Month.&Date..xls"
+                },
+                {
+                    "path": "&Data_Path.\\&Year.\\&Month.\\&OutFile..vbs",
+                    "from": "Report_vbs",
+                    "name": "&OutFile..vbs"
+                },
+                {
+                    "path": "&Data_Path.\\&Year.\\&Month.\\&OutFile..vbs",
+                    "from": "Report_call",
+                    "name": "&OutFile..vbs"
+                }
             ]
         }
     },
@@ -706,7 +781,61 @@
                 "path": "p:\\libname.txt",
                 "name": "libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Daily\\No_of_Customer_&Cur_Day..XLS",
+                    "from": "WORK.WBG_Deposit_Cust",
+                    "name": "No_of_Customer_&Cur_Day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Daily\\No_of_Customer_&Cur_Day..XLS",
+                    "from": "WORK.Borrow_Cust",
+                    "name": "No_of_Customer_&Cur_Day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Daily\\No_of_Customer_&Cur_Day..XLS",
+                    "from": "WORK.Deposit_Only",
+                    "name": "No_of_Customer_&Cur_Day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Daily\\No_of_Customer_&Cur_Day..XLS",
+                    "from": "WORK.Cust_by_Industry",
+                    "name": "No_of_Customer_&Cur_Day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Daily\\No_of_Customer_&Cur_Day..XLS",
+                    "from": "WORK.List_Cust",
+                    "name": "No_of_Customer_&Cur_Day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Cust_List_with_CRA_&Cur_Day..XLS",
+                    "from": "WORK.List_Cust_C9",
+                    "name": "Cust_List_with_CRA_&Cur_Day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Cust_List_with_CRA_&Cur_Day..XLS",
+                    "from": "WORK.List_Cust_Fac",
+                    "name": "Cust_List_with_CRA_&Cur_Day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Daily\\No_of_Customer_&Cur_Day..XLS",
+                    "from": "WORK.Cust_Sum",
+                    "name": "No_of_Customer_&Cur_Day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Daily\\No_of_Customer_&Cur_Day..XLS",
+                    "from": "WORK.Borrow_Group",
+                    "name": "No_of_Customer_&Cur_Day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Daily\\No_of_Customer_&Cur_Day..XLS",
+                    "from": "WORK.Deposit_Only_Group",
+                    "name": "No_of_Customer_&Cur_Day..XLS"
+                }
+            ]
+        }
     },
     "Loan_Drawdown_MC2.sas": {
         "item_no": 5,
@@ -760,6 +889,13 @@
                     "name": "Loan_Drawdown_MC_&Cur_Mth",
                     "lib": "RM",
                     "from": "RM.Loan_Drawdown_MC_&Cur_Mth"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\WBG_CNY_Loan_Drawdown\\CNY_Loan_Drawdown_&Cur_Day..XLS",
+                    "from": "Loan_Drawdown_Result",
+                    "name": "CNY_Loan_Drawdown_&Cur_Day..XLS"
                 }
             ]
         }
@@ -823,6 +959,13 @@
                     "name": "Loan_Drawdown_US_&Cur_Mth",
                     "lib": "RM",
                     "from": "RM.Loan_Drawdown_US_&Cur_Mth"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\WBG_CNY_Loan_Drawdown\\CNY_Loan_Drawdown_&Cur_Day..XLS",
+                    "from": "Loan_Drawdown_Result",
+                    "name": "CNY_Loan_Drawdown_&Cur_Day..XLS"
                 }
             ]
         }
@@ -900,6 +1043,23 @@
                     "name": "Loan_Drawdown_SG_&Cur_Mth",
                     "lib": "RM",
                     "from": "Loan_Drawdown_SG"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\WBG_CNY_Loan_Drawdown\\CNY_Loan_Drawdown_&Cur_Day..XLS",
+                    "from": "SG_CNY_Loan",
+                    "name": "CNY_Loan_Drawdown_&Cur_Day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Oversea\\SG\\Daily_Loan_Deposit\\Daily_SG_Loan_Deposit_&cur_day..XLS",
+                    "from": "SG_Summary",
+                    "name": "Daily_SG_Loan_Deposit_&cur_day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Oversea\\SG\\Daily_Loan_Deposit\\Daily_SG_Loan_Deposit_&cur_day..XLS",
+                    "from": "SG_Revenue",
+                    "name": "Daily_SG_Loan_Deposit_&cur_day..XLS"
                 }
             ]
         }
@@ -1204,6 +1364,78 @@
                     "lib": "RM",
                     "from": "RM.New_Loan_Drawdown_&Prev_Mth"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&ReportDate..XLS",
+                    "from": "Loan_Drawdown(drop=Fac_Typ",
+                    "name": "Daily_Loan_Drawdown_&ReportDate..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&ReportDate..XLS",
+                    "from": "Loan_Drawdown_Revolving(drop=Fac_Typ",
+                    "name": "Daily_Loan_Drawdown_&ReportDate..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&ReportDate..XLS",
+                    "from": "Loan_Drawdown_Trade(drop=Fac_Typ",
+                    "name": "Daily_Loan_Drawdown_&ReportDate..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&ReportDate..XLS",
+                    "from": "Loan_Drawdown_Base",
+                    "name": "Daily_Loan_Drawdown_&ReportDate..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&ReportDate..XLS",
+                    "from": "Daily_Trade_Loan",
+                    "name": "Daily_Loan_Drawdown_&ReportDate..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&ReportDate..XLS",
+                    "from": "Daily_Trade_Loan_Sum",
+                    "name": "Daily_Loan_Drawdown_&ReportDate..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&ReportDate..XLS",
+                    "from": "Daily_Revol_Loan",
+                    "name": "Daily_Loan_Drawdown_&ReportDate..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&ReportDate..XLS",
+                    "from": "Daily_Revol_Loan_Sum",
+                    "name": "Daily_Loan_Drawdown_&ReportDate..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&ReportDate..XLS",
+                    "from": "Daily_OD_Loan",
+                    "name": "Daily_Loan_Drawdown_&ReportDate..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&ReportDate..XLS",
+                    "from": "Daily_OD_Loan_Sum",
+                    "name": "Daily_Loan_Drawdown_&ReportDate..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\WBG_CNY_Loan_Drawdown\\CNY_Loan_Drawdown_&runDate..XLS",
+                    "from": "CNY_Loan_Drawdown",
+                    "name": "CNY_Loan_Drawdown_&runDate..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\WBG_CNY_Loan_Drawdown\\CNY_Loan_Drawdown_&runDate..XLS",
+                    "from": "CNY_Loan_Drawdown_Rollover",
+                    "name": "CNY_Loan_Drawdown_&runDate..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\&OutFile..vbs",
+                    "from": "Report_vbs",
+                    "name": "&OutFile..vbs"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\&OutFile..vbs",
+                    "from": "Report_call",
+                    "name": "&OutFile..vbs"
+                }
             ]
         }
     },
@@ -1264,6 +1496,13 @@
                     "name": "Daily_New_LC_Refinance_&Cur_Mth",
                     "lib": "RM",
                     "from": "Daily_New_LC_Refinance"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_New_LC_Refinance\\Report\\Daily_New_LC_Refinance_&CurrDate..xls",
+                    "from": "RM.Daily_New_LC_Refinance_&Cur_Mth",
+                    "name": "Daily_New_LC_Refinance_&CurrDate..xls"
                 }
             ]
         }
@@ -1327,7 +1566,26 @@
                 "path": "E:\\XX\\Revenue by RM\\Macro\\Set_Macro.txt",
                 "name": "Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Bill Commission and Interest\\Daily\\MTD_Bill_Commission_and_Interest_&cur_day..XLS",
+                    "from": "Imex_Income",
+                    "name": "MTD_Bill_Commission_and_Interest_&cur_day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Bill Commission and Interest\\Daily\\MTD_Bill_Commission_and_Interest_&cur_day..XLS",
+                    "from": "Imex_Income_Group",
+                    "name": "MTD_Bill_Commission_and_Interest_&cur_day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Bill Commission and Interest\\Daily\\MTD_Bill_Commission_and_Interest_&cur_day..XLS",
+                    "from": "Health_Check",
+                    "name": "MTD_Bill_Commission_and_Interest_&cur_day..XLS"
+                }
+            ]
+        }
     },
     "Daily_NRvol_Loan_Repay2.sas": {
         "item_no": 5,
@@ -1472,6 +1730,18 @@
                     "lib": "RM",
                     "from": "RM.Loan_Repay_Trade_&Cur_Mth"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\&OutFile..vbs",
+                    "from": "Report_vbs",
+                    "name": "&OutFile..vbs"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\&OutFile..vbs",
+                    "from": "Report_call",
+                    "name": "&OutFile..vbs"
+                }
             ]
         }
     },
@@ -1536,7 +1806,31 @@
                 "path": "&Macro_Path.Set_Macro.txt",
                 "name": "&Macro_Path.Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\3_4_Party_Agreement\\Daily\\Loan_Portfolio_3_4_Pag_&cur_day..XLS",
+                    "from": "Report",
+                    "name": "Loan_Portfolio_3_4_Pag_&cur_day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\3_4_Party_Agreement\\Daily\\Loan_Portfolio_3_4_Pag_&cur_day..XLS",
+                    "from": "Loan_Portfolio_Summary",
+                    "name": "Loan_Portfolio_3_4_Pag_&cur_day..XLS"
+                },
+                {
+                    "path": "&Rpt_Path\\&inData..vbs",
+                    "from": "Report_vbs",
+                    "name": "&inData..vbs"
+                },
+                {
+                    "path": "&Rpt_Path\\&inData..vbs",
+                    "from": "Report_call",
+                    "name": "&inData..vbs"
+                }
+            ]
+        }
     },
     "Ken_Risk_Score.sas": {
         "item_no": 5,
@@ -1575,7 +1869,31 @@
                 "path": "&Macro_Path.Set_Macro.txt",
                 "name": "&Macro_Path.Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Customer_Risk_Score_&Cur_Day..XLS",
+                    "from": "WORK.Result",
+                    "name": "Customer_Risk_Score_&Cur_Day..XLS"
+                },
+                {
+                    "path": "J:\\O&C\\Process Management\\ECDD Report\\Customer_Risk_Score_&Cur_Day..XLS",
+                    "from": "WORK.Result",
+                    "name": "Customer_Risk_Score_&Cur_Day..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Risk_Score_Cust.XLS",
+                    "from": "WORK.Risk_Score",
+                    "name": "Risk_Score_Cust.XLS"
+                },
+                {
+                    "path": "E:\\XX\\Risk_Score_Cust_Prev.XLS",
+                    "from": "WORK.Risk_Prev",
+                    "name": "Risk_Score_Cust_Prev.XLS"
+                }
+            ]
+        }
     },
     "GCO_Monthly_Portfolio.sas": {
         "item_no": 5,
@@ -1655,7 +1973,16 @@
                 "path": "&Macro_Path.Set_Macro.txt",
                 "name": "&Macro_Path.Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\GCO_Portfolio_YTD_&Cur_Day",
+                    "from": "Result",
+                    "name": "GCO_Portfolio_YTD_&Cur_Day"
+                }
+            ]
+        }
     },
     "Daily_Repay.sas": {
         "item_no": 5,
@@ -1725,6 +2052,18 @@
                     "name": "Daily_Loan_Repay_&Cur_Mth",
                     "lib": "RM",
                     "from": "Daily_Loan_Repay"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Repay\\Repay_&runDate..XLS",
+                    "from": "Repay",
+                    "name": "Repay_&runDate..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Repay\\Repay_&runDate..XLS",
+                    "from": "Daily_Loan_Repay",
+                    "name": "Repay_&runDate..XLS"
                 }
             ]
         }
@@ -1802,6 +2141,18 @@
                     "lib": "rm",
                     "from": "Loan_Deposit"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "e:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_RMB_Deposit\\Daily_RMB_LD_&Cur_Day..XLS",
+                    "from": "RMB_Loan_Deposit_&Cur_Day",
+                    "name": "Daily_RMB_LD_&Cur_Day..XLS"
+                },
+                {
+                    "path": "e:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_RMB_Deposit\\Daily_RMB_LD_&Cur_Day..XLS",
+                    "from": "Loan_Deposit_Sum",
+                    "name": "Daily_RMB_LD_&Cur_Day..XLS"
+                }
             ]
         }
     },
@@ -1849,7 +2200,36 @@
                 "path": "E:\\XX\\Revenue by RM\\Macro\\Set_Macro.txt",
                 "name": "Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Commission_FX\\Daily\\Commission_FX_&Cur_Day..xls",
+                    "from": "FX_Commission",
+                    "name": "Commission_FX_&Cur_Day..xls"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Commission_FX\\Daily\\Commission_FX_&Cur_Day..xls",
+                    "from": "Commission_FX_NFX",
+                    "name": "Commission_FX_&Cur_Day..xls"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Commission_FX\\Daily\\Commission_FX_&Cur_Day..xls",
+                    "from": "Commission_Sum",
+                    "name": "Commission_FX_&Cur_Day..xls"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Commission_FX\\Daily\\&OutFile..vbs",
+                    "from": "Report_vbs",
+                    "name": "&OutFile..vbs"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Commission_FX\\Daily\\&OutFile..vbs",
+                    "from": "Report_call",
+                    "name": "&OutFile..vbs"
+                }
+            ]
+        }
     },
     "Daily_CASA_Mon.sas": {
         "item_no": 5,
@@ -1937,6 +2317,33 @@
                     "lib": "RM",
                     "from": "Daily_CASA"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Daily_Deposit_Movement\\Saving\\Daily_CASA_CNY_HKD_USD_&Cur_Day..XLSX",
+                    "from": "Summary",
+                    "name": "Daily_CASA_CNY_HKD_USD_&Cur_Day..XLSX"
+                },
+                {
+                    "path": "E:\\XX\\Daily_Deposit_Movement\\Saving\\Daily_CASA_CNY_HKD_USD_&Cur_Day..XLSX",
+                    "from": "Product_CNY",
+                    "name": "Daily_CASA_CNY_HKD_USD_&Cur_Day..XLSX"
+                },
+                {
+                    "path": "E:\\XX\\Daily_Deposit_Movement\\Saving\\Daily_CASA_CNY_HKD_USD_&Cur_Day..XLSX",
+                    "from": "Product_HKD",
+                    "name": "Daily_CASA_CNY_HKD_USD_&Cur_Day..XLSX"
+                },
+                {
+                    "path": "E:\\XX\\Daily_Deposit_Movement\\Saving\\Daily_CASA_CNY_HKD_USD_&Cur_Day..XLSX",
+                    "from": "Product_USD",
+                    "name": "Daily_CASA_CNY_HKD_USD_&Cur_Day..XLSX"
+                },
+                {
+                    "path": "E:\\XX\\Daily_Deposit_Movement\\Saving\\Daily_CASA_CNY_HKD_USD_&Cur_Day..XLSX",
+                    "from": "Result",
+                    "name": "Daily_CASA_CNY_HKD_USD_&Cur_Day..XLSX"
+                }
             ]
         }
     },
@@ -1995,7 +2402,21 @@
                 "path": "&Macro_Path.Set_Macro.txt",
                 "name": "&Macro_Path.Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Bill Turnover\\Daily\\Daily_Bills_turnover_&Cur_Day..xlsx",
+                    "from": "Bills_Turnover",
+                    "name": "Daily_Bills_turnover_&Cur_Day..xlsx"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Bill Turnover\\Daily\\Daily_Bills_turnover_&Cur_Day..xlsx",
+                    "from": "Daily_Turnover_Trend",
+                    "name": "Daily_Bills_turnover_&Cur_Day..xlsx"
+                }
+            ]
+        }
     },
     "Daily_Op_Deposit2.sas": {
         "item_no": 5,
@@ -2058,6 +2479,18 @@
                     "name": "Operational_Deposit_&Cur_Mth",
                     "lib": "RM",
                     "from": "Op_Deposit_Base"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Op_Deposit\\Operational_Deposit_&runDate..xlsx",
+                    "from": "Trend",
+                    "name": "Operational_Deposit_&runDate..xlsx"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Op_Deposit\\Operational_Deposit_&runDate..xlsx",
+                    "from": "Daily_OP",
+                    "name": "Operational_Deposit_&runDate..xlsx"
                 }
             ]
         }
@@ -2264,6 +2697,28 @@
                     "name": "Customer_Group_&Cur_Mth",
                     "lib": "RM",
                     "from": "GAM_FAM_Mapping"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "&Rpt_Path.&OutFile..vbs",
+                    "from": "Report_vbs",
+                    "name": "&Rpt_Path.&OutFile..vbs"
+                },
+                {
+                    "path": "&Rpt_Path.&OutFile..vbs",
+                    "from": "Report_call",
+                    "name": "&Rpt_Path.&OutFile..vbs"
+                },
+                {
+                    "path": "&Rpt_Path.&OutFile..vbs",
+                    "from": "Report_SetDate",
+                    "name": "&Rpt_Path.&OutFile..vbs"
+                },
+                {
+                    "path": "&Rpt_Path.&OutFile..vbs",
+                    "from": "Report_rename",
+                    "name": "&Rpt_Path.&OutFile..vbs"
                 }
             ]
         }
@@ -2637,6 +3092,113 @@
                     "lib": "RM",
                     "from": "Exchange"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "&Outpath.Customer_Profile_Daily_LP_Alert_&ToDay..xlsx",
+                    "from": "Check_LP(drop=cust_sub_typ_cd",
+                    "name": "&Outpath.Customer_Profile_Daily_LP_Alert_&ToDay..xlsx"
+                },
+                {
+                    "path": "&Outpath.Customer_Profile_Daily_Rate_Alert_&ToDay..xlsx",
+                    "from": "Check_Rate(drop=cust_sub_typ_cd",
+                    "name": "&Outpath.Customer_Profile_Daily_Rate_Alert_&ToDay..xlsx"
+                },
+                {
+                    "path": "&Outpath.Customer_Profile_Daily_&ToDay..xlsx",
+                    "from": "Customer_Profile_Adj_&ToDay(drop=cust_sub_typ_cd",
+                    "name": "&Outpath.Customer_Profile_Daily_&ToDay..xlsx"
+                },
+                {
+                    "path": "&Outpath.Customer_Profile_Daily_&ToDay..xlsx",
+                    "from": "Customer_Profile_&ToDay(drop=cust_sub_typ_cd",
+                    "name": "&Outpath.Customer_Profile_Daily_&ToDay..xlsx"
+                },
+                {
+                    "path": "&Outpath.Customer_Profile_Daily_&ToDay..xlsx",
+                    "from": "Customer_Profile_Daily(drop=cust_sub_typ_cd",
+                    "name": "&Outpath.Customer_Profile_Daily_&ToDay..xlsx"
+                },
+                {
+                    "path": "&Outpath.Customer_Profile_Daily_&ToDay..xlsx",
+                    "from": "NBFI",
+                    "name": "&Outpath.Customer_Profile_Daily_&ToDay..xlsx"
+                },
+                {
+                    "path": "&Outpath.Customer_Profile_Daily_&ToDay..xlsx",
+                    "from": "NBFI_Summary",
+                    "name": "&Outpath.Customer_Profile_Daily_&ToDay..xlsx"
+                },
+                {
+                    "path": "E:\\RunDate_CP.XLS",
+                    "from": "Rundate",
+                    "name": "RunDate_CP.XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Fixed Deposit with Tenor longer than 5 years\\FD_GE_5Yrs_&ToDay..xlsx",
+                    "from": "FD_5Y",
+                    "name": "FD_GE_5Yrs_&ToDay..xlsx"
+                },
+                {
+                    "path": "Y:\\FD_GE_5Yrs_&ToDay..xlsx",
+                    "from": "FD_5Y",
+                    "name": "FD_GE_5Yrs_&ToDay..xlsx"
+                },
+                {
+                    "path": "&Outpath.Customer_Profile_Daily_&ToDay..xlsx",
+                    "from": "SIC_Change",
+                    "name": "&Outpath.Customer_Profile_Daily_&ToDay..xlsx"
+                },
+                {
+                    "path": "e:\\XX\\Deposit_Maturity_&ToDay..xlsx",
+                    "from": "Deposit_Maturity",
+                    "name": "Deposit_Maturity_&ToDay..xlsx"
+                },
+                {
+                    "path": "e:\\XX\\Deposit_Maturity_&ToDay..xlsx",
+                    "from": "Deposit_Maturity_Trend",
+                    "name": "Deposit_Maturity_&ToDay..xlsx"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Early_Uplift_FD\\Early_Uplift_new_&Cur_Day..xls",
+                    "from": "RM.Early_Uplift_Detail_&Cur_Mth",
+                    "name": "Early_Uplift_new_&Cur_Day..xls"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Early_Uplift_FD\\Early_Uplift_new_&Cur_Day..xls",
+                    "from": "RM.Early_Uplift_List_&Cur_Mth",
+                    "name": "Early_Uplift_new_&Cur_Day..xls"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Early_Uplift_FD\\Early_Uplift_&Cur_Day..xls",
+                    "from": "RM.Early_Uplift_Detail_&Cur_Mth",
+                    "name": "Early_Uplift_&Cur_Day..xls"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Early_Uplift_FD\\Early_Uplift_&Cur_Day..xls",
+                    "from": "RM.Early_Uplift_List_&Cur_Mth",
+                    "name": "Early_Uplift_&Cur_Day..xls"
+                },
+                {
+                    "path": "&Output_Path.&OutFile..vbs",
+                    "from": "Report_vbs",
+                    "name": "&Output_Path.&OutFile..vbs"
+                },
+                {
+                    "path": "&Output_Path.&OutFile..vbs",
+                    "from": "Report_call",
+                    "name": "&Output_Path.&OutFile..vbs"
+                },
+                {
+                    "path": "&Rpt_Path\\&inData..vbs",
+                    "from": "Report_vbs",
+                    "name": "&inData..vbs"
+                },
+                {
+                    "path": "&Rpt_Path\\&inData..vbs",
+                    "from": "Report_call",
+                    "name": "&inData..vbs"
+                }
             ]
         }
     },
@@ -2731,6 +3293,28 @@
                     "lib": "RM",
                     "from": "Exchange"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Early_Uplift_FD\\Early_Uplift_new_&Cur_Day..xls",
+                    "from": "RM.Early_Uplift_Detail_&Cur_Mth",
+                    "name": "Early_Uplift_new_&Cur_Day..xls"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Early_Uplift_FD\\Early_Uplift_new_&Cur_Day..xls",
+                    "from": "RM.Early_Uplift_List_&Cur_Mth",
+                    "name": "Early_Uplift_new_&Cur_Day..xls"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Early_Uplift_FD\\Early_Uplift_&Cur_Day..xls",
+                    "from": "RM.Early_Uplift_Detail_&Cur_Mth",
+                    "name": "Early_Uplift_&Cur_Day..xls"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Early_Uplift_FD\\Early_Uplift_&Cur_Day..xls",
+                    "from": "RM.Early_Uplift_List_&Cur_Mth",
+                    "name": "Early_Uplift_&Cur_Day..xls"
+                }
             ]
         }
     },
@@ -2803,6 +3387,18 @@
                     "name": "New_Term_Loan_&Rpt_Mth",
                     "lib": "RM",
                     "from": "New_Loan"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\customer profile\\New_Loan\\New_Loan_Pricing_Monitoring_&Cur_Day..xlsx",
+                    "from": "RM.New_Term_Loan_&Rpt_Mth",
+                    "name": "New_Loan_Pricing_Monitoring_&Cur_Day..xlsx"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\customer profile\\New_Loan\\New_Loan_Pricing_Monitoring_&Cur_Day..xlsx",
+                    "from": "Fac_Collateral",
+                    "name": "New_Loan_Pricing_Monitoring_&Cur_Day..xlsx"
                 }
             ]
         }
@@ -2889,6 +3485,28 @@
                     "lib": "RM",
                     "from": "Change_EJM"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Customer_Movement\\SIC_CD\\Movement_SIC_CD_&Cur_Day..XLS",
+                    "from": "RM.Change_SIC_&Cur_Mth",
+                    "name": "Movement_SIC_CD_&Cur_Day..XLS"
+                },
+                {
+                    "path": "E:\\Movement_SIC_CD.XLS",
+                    "from": "Change_SIC",
+                    "name": "Movement_SIC_CD.XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Customer_Movement\\EJM_RT\\Movement_EJM_RT_&Cur_Day..XLS",
+                    "from": "RM.Change_EJM_&Cur_Mth",
+                    "name": "Movement_EJM_RT_&Cur_Day..XLS"
+                },
+                {
+                    "path": "E:\\Movement_EJM_RT.XLS",
+                    "from": "Change_EJM",
+                    "name": "Movement_EJM_RT.XLS"
+                }
             ]
         }
     },
@@ -2932,6 +3550,13 @@
                     "name": "currency_exchange",
                     "lib": "XXdata",
                     "from": "XXdata.currency_exchange"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Currency Exchange\\excel\\currency_rate_&Year..xls",
+                    "from": "currency_exchange",
+                    "name": "currency_rate_&Year..xls"
                 }
             ]
         }
@@ -3102,6 +3727,23 @@
                     "lib": "RM",
                     "from": "Customer_Profile_Fee"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "D:\\XX\\Revenue by RM\\Report\\Analysis\\Customer_Profile_Fee_&cur_mth..XLS",
+                    "from": "Customer_Profile_Fee",
+                    "name": "Customer_Profile_Fee_&cur_mth..XLS"
+                },
+                {
+                    "path": "D:\\XX\\Revenue by RM\\Report\\Analysis\\Customer_Profile_Fee_&cur_mth..XLS",
+                    "from": "Customer_Profile_Fee_Prod",
+                    "name": "Customer_Profile_Fee_&cur_mth..XLS"
+                },
+                {
+                    "path": "D:\\XX\\Revenue by RM\\Report\\Analysis\\Customer_Profile_Fee_&cur_mth..XLS",
+                    "from": "Customer_Profile_Fee_MG",
+                    "name": "Customer_Profile_Fee_&cur_mth..XLS"
+                }
             ]
         }
     },
@@ -3214,6 +3856,13 @@
                     "name": "Acct_Profit_Base",
                     "lib": "dw",
                     "from": "Acct_Profit_Base"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\IADOF_AC_FTP_CBG_&cur_day..XLSX",
+                    "from": "New_FTP",
+                    "name": "IADOF_AC_FTP_CBG_&cur_day..XLSX"
                 }
             ]
         }
@@ -3335,7 +3984,31 @@
                 "path": "E:\\XX\\Revenue by RM\\Macro\\Set_Macro.txt",
                 "name": "Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\CASA_Trend\\data\\CASA_Trend_&Cur_Day._data.XLSX",
+                    "from": "WORK.CASA",
+                    "name": "CASA_Trend_&Cur_Day._data.XLSX"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\CASA_Trend\\data\\CASA_Trend_&Cur_Day._data.XLSX",
+                    "from": "WORK.CASA_Trend",
+                    "name": "CASA_Trend_&Cur_Day._data.XLSX"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\CASA_Trend\\data\\CASA_Trend_&Cur_Day._data.XLSX",
+                    "from": "WORK.Loan_Info",
+                    "name": "CASA_Trend_&Cur_Day._data.XLSX"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\CASA_Trend\\data\\CASA_Trend_&Cur_Day._data.XLSX",
+                    "from": "WORK.Result",
+                    "name": "CASA_Trend_&Cur_Day._data.XLSX"
+                }
+            ]
+        }
     },
     "Libname.sas": {
         "item_no": 16,
@@ -3384,7 +4057,41 @@
                 "path": "P:\\Libname.txt",
                 "name": "Libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "&path.\\output\\WBG GAM_FAM Mapping.xls",
+                    "from": "GAM_FAM_Mapping",
+                    "name": "WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "path": "&path.\\output\\WBG GAM_FAM Mapping_&batch_dt..xls",
+                    "from": "GAM_FAM_Mapping",
+                    "name": "WBG GAM_FAM Mapping_&batch_dt..xls"
+                },
+                {
+                    "path": "&path.\\output\\Customer_Grouping_CRM_&batch_dt..csv",
+                    "from": "GAM_FAM_Mapping3",
+                    "name": "Customer_Grouping_CRM_&batch_dt..csv"
+                },
+                {
+                    "path": "&path.\\output\\Customer_Grouping_CRM_&batch_dt..csv",
+                    "from": "end=last",
+                    "name": "Customer_Grouping_CRM_&batch_dt..csv"
+                },
+                {
+                    "path": "F:\\XX\\CRM_Upload\\Customer_Grouping_CRM_&batch_dt..csv",
+                    "from": "GAM_FAM_MAPPING3",
+                    "name": "Customer_Grouping_CRM_&batch_dt..csv"
+                },
+                {
+                    "path": "F:\\XX\\CRM_Upload\\Customer_Grouping_CRM_&batch_dt..csv",
+                    "from": "end=last",
+                    "name": "Customer_Grouping_CRM_&batch_dt..csv"
+                }
+            ]
+        }
     },
     "$XX_EWI_Run.sas": {
         "item_no": "",
@@ -3442,6 +4149,13 @@
                     "lib": "outlib",
                     "from": "deposit_summary"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\EWI\\Output\\ewi_checking.csv",
+                    "from": "chk_data",
+                    "name": "ewi_checking.csv"
+                }
             ]
         }
     },
@@ -3467,7 +4181,16 @@
                 "path": "p:\\libname.txt",
                 "name": "libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "&OUT_Path.\\&outdata._&rtp_dt..xls",
+                    "from": "&outdata",
+                    "name": "&outdata._&rtp_dt..xls"
+                }
+            ]
+        }
     },
     "TB_CASA.sas": {
         "item_no": "",
@@ -3509,7 +4232,16 @@
                 "path": "p:\\libname.txt",
                 "name": "libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\TB_Prem_CASA\\output\\CASA_&rpt_date..xlsx",
+                    "from": "daily_casa",
+                    "name": "CASA_&rpt_date..xlsx"
+                }
+            ]
+        }
     },
     "a1.2_active_customers.sas": {
         "item_no": "",
@@ -3619,6 +4351,23 @@
                     "lib": "wrklib",
                     "from": "iw.vi_iadst_dep_core_hist_cday,vi_iadrm_custacct_cbg"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "&outPath.\\Active_Cust_List.csv",
+                    "from": "Active_Cust_List_Final",
+                    "name": "Active_Cust_List.csv"
+                },
+                {
+                    "path": "&outPath.\\Active_Cust_List.xls",
+                    "from": "Active_Cust_List_Final",
+                    "name": "Active_Cust_List.xls"
+                },
+                {
+                    "path": "&outPath.\\Active_Cust_List_&rpt_date..xls",
+                    "from": "Active_Cust_List_Final",
+                    "name": "Active_Cust_List_&rpt_date..xls"
+                }
             ]
         }
     },
@@ -3657,7 +4406,41 @@
                 "name": "CPRLIB",
                 "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "&rpt_path\\cust_group_exception_report_&rpt_date..xlsx",
+                    "from": "special_case",
+                    "name": "cust_group_exception_report_&rpt_date..xlsx"
+                },
+                {
+                    "path": "&rpt_path\\cust_group_exception_report_&rpt_date..xlsx",
+                    "from": "invalid_cust_assign",
+                    "name": "cust_group_exception_report_&rpt_date..xlsx"
+                },
+                {
+                    "path": "&rpt_path\\cust_group_exception_report_&rpt_date..xlsx",
+                    "from": "cust_wo_gam",
+                    "name": "cust_group_exception_report_&rpt_date..xlsx"
+                },
+                {
+                    "path": "&rpt_path\\cust_group_exception_report_&rpt_date..xlsx",
+                    "from": "cust_wo_custgroup",
+                    "name": "cust_group_exception_report_&rpt_date..xlsx"
+                },
+                {
+                    "path": "&rpt_path\\cust_group_exception_report_&rpt_date..xlsx",
+                    "from": "cust_grp_log",
+                    "name": "cust_group_exception_report_&rpt_date..xlsx"
+                },
+                {
+                    "path": "&rpt_path\\cust_group_exception_report_&rpt_date..xlsx",
+                    "from": "gam_fam3",
+                    "name": "cust_group_exception_report_&rpt_date..xlsx"
+                }
+            ]
+        }
     },
     "a1.5_gen_cust_movement.sas": {
         "item_no": "",
@@ -3722,7 +4505,16 @@
                 "name": "RM",
                 "path": "\"F:\\XX\\Revenue by RM\\Data\""
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "&rpt_path\\_cust_movement_rpt_&rpt_date..xlsx",
+                    "from": "cust_movement_rpt",
+                    "name": "_cust_movement_rpt_&rpt_date..xlsx"
+                }
+            ]
+        }
     },
     "cust_upsert_daily.sas": {
         "item_no": "",
@@ -3815,6 +4607,13 @@
                     "lib": "outlib",
                     "from": "cust_base"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\custgrp\\Output\\custgrp_customer.xlsx",
+                    "from": "cust_base",
+                    "name": "custgrp_customer.xlsx"
+                }
             ]
         }
     },
@@ -3851,7 +4650,21 @@
                 "path": "P:\\libname.txt",
                 "name": "libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\custgrp\\output\\new_loan_daily_&cur_date_str..xlsx",
+                    "from": "ALL_LOAN",
+                    "name": "new_loan_daily_&cur_date_str..xlsx"
+                },
+                {
+                    "path": "O:\\SQL_JOB_FILE\\new_loan_daily.csv",
+                    "from": "ALL_LOAN",
+                    "name": "new_loan_daily.csv"
+                }
+            ]
+        }
     },
     "a1.1.3_gam_fam_Export.sas": {
         "item_no": "",
@@ -3869,6 +4682,15 @@
                     "name": "GAM_FAM_Mapping",
                     "source": "WBG GAM_FAM Mapping.txt",
                     "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\custgrp\\output\\WBG GAM_FAM Mapping.txt"
+                }
+            ]
+        },
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\custgrp\\output\\WBG GAM_FAM Mapping.xls",
+                    "from": "GAM_FAM_Mapping",
+                    "name": "WBG GAM_FAM Mapping.xls"
                 }
             ]
         }
@@ -4019,6 +4841,23 @@
                     "name": "daily_cust",
                     "lib": "outlib",
                     "from": "daily_cust"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "&OUT_Path.cust_list.csv",
+                    "from": "daily_cust",
+                    "name": "&OUT_Path.cust_list.csv"
+                },
+                {
+                    "path": "&OUT_Path.cust_list.xls",
+                    "from": "daily_cust",
+                    "name": "&OUT_Path.cust_list.xls"
+                },
+                {
+                    "path": "&OUT_Path.cust_list_&LASTDATE..xls",
+                    "from": "daily_cust",
+                    "name": "&OUT_Path.cust_list_&LASTDATE..xls"
                 }
             ]
         }
@@ -4364,7 +5203,31 @@
                 "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\Cust_DB\\Gen_Cust_List_Daily_US.txt",
                 "name": "Gen_Cust_List_Daily_US.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "&OUT_Path.cust_list.csv",
+                    "from": "daily_cust",
+                    "name": "&OUT_Path.cust_list.csv"
+                },
+                {
+                    "path": "&OUT_Path.cust_list.xls",
+                    "from": "daily_cust",
+                    "name": "&OUT_Path.cust_list.xls"
+                },
+                {
+                    "path": "&OUT_Path.cust_list_&LASTDATE..xls",
+                    "from": "daily_cust",
+                    "name": "&OUT_Path.cust_list_&LASTDATE..xls"
+                },
+                {
+                    "path": "&OUT_Path.bank_nbfi.xls",
+                    "from": "bank_nbfi",
+                    "name": "&OUT_Path.bank_nbfi.xls"
+                }
+            ]
+        }
     },
     "Gen_Cust_List_Daily_HK.sas": {
         "item_no": "",
@@ -4450,6 +5313,23 @@
                     "lib": "outlib",
                     "from": "daily_cust"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "&OUT_Path.cust_list.csv",
+                    "from": "daily_cust",
+                    "name": "&OUT_Path.cust_list.csv"
+                },
+                {
+                    "path": "&OUT_Path.cust_list.xls",
+                    "from": "daily_cust",
+                    "name": "&OUT_Path.cust_list.xls"
+                },
+                {
+                    "path": "&OUT_Path.cust_list_&LASTDATE..xls",
+                    "from": "daily_cust",
+                    "name": "&OUT_Path.cust_list_&LASTDATE..xls"
+                }
             ]
         }
     },
@@ -4501,6 +5381,43 @@
                     "name": "transpose_res",
                     "lib": "WORK",
                     "from": "srclib.CUST_DET_RANK_GRP_ADJ_&FILEDATE"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "&SRCLIB_PATH.cr_rt_summary_&FILEDATE_YYYYMM..xls",
+                    "from": "Transpose_res_&dim_mg",
+                    "name": "&SRCLIB_PATH.cr_rt_summary_&FILEDATE_YYYYMM..xls"
+                },
+                {
+                    "path": "&SRCLIB_PATH.SIC_GP2_cur_bal_adj_&FILEDATE_YYYYMM..xls",
+                    "from": "sic_gp_cur_bal",
+                    "name": "&SRCLIB_PATH.SIC_GP2_cur_bal_adj_&FILEDATE_YYYYMM..xls"
+                },
+                {
+                    "path": "&SRCLIB_PATH.CUST_DET_RANK_GRP_ALL_ADJ_&FILEDATE_YYYYMM..xls",
+                    "from": "srclib.CUST_DET_RANK_GRP_ADJ_&FILEDATE",
+                    "name": "&SRCLIB_PATH.CUST_DET_RANK_GRP_ALL_ADJ_&FILEDATE_YYYYMM..xls"
+                },
+                {
+                    "path": "&SRCLIB_PATH.CUST_DET_RANK_GRP_ALL_ADJ_&FILEDATE_YYYYMM..xls",
+                    "from": "srclib.CUST_DET_TREASURY_ADJ_&FILEDATE",
+                    "name": "&SRCLIB_PATH.CUST_DET_RANK_GRP_ALL_ADJ_&FILEDATE_YYYYMM..xls"
+                },
+                {
+                    "path": "&SRCLIB_PATH.fac_line_checking_adj_&FILEDATE_YYYYMM..xls",
+                    "from": "fac_line_checking_res",
+                    "name": "&SRCLIB_PATH.fac_line_checking_adj_&FILEDATE_YYYYMM..xls"
+                },
+                {
+                    "path": "&SRCLIB_PATH.fac_line_checking_adj_&FILEDATE_YYYYMM..xls",
+                    "from": "fac_line_checking_mthend_res",
+                    "name": "&SRCLIB_PATH.fac_line_checking_adj_&FILEDATE_YYYYMM..xls"
+                },
+                {
+                    "path": "&SRCLIB_PATH.Bill_Util_ExFI_ADJ_&FILEDATE_YYYYMM..xls",
+                    "from": "bill_util_exFI",
+                    "name": "&SRCLIB_PATH.Bill_Util_ExFI_ADJ_&FILEDATE_YYYYMM..xls"
                 }
             ]
         }
@@ -4698,6 +5615,23 @@
                     "lib": "srclib",
                     "from": "Customer_Fac_Report_Cust_Det"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "&OUTPUT_PATH.Facility_Util_with_adj_limit_&FILEDATE..xlsx",
+                    "from": "Customer_Fac_Report_Cust_Det",
+                    "name": "&OUTPUT_PATH.Facility_Util_with_adj_limit_&FILEDATE..xlsx"
+                },
+                {
+                    "path": "&OUTPUT_PATH.Facility_Util_Adj_&FILEDATE..csv",
+                    "from": "Customer_Fac_Report_Cust_Det(drop=ADJ_OS_AMT",
+                    "name": "&OUTPUT_PATH.Facility_Util_Adj_&FILEDATE..csv"
+                },
+                {
+                    "path": "&OUTPUT_PATH2.Facility_Util_Adj.csv",
+                    "from": "Customer_Fac_Report_Cust_Det(drop=ADJ_OS_AMT",
+                    "name": "&OUTPUT_PATH2.Facility_Util_Adj.csv"
+                }
             ]
         }
     },
@@ -4720,6 +5654,15 @@
             ],
             "imh": [
                 "iw.vi_iadkr_fac_line,dw.fac_line_&PREV_MTH"
+            ]
+        },
+        "output": {
+            "excel": [
+                {
+                    "path": "&OUTPUT_PATH.fac_line_checking_adj_&FILEDATE..xls",
+                    "from": "fac_line_checking_cday_res",
+                    "name": "&OUTPUT_PATH.fac_line_checking_adj_&FILEDATE..xls"
+                }
             ]
         }
     },
@@ -4918,6 +5861,13 @@
                     "lib": "fundlib",
                     "from": "currency_temp"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "O:\\SQL_JOB_FILE\\currency.csv",
+                    "from": "currency_temp",
+                    "name": "currency.csv"
+                }
             ]
         }
     },
@@ -4970,7 +5920,16 @@
                 "path": "P:\\libname.txt",
                 "name": "libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\FUND_FLOW\\output\\repayment_&FILEDATE..xls",
+                    "from": "sys_insert",
+                    "name": "repayment_&FILEDATE..xls"
+                }
+            ]
+        }
     },
     "$XX_Movement_Run.sas": {
         "item_no": "",
@@ -5319,6 +6278,23 @@
                     "lib": "outslib",
                     "from": "LOAN_DEPOSIT_COMBO_MTH3"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "&OUTPUT_PATH.DAILY_LOAN_DEPOSIT_&LAST_D_STR..xlsx",
+                    "from": "LOAN_DEPOSIT_COMBO_MTH3",
+                    "name": "&OUTPUT_PATH.DAILY_LOAN_DEPOSIT_&LAST_D_STR..xlsx"
+                },
+                {
+                    "path": "&OUTPUT_PATH.DAILY_LOAN_DEPOSIT.xls",
+                    "from": "LOAN_DEPOSIT_COMBO_MTH3",
+                    "name": "&OUTPUT_PATH.DAILY_LOAN_DEPOSIT.xls"
+                },
+                {
+                    "path": "O:\\SQL_JOB_FILE\\DAILY_LOAN_DEPOSIT.csv",
+                    "from": "LOAN_DEPOSIT_COMBO_MTH4",
+                    "name": "DAILY_LOAN_DEPOSIT.csv"
+                }
             ]
         }
     },
@@ -5347,6 +6323,23 @@
                     "name": "daily_loan_deposit_&FILEDATE.",
                     "lib": "outslib",
                     "from": "LOAN_DEPOSIT_COMBO_MTH3"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "&OUTPUT_PATH.DAILY_LOAN_DEPOSIT_&FILEDATE..xlsx",
+                    "from": "LOAN_DEPOSIT_COMBO_MTH3",
+                    "name": "&OUTPUT_PATH.DAILY_LOAN_DEPOSIT_&FILEDATE..xlsx"
+                },
+                {
+                    "path": "&OUTPUT_PATH.DAILY_LOAN_DEPOSIT.xls",
+                    "from": "LOAN_DEPOSIT_COMBO_MTH3",
+                    "name": "&OUTPUT_PATH.DAILY_LOAN_DEPOSIT.xls"
+                },
+                {
+                    "path": "O:\\SQL_JOB_FILE\\DAILY_LOAN_DEPOSIT.csv",
+                    "from": "LOAN_DEPOSIT_COMBO_MTH4",
+                    "name": "DAILY_LOAN_DEPOSIT.csv"
                 }
             ]
         }
@@ -5393,7 +6386,26 @@
                 "name": "DW",
                 "path": "\"F:\\XX\\Revenue by RM\\Working\""
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\FUND_FLOW\\output\\deposit_track_&FILEDATE..xls",
+                    "from": "deposit_alert_list",
+                    "name": "deposit_track_&FILEDATE..xls"
+                },
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\FUND_FLOW\\output\\deposit_track_email_&FILEDATE..xls",
+                    "from": "deposit_alert_list_email",
+                    "name": "deposit_track_email_&FILEDATE..xls"
+                },
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\FUND_FLOW\\output\\deposit_alert_email_&FILEDATE..xls",
+                    "from": "deposit_alert_list_email2",
+                    "name": "deposit_alert_email_&FILEDATE..xls"
+                }
+            ]
+        }
     },
     "MBR_Balance_new.sas": {
         "item_no": "",
@@ -5527,6 +6539,23 @@
                     "lib": "movlib",
                     "from": "mov_bal"
                 }
+            ],
+            "excel": [
+                {
+                    "path": "O:\\SQL_JOB_FILE\\us_bal_ind.csv",
+                    "from": "us_bal",
+                    "name": "us_bal_ind.csv"
+                },
+                {
+                    "path": "e:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\MOVEMENT_DB\\Output\\us_bal_ind.xlsx",
+                    "from": "us_bal",
+                    "name": "us_bal_ind.xlsx"
+                },
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\MOVEMENT_DB\\Output\\US_Balance_&LAST_D_STR.PM.xls",
+                    "from": "us_bal",
+                    "name": "US_Balance_&LAST_D_STR.PM.xls"
+                }
             ]
         }
     },
@@ -5558,7 +6587,16 @@
                 "path": "p:\\libname.txt",
                 "name": "libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\MOVEMENT_DB\\Output\\US_BALANCE_&US_DATE_STR..xls",
+                    "from": "us_bal_sum",
+                    "name": "US_BALANCE_&US_DATE_STR..xls"
+                }
+            ]
+        }
     },
     "CCASA_Deposit.sas": {
         "item_no": "",
@@ -5606,7 +6644,16 @@
                 "path": "p:\\libname.txt",
                 "name": "libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "J:\\Product Cap Monitoring\\CCASA\\CCASA_Deposit_&Rpt_YYYYMMDD..xls",
+                    "from": "CCASA_Deposit",
+                    "name": "CCASA_Deposit_&Rpt_YYYYMMDD..xls"
+                }
+            ]
+        }
     },
     "$XX_Rollover_Run.sas": {
         "item_no": "",
@@ -5702,6 +6749,18 @@
                     "name": "ROLLOVER_DATA_&FILEDATE",
                     "lib": "outlib",
                     "from": "ROLLOVER_DATA"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "&OUT_Path.ROLLOVER_DATA.xls",
+                    "from": "ROLLOVER_DATA",
+                    "name": "&OUT_Path.ROLLOVER_DATA.xls"
+                },
+                {
+                    "path": "&OUT_Path.ROLLOVER_DATA_&FILEDATE..xls",
+                    "from": "ROLLOVER_DATA",
+                    "name": "&OUT_Path.ROLLOVER_DATA_&FILEDATE..xls"
                 }
             ]
         }
@@ -5853,6 +6912,23 @@
                     "name": "trade_loan_format_&FILEDATE",
                     "lib": "outlib",
                     "from": "trade_loan_format"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "&OUT_Path.trade_loan_&FILEDATE..csv",
+                    "from": "trade_loan_format",
+                    "name": "&OUT_Path.trade_loan_&FILEDATE..csv"
+                },
+                {
+                    "path": "&OUT_Path.trade_loan.csv",
+                    "from": "trade_loan_format",
+                    "name": "&OUT_Path.trade_loan.csv"
+                },
+                {
+                    "path": "&OUT_Path.trade_loan_movement_&FILEDATE..xlsx",
+                    "from": "comp_trade",
+                    "name": "&OUT_Path.trade_loan_movement_&FILEDATE..xlsx"
                 }
             ]
         }
@@ -6161,6 +7237,23 @@
                     "name": "NON_BANK_FI_BPM_2",
                     "lib": "outlib",
                     "from": "all_in_bpm_nonbankfi"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\Deposit_Campaign\\output\\rate_tm_checking_&as_of_dt2..xls",
+                    "from": "rate_non_bank_today",
+                    "name": "rate_tm_checking_&as_of_dt2..xls"
+                },
+                {
+                    "path": "O:\\SQL_JOB_FILE\\rate_tm_checking_&as_of_dt2..csv",
+                    "from": "rate_non_bank_today",
+                    "name": "rate_tm_checking_&as_of_dt2..csv"
+                },
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\Deposit_Campaign\\output\\wbg_vs_tmg_&as_of_dt2..csv",
+                    "from": "wbg_vs_tmg",
+                    "name": "wbg_vs_tmg_&as_of_dt2..csv"
                 }
             ]
         }

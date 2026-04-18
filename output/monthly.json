@@ -8,7 +8,22 @@
         "owner": "mary",
         "rows": 18,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {},
+        "include": [
+            {
+                "path": "&PGM_PATH.00_Format_Creation.txt",
+                "name": "&PGM_PATH.00_Format_Creation.txt"
+            },
+            {
+                "path": "&PGM_PATH.01_Source.txt",
+                "name": "&PGM_PATH.01_Source.txt"
+            },
+            {
+                "path": "&PGM_PATH.02_Outdata.txt",
+                "name": "&PGM_PATH.02_Outdata.txt"
+            }
+        ]
     },
     "$XX_Get_Customer_X_Rm.sas": {
         "item_no": "",
@@ -19,7 +34,28 @@
         "owner": "mary",
         "rows": 89,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "customer_history",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "E:\\XX\\Revenue by RM\\Davin\\Read_RM_Unit_Mapping.txt",
+                "name": "Read_RM_Unit_Mapping.txt"
+            }
+        ]
     },
     "$XX_Get_Revenue_HK.sas": {
         "item_no": "",
@@ -30,7 +66,59 @@
         "owner": "mary",
         "rows": 149,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "customer_history",
+                    "lib": "dwlib"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "CPRLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            },
+            {
+                "name": "DWLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            },
+            {
+                "name": "OUTLIB",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            },
+            {
+                "name": "EXLIB",
+                "path": "\"e:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\param\""
+            }
+        ],
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            },
+            {
+                "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\Op_Dep_HK.txt",
+                "name": "Op_Dep_HK.txt"
+            },
+            {
+                "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\Avg_Normal_CASA_HK.txt",
+                "name": "Avg_Normal_CASA_HK.txt"
+            },
+            {
+                "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\ESG_Bal_HK.txt",
+                "name": "ESG_Bal_HK.txt"
+            },
+            {
+                "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\Syn_Loan_Bal_HK.txt",
+                "name": "Syn_Loan_Bal_HK.txt"
+            },
+            {
+                "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\Revenue_Main_HK.txt",
+                "name": "Revenue_Main_HK.txt"
+            }
+        ]
     },
     "$XX_Get_Revenue_LA.sas": {
         "item_no": "",
@@ -41,7 +129,44 @@
         "owner": "mary",
         "rows": 89,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "CPRLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            },
+            {
+                "name": "DWLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            },
+            {
+                "name": "OUTLIB",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            },
+            {
+                "name": "EXLIB",
+                "path": "\"e:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\param\""
+            }
+        ],
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            },
+            {
+                "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\Revenue_Main_LA.txt",
+                "name": "Revenue_Main_LA.txt"
+            }
+        ]
     },
     "$XX_Get_Revenue_MO.sas": {
         "item_no": "",
@@ -52,7 +177,44 @@
         "owner": "mary",
         "rows": 89,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "CPRLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            },
+            {
+                "name": "DWLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            },
+            {
+                "name": "OUTLIB",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            },
+            {
+                "name": "EXLIB",
+                "path": "\"e:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\param\""
+            }
+        ],
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            },
+            {
+                "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\Revenue_Main_MO.txt",
+                "name": "Revenue_Main_MO.txt"
+            }
+        ]
     },
     "$XX_Get_Revenue_NY.sas": {
         "item_no": "",
@@ -63,7 +225,44 @@
         "owner": "mary",
         "rows": 89,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "CPRLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            },
+            {
+                "name": "DWLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            },
+            {
+                "name": "OUTLIB",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            },
+            {
+                "name": "EXLIB",
+                "path": "\"e:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\param\""
+            }
+        ],
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            },
+            {
+                "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\Revenue_Main_NY.txt",
+                "name": "Revenue_Main_NY.txt"
+            }
+        ]
     },
     "$XX_Get_Revenue_SG.sas": {
         "item_no": "",
@@ -74,7 +273,44 @@
         "owner": "mary",
         "rows": 92,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "CPRLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            },
+            {
+                "name": "DWLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            },
+            {
+                "name": "OUTLIB",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            },
+            {
+                "name": "EXLIB",
+                "path": "\"e:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\param\""
+            }
+        ],
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            },
+            {
+                "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Program\\Revenue_Main_SG.txt",
+                "name": "Revenue_Main_SG.txt"
+            }
+        ]
     },
     "$XX_rm_kpi_rpt_hk_2025.sas": {
         "item_no": "",
@@ -85,7 +321,158 @@
         "owner": "mary",
         "rows": 1016,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "cpr_combo_&year.01-revlib.cpr_combo_&Cur_Mth.",
+                    "lib": "revlib"
+                },
+                {
+                    "name": "cpr_combo_&Cur_Mth.",
+                    "lib": "revlib"
+                },
+                {
+                    "name": "cpr_combo_&Q1_Mth.",
+                    "lib": "revlib"
+                },
+                {
+                    "name": "no_of_cust_&year.01-revlib.no_of_cust_&Cur_Mth.",
+                    "lib": "revlib"
+                },
+                {
+                    "name": "no_of_tb_cust_&year.01-revlib.no_of_tb_cust_&Cur_Mth.",
+                    "lib": "revlib"
+                },
+                {
+                    "name": "npl_sm_&Cur_Mth.",
+                    "lib": "revlib"
+                },
+                {
+                    "name": "syn_loan_bal_&year.01-revlib.syn_loan_bal_&Cur_Mth.",
+                    "lib": "revlib"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping_&cur_mth..xls",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\custgrp\\output\\backup\\WBG GAM_FAM Mapping_&cur_mth..xls"
+                },
+                {
+                    "name": "budget_category",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "base_score_mg",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "upside_score_mg",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "base_score_team",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "upside_score_team",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "base_score_rm",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "upside_score_rm",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "growth_rate",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "growth_rate_Q1",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "rm_list",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "score",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "budget_rm",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "budget_q1_rm",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "budget_team",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "budget_q1_team",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "budget_mg",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "budget_q1_mg",
+                    "source": "RM_budget_&Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Budget\\RM_budget_&Year..xlsx"
+                },
+                {
+                    "name": "trade_turnover",
+                    "source": "Bill_Commission_Turnover_&cur_mth..XLS",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\BILLS_TURNOVER_ASSEST\\output\\Bill_Commission_Turnover_&cur_mth..XLS"
+                },
+                {
+                    "name": "revlib.no_of_cust_&Cur_Mth",
+                    "source": "New_No_of_Cust_&cur_mth. - no personal.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Core Customers\\HK\\New_No_of_Cust_&cur_mth. - no personal.xls"
+                },
+                {
+                    "name": "revlib.npl_sm_&cur_mth",
+                    "source": "ABCI NPL & SM Movement_&Year..xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\HK\\ABCI NPL & SM Movement_&Year..xlsx"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "REVLIB",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            }
+        ],
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            }
+        ]
     },
     "$XX_treasury_shadow_income.sas": {
         "item_no": "",
@@ -96,7 +483,34 @@
         "owner": "mary",
         "rows": 141,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "shadow_&cur_mth.,gam_fam_mapping",
+                    "lib": "rm"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "OUTLIB",
+                "path": "base \"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\TREASHADOW_DB\\output\""
+            }
+        ],
+        "include": [
+            {
+                "path": "E:\\XX\\Revenue by RM\\Davin\\Read_RM_UNIT_Mapping.txt",
+                "name": "Read_RM_UNIT_Mapping.txt"
+            }
+        ]
     },
     "00_Format_Creation.sas": {
         "item_no": "",
@@ -107,7 +521,54 @@
         "owner": "mary",
         "rows": 136,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "&Src_Path.&GAM_FAM_Mapping",
+                    "path": "&Src_Path.&GAM_FAM_Mapping"
+                },
+                {
+                    "name": "holiday",
+                    "source": "holiday_calendar.xls",
+                    "path": "E:\\XX\\revenue by rm\\source\\calendar\\holiday_calendar.xls"
+                },
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\custgrp\\output\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "OUTSLIB",
+                "path": "\"F:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\MOVEMENT_DB\\Output\\XXDATA\\\""
+            },
+            {
+                "name": "DW",
+                "path": "'F:\\XX\\Revenue by RM\\Working'"
+            },
+            {
+                "name": "OUTSLIB",
+                "path": "\"&Output_Path.XXDATA\\\""
+            },
+            {
+                "name": "ACCTLIB",
+                "path": "\"F:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\MOVEMENT_DB\\Output\\XXdata\\\""
+            }
+        ],
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\Davin\\Read_RM_Unit_Mapping.txt",
+                "name": "Read_RM_Unit_Mapping.txt"
+            }
+        ]
     },
     "01_Source.sas": {
         "item_no": "",
@@ -118,7 +579,23 @@
         "owner": "mary",
         "rows": 566,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "cust_acct_history",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "CUSTACCT_ADDRESS_HIST,AVG_BALANCE_ANALYSIS",
+                    "lib": "acctlib"
+                }
+            ]
+        }
     },
     "02_Outdata.sas": {
         "item_no": "",
@@ -140,7 +617,29 @@
         "owner": "josh",
         "rows": 477,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Cust_Acct_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DW",
+                "path": "'D:\\XX\\Revenue by RM\\working'"
+            }
+        ]
     },
     "Avg_Normal_CASA_HK.sas": {
         "item_no": "",
@@ -151,7 +650,28 @@
         "owner": "mary",
         "rows": 83,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "normal_casa_mtd_&Cur_Mth",
+                    "lib": "outlib"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "CASA_Prem",
+                    "source": "SF_CASA",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\SF_CASA"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            }
+        ]
     },
     "Bill_Commission_and_Interest.sas": {
         "item_no": "",
@@ -162,7 +682,57 @@
         "owner": "josh",
         "rows": 361,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Bill_Tran_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Bill_Cust_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Ac_Pft_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Bill_Income_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Bills_Com_FI",
+                    "source": "Bill_comm_FI_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\bill_comm_FI\\Bill_comm_FI_&cur_mth..xls"
+                },
+                {
+                    "name": "Cust_3IN1",
+                    "source": "Facility_3IN1.XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Facility_3IN1\\Facility_3IN1.XLS"
+                },
+                {
+                    "name": "Product_Type",
+                    "source": "Product_Type.XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Bill Commission and Interest\\Product_Type.XLS"
+                },
+                {
+                    "name": "Class_Map",
+                    "source": "Bills_Class_Map.XLSX",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Bill Commission and Interest\\Bills_Class_Map.XLSX"
+                }
+            ]
+        }
     },
     "Bill_Commission_Turnover.sas": {
         "item_no": "",
@@ -195,7 +765,38 @@
         "owner": "josh",
         "rows": 403,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Bill_Turnover_&First_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Bill_Turnover_&Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_Acct",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "&Src_Path.&GAM_FAM_Mapping",
+                    "path": "&Src_Path.&GAM_FAM_Mapping"
+                }
+            ]
+        }
     },
     "Bills_Asset_Trend.sas": {
         "item_no": "",
@@ -206,7 +807,27 @@
         "owner": "mary",
         "rows": 163,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_History",
+                    "lib": "dwlib"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DW",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            }
+        ],
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            }
+        ]
     },
     "Bills_Commission_turnover.sas": {
         "item_no": "",
@@ -217,7 +838,26 @@
         "owner": "mary",
         "rows": 216,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Bill_Turnover_&run_mth",
+                    "lib": "dwlib"
+                },
+                {
+                    "name": "Cust_Acct_History",
+                    "lib": "dwlib"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Bills_Com",
+                    "source": "Bill_Commission_and_Interest_&run_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Bill Commission and Interest\\Bill_Commission_and_Interest_&run_mth..xls"
+                }
+            ]
+        }
     },
     "bills_full_run.sas": {
         "item_no": "",
@@ -228,7 +868,50 @@
         "owner": "mary",
         "rows": 121,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "rm_map_&Cur_Mth.",
+                    "lib": "dwlib"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dwlib"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "customer_group",
+                    "source": "&Src_Path.&GAM_FAM_Mapping",
+                    "path": "&Src_Path.&GAM_FAM_Mapping"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DWLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            }
+        ],
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            },
+            {
+                "path": "&PGM_PATH.Bills_Asset_Trend.txt",
+                "name": "&PGM_PATH.Bills_Asset_Trend.txt"
+            },
+            {
+                "path": "&PGM_PATH.Bills_Commission_turnover.txt",
+                "name": "&PGM_PATH.Bills_Commission_turnover.txt"
+            },
+            {
+                "path": "&PGM_PATH.Bills_Limit.txt",
+                "name": "&PGM_PATH.Bills_Limit.txt"
+            }
+        ]
     },
     "Bills_Limit.sas": {
         "item_no": "",
@@ -250,7 +933,20 @@
         "owner": "mary",
         "rows": 204,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {},
+        "libname": [
+            {
+                "name": "OUTLIB",
+                "path": "\"&OUTPUT_PATH\""
+            }
+        ],
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            }
+        ]
     },
     "CASA_Premium_LC_Refinance_Trend.sas": {
         "item_no": "",
@@ -261,7 +957,26 @@
         "owner": "josh",
         "rows": 212,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "&GAM_FAM_Mapping",
+                    "path": "E:\\XX\\Revenue by RM\\&GAM_FAM_Mapping"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "ABC_CITIC_Referral.sas": {
         "item_no": "",
@@ -272,7 +987,99 @@
         "owner": "josh",
         "rows": 2606,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "CPR_YTD_&prev_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "CPR_&prev_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "ABC_Imex_Cur",
+                    "lib": "rm"
+                },
+                {
+                    "name": "ABC_Imex_YTD",
+                    "lib": "rm"
+                },
+                {
+                    "name": "YTD_Revenue_ABC_&cur_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "MTD_Revenue_ABC_&cur_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "SIC_Map",
+                    "source": "SIC_CODE_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\SIC_CODE_MAPPING.xls"
+                },
+                {
+                    "name": "Facility",
+                    "source": "CUST_DET_RANK_GRP_ALL_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\WBG Portfolio\\CUST_DET_RANK_GRP_ALL_&cur_mth..xls"
+                },
+                {
+                    "name": "Cust_3IN1",
+                    "source": "Facility_3IN1.XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Facility_3IN1\\Facility_3IN1.XLS"
+                },
+                {
+                    "name": "ABC_Branch_Map",
+                    "source": "ABC Source Code Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                },
+                {
+                    "name": "GBP_Branch_Map",
+                    "source": "ABC Source Code Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                },
+                {
+                    "name": "ABC_Adj",
+                    "source": "ABC_Adjustment.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\FMD Adjustment\\ABC_Adjustment.xls"
+                },
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "Report_vbs",
+                    "source": "WBG_Porfolio.src",
+                    "path": "E:\\XX\\Revenue by RM\\Script\\WBG_Porfolio.src"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "ABC_KPI_Report.sas": {
         "item_no": "",
@@ -283,7 +1090,22 @@
         "owner": "josh",
         "rows": 385,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Currency_Exchange",
+                    "lib": "exchange"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Branch_Map",
+                    "source": "ABC_KPI_Branch_Map.xls",
+                    "path": "E:\\XX\\Revenue by RM\\ABC_KPI_Branch_Map.xls"
+                }
+            ]
+        }
     },
     "ABC_New_Loan_Drawdown.sas": {
         "item_no": "",
@@ -294,7 +1116,74 @@
         "owner": "josh",
         "rows": 390,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Loan_Drawdown_Base_&Get_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_Profile_&Get_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Fac_Line_&Get_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Cust_3IN1",
+                    "source": "Facility_3IN1.XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Facility_3IN1\\Facility_3IN1.XLS"
+                },
+                {
+                    "name": "ABC_Branch_Map",
+                    "source": "ABC Source Code Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                },
+                {
+                    "name": "GBP_Branch_Map",
+                    "source": "ABC Source Code Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                },
+                {
+                    "name": "Loan_Consolid",
+                    "source": "Loan_Consolidation.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Loan_Consolidation.xlsx"
+                },
+                {
+                    "name": "Non_Trade_&Cur_Mth",
+                    "source": "Daily_Loan_Drawdown_&Cur_Mth..XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&Cur_Mth..XLS"
+                },
+                {
+                    "name": "Revolving_&Cur_Mth",
+                    "source": "Daily_Loan_Drawdown_&Cur_Mth..XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&Cur_Mth..XLS"
+                },
+                {
+                    "name": "Trade_&Cur_Mth",
+                    "source": "Daily_Loan_Drawdown_&Cur_Mth..XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&Cur_Mth..XLS"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "ABC_Reconciliation.sas": {
         "item_no": "",
@@ -305,7 +1194,32 @@
         "owner": "josh",
         "rows": 159,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "ABC_Prev_YTD",
+                    "source": "GCO_Actual_Revenue_&Prev_Mth..XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\&Prev_Mth\\GCO_Actual_Revenue_&Prev_Mth..XLS"
+                },
+                {
+                    "name": "ABC_Cur_YTD",
+                    "source": "GCO_Actual_Revenue_&Cur_Mth..XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\&Cur_Mth\\GCO_Actual_Revenue_&Cur_Mth..XLS"
+                },
+                {
+                    "name": "ABC_Cur_MTD",
+                    "source": "GCO_Actual_Revenue_&Cur_Mth..XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\&Cur_Mth\\GCO_Actual_Revenue_&Cur_Mth..XLS"
+                }
+            ]
+        }
     },
     "Commission_FX.sas": {
         "item_no": "",
@@ -316,7 +1230,15 @@
         "owner": "josh",
         "rows": 165,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ]
+        }
     },
     "Corp_Prem_Rolling.sas": {
         "item_no": "",
@@ -327,7 +1249,43 @@
         "owner": "mary",
         "rows": 478,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "corp_premium",
+                    "source": "Corp_Premium_Acct_Prod.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\Corp_Premium_Acct_Prod.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DW",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            },
+            {
+                "name": "RM",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            }
+        ],
+        "include": [
+            {
+                "path": "E:\\XX\\Revenue by RM\\Davin\\Read_RM_Unit_Mapping.txt",
+                "name": "Read_RM_Unit_Mapping.txt"
+            }
+        ]
     },
     "CPR_vs_MPR ver4.sas": {
         "item_no": "",
@@ -338,7 +1296,37 @@
         "owner": "josh",
         "rows": 378,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "customer_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "CPR",
+                    "source": "&CPR_Src_Path.CBG_Dataset_&Cur_Mth..xlsx",
+                    "path": "&CPR_Src_Path.CBG_Dataset_&Cur_Mth..xlsx"
+                },
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "&Src_Path.&GAM_FAM_Mapping",
+                    "path": "&Src_Path.&GAM_FAM_Mapping"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "crm_revenue_hk.sas": {
         "item_no": "",
@@ -349,7 +1337,51 @@
         "owner": "mary",
         "rows": 381,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "customer_history",
+                    "lib": "dwlib"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "base_cust",
+                    "source": "No_of_Customer_&prev_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Detail\\No_of_Customer_&prev_mth..xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DWLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            },
+            {
+                "name": "RM",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            },
+            {
+                "name": "CPRLIB",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\Davin\\Read_RM_Unit_Mapping.txt",
+                "name": "Read_RM_Unit_Mapping.txt"
+            }
+        ]
     },
     "crm_revenue_la.sas": {
         "item_no": "",
@@ -360,7 +1392,41 @@
         "owner": "mary",
         "rows": 359,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\custgrp\\output\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "cust_base",
+                    "source": "No_of_Customer_LA_&prev_mth..xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\US\\No_of_Customer_LA_&prev_mth..xlsx"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DWLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            },
+            {
+                "name": "RM",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            },
+            {
+                "name": "CPRLIB",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "crm_revenue_mo.sas": {
         "item_no": "",
@@ -371,7 +1437,36 @@
         "owner": "mary",
         "rows": 387,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\custgrp\\output\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DWLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            },
+            {
+                "name": "RM",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            },
+            {
+                "name": "CPRLIB",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "crm_revenue_ny.sas": {
         "item_no": "",
@@ -382,7 +1477,41 @@
         "owner": "mary",
         "rows": 379,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\custgrp\\output\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "cust_base",
+                    "source": "No_of_Customer_NY_&prev_mth..xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\US\\No_of_Customer_NY_&prev_mth..xlsx"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DWLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            },
+            {
+                "name": "RM",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            },
+            {
+                "name": "CPRLIB",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "crm_revenue_sg.sas": {
         "item_no": "",
@@ -393,7 +1522,36 @@
         "owner": "mary",
         "rows": 401,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\custgrp\\output\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DWLIB",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            },
+            {
+                "name": "RM",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            },
+            {
+                "name": "CPRLIB",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "crm_top_customer.sas": {
         "item_no": "",
@@ -404,7 +1562,21 @@
         "owner": "mary",
         "rows": 178,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "cpr_combo_&yyyy.&mm.",
+                    "lib": "cprlib"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "CPRLIB",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            }
+        ]
     },
     "Cross_CORP_Loan_Movement.sas": {
         "item_no": "",
@@ -415,7 +1587,37 @@
         "owner": "mary",
         "rows": 120,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "daily_loan_deposit_&movRpt_curr_dt",
+                    "lib": "movlib"
+                },
+                {
+                    "name": "daily_loan_deposit_&movRpt_prev_dt",
+                    "lib": "movlib"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "cust",
+                    "source": "WBG GAM_FAM Mapping_&mapping_curr_dt..xls",
+                    "path": "&map_path\\WBG GAM_FAM Mapping_&mapping_curr_dt..xls"
+                },
+                {
+                    "name": "prev_cust",
+                    "source": "WBG GAM_FAM Mapping_&mapping_prev_dt..xls",
+                    "path": "&map_path\\WBG GAM_FAM Mapping_&mapping_prev_dt..xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "MOVLIB",
+                "path": "\"F:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\MOVEMENT_DB\\Output\\XXdata\""
+            }
+        ]
     },
     "Custody_NII.sas": {
         "item_no": "",
@@ -426,7 +1628,87 @@
         "owner": "josh",
         "rows": 314,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "imh": [
+                "imh.vi_iadrm_custacct_address"
+            ],
+            "ds": [
+                {
+                    "name": "ac_pft_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "AC_PFT_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Dep_Time_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Sav_Dep_Core_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cur_Dep_Core_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_Acct_history",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Exchange_&cur_mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "EJM_Map",
+                    "source": "ECAI_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\ECAI_MAPPING.xls"
+                },
+                {
+                    "name": "Custody_Acct",
+                    "source": "Custody_Account.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\Custody_Account.xlsx"
+                },
+                {
+                    "name": "Pre_Fund",
+                    "source": "Pre_Funding_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\Pre-Funding\\Pre_Funding_&Cur_Mth..xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "MOVEMENT",
+                "path": "'E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\MOVEMENT_DB\\Output\\XXdata'"
+            }
+        ],
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            },
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "Customer_Info_Fee.sas": {
         "item_no": "",
@@ -437,7 +1719,161 @@
         "owner": "josh",
         "rows": 1868,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Remittance_In_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Remittance_Out_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Shadow_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Bill_Tran_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_acct",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_Acct",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Amort_Fees_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "ac_pft_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Bill_Turnover_&Cur_Mth)",
+                    "lib": "dw"
+                },
+                {
+                    "name": "cpr_ytd_&Prev_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_&Prev_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_Acct_History",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Facility_Type_YTD",
+                    "source": "fac_line_checking_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Monthly Facility\\Fac_Type\\fac_line_checking_&Cur_Mth..xls"
+                },
+                {
+                    "name": "Facility_Type_MTD",
+                    "source": "fac_line_checking_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Monthly Facility\\Fac_Type\\fac_line_checking_&Cur_Mth..xls"
+                },
+                {
+                    "name": "Expenses",
+                    "source": "expenses_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\OGL\\output\\expenses_&Cur_Mth..xls"
+                },
+                {
+                    "name": "Loan_Fee",
+                    "source": "FEE_SUMMARY_AS_OF_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Loan_Fee\\FEE_SUMMARY_AS_OF_&cur_mth..xls"
+                },
+                {
+                    "name": "Bills_Com",
+                    "source": "Bill_Commission_and_Interest_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Bill Commission and Interest\\Bill_Commission_and_Interest_&cur_mth..xls"
+                },
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "SIC_Map",
+                    "source": "SIC_CODE_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\SIC_CODE_MAPPING.xls"
+                },
+                {
+                    "name": "EJM_Map",
+                    "source": "ECAI_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\ECAI_MAPPING.xls"
+                },
+                {
+                    "name": "Bills_FX",
+                    "source": "Commission_FX_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Commission_FX\\Commission_FX_&cur_mth..xls"
+                },
+                {
+                    "name": "Syn_Amort_Fee",
+                    "source": "syn_amort_fee_&cur_mth..xls",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\OGL\\output\\syn_amort_fee_&cur_mth..xls"
+                },
+                {
+                    "name": "Cust_3IN1",
+                    "source": "Facility_3IN1.XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Facility_3IN1\\Facility_3IN1.XLS"
+                },
+                {
+                    "name": "Insurance_Income",
+                    "source": "Insurance_Income_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Insurance Income\\Insurance_Income_&cur_mth..xls"
+                },
+                {
+                    "name": "Borrow_Cust_MTD",
+                    "source": "No_of_Customer_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Detail\\No_of_Customer_&Cur_Mth..xls"
+                },
+                {
+                    "name": "Deposit_Only_MTD",
+                    "source": "No_of_Customer_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Detail\\No_of_Customer_&Cur_Mth..xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            },
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "Customer_info_MC9.sas": {
         "item_no": "",
@@ -459,7 +1895,270 @@
         "owner": "josh",
         "rows": 4268,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "AC_New_TP_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "&indata._&cur_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Bill_Tran_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "customer_profile_&cur_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "AC_PFT_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "LOANS_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "LOANS_GDR_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "LOANS2_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "LOANS2_&prev_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Fac_Line_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "ac_tp_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Sav_Dep_Core_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cur_Dep_Core_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "CASA_Int_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Dep_Time_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Bill_Limit_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "OD_Line_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_acct",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Exchange_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "SD_Tran_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "SD_Info_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "SD_Cust_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "AV_Macc_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "AV_CLD_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "AV_SD_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Op_Deposit_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "SB_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_Profile_&prev_mth",
+                    "lib": "rm"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "SIC_Map",
+                    "source": "SIC_CODE_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\SIC_CODE_MAPPING.xls"
+                },
+                {
+                    "name": "EJM_Map",
+                    "source": "ECAI_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\ECAI_MAPPING.xls"
+                },
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "Spread_Desc",
+                    "source": "Spread_description.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\Spread_description.xls"
+                },
+                {
+                    "name": "Syn_Loan_Amort",
+                    "source": "syn_amort_NII_&cur_mth..xls",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\OGL\\output\\syn_amort_NII_&cur_mth..xls"
+                },
+                {
+                    "name": "Term_Loan_Amort",
+                    "source": "term_amort_NII_&cur_mth..xls",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\OGL\\output\\term_amort_NII_&cur_mth..xls"
+                },
+                {
+                    "name": "Cust_3IN1",
+                    "source": "Facility_3IN1.XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Facility_3IN1\\Facility_3IN1.XLS"
+                },
+                {
+                    "name": "Citic_List",
+                    "source": "CITIC_FULL_CUST_LIST.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Citic List\\CITIC_FULL_CUST_LIST.xls"
+                },
+                {
+                    "name": "OGL_1_3_Map",
+                    "source": "Trade Product Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\Trade Product Mapping.xls"
+                },
+                {
+                    "name": "Premium_Acct_CD",
+                    "source": "Corp_Premium_Acct_Prod.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\Corp_Premium_Acct_Prod.xls"
+                },
+                {
+                    "name": "ABC_Mapping",
+                    "source": "ABC Source Code Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                },
+                {
+                    "name": "GPB_Mapping",
+                    "source": "GPB Source Code Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\GPB Source Code Mapping.xls"
+                },
+                {
+                    "name": "Country_Map",
+                    "source": "Country_Code_Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\Country_Code_Mapping.xls"
+                },
+                {
+                    "name": "Unit_Mapping",
+                    "source": "Unit_Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Unit_Mapping\\Unit_Mapping.xls"
+                },
+                {
+                    "name": "MLA",
+                    "source": "MLA.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\MLA.xlsx"
+                },
+                {
+                    "name": "REF_Port",
+                    "source": "REF_portfolio.xls",
+                    "path": "E:\\XX\\Revenue by RM\\REF_portfolio.xls"
+                },
+                {
+                    "name": "MIS_Adj",
+                    "source": "MIS_Adj_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\FMD Adjustment\\MIS_Adj_&Cur_Mth..xls"
+                },
+                {
+                    "name": "Subsidy_tmp",
+                    "source": "Upload template_&Cur_Mth..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\source\\FMD Adjustment\\Upload template_&Cur_Mth..xlsx"
+                },
+                {
+                    "name": "Subsidy_map",
+                    "source": "Subsidy_Pgm_Map.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\FMD Adjustment\\Subsidy_Pgm_Map.xls"
+                },
+                {
+                    "name": "public_sector",
+                    "source": "Public Sector List.xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\Public_Sector\\Public Sector List.xlsx"
+                },
+                {
+                    "name": "Report_vbs",
+                    "source": "&Script_Path.&inData..src",
+                    "path": "&Script_Path.&inData..src"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DW",
+                "path": "'F:\\XX\\Revenue by RM\\Working'"
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\adhoc\\Monthly_Issue_Bank.txt",
+                "name": "Monthly_Issue_Bank.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\adhoc\\Corp_Prem_Rolling.txt",
+                "name": "Corp_Prem_Rolling.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\adhoc\\SBLC_by_Issuer4.txt",
+                "name": "SBLC_by_Issuer4.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\adhoc\\FD_Transaction.txt",
+                "name": "FD_Transaction.txt"
+            }
+        ]
     },
     "ecrm_revenue_monthly.sas": {
         "item_no": "",
@@ -470,7 +2169,41 @@
         "owner": "mary",
         "rows": 399,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "customer_&prev_mth.",
+                    "lib": "dw"
+                },
+                {
+                    "name": "rm_map",
+                    "lib": "dwlib"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "no_of_cust",
+                    "source": "No_of_Customer_&prev_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Detail\\No_of_Customer_&prev_mth..xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DW",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            },
+            {
+                "name": "RM",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            }
+        ]
     },
     "EJM_Spread.sas": {
         "item_no": "",
@@ -481,7 +2214,15 @@
         "owner": "josh",
         "rows": 143,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                }
+            ]
+        }
     },
     "ESG_Bal_HK.sas": {
         "item_no": "",
@@ -492,7 +2233,22 @@
         "owner": "mary",
         "rows": 149,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "esg_bal",
+                    "source": "List_of_ESG_Loan_&yr..xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\HK\\List_of_ESG_Loan_&yr..xlsx"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            }
+        ]
     },
     "Export_Customer.sas": {
         "item_no": "",
@@ -503,7 +2259,55 @@
         "owner": "josh",
         "rows": 270,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Guarantor_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "SIC_Map",
+                    "source": "SIC_CODE_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\SIC_CODE_MAPPING.xls"
+                },
+                {
+                    "name": "EJM_Map",
+                    "source": "ECAI_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\ECAI_MAPPING.xls"
+                },
+                {
+                    "name": "FCDB_List",
+                    "source": "FCDB-CustList-&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\FCDB\\FCDB-CustList-&Cur_Mth..xls"
+                },
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "Export_IW_Amort.sas": {
         "item_no": "",
@@ -514,7 +2318,43 @@
         "owner": "josh",
         "rows": 300,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "customer_&cur_mth.",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "rm_map",
+                    "lib": "dw"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DW",
+                "path": "\"F:\\XX\\Revenue by RM\\Working\""
+            },
+            {
+                "name": "FEESUM",
+                "path": "\"e:\\XX\\Adhoc\\Daisy\\iw_fee_amort\\XXdata\""
+            },
+            {
+                "name": "RM",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "Export_Loan_Acct.sas": {
         "item_no": "",
@@ -525,7 +2365,19 @@
         "owner": "josh",
         "rows": 29,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Ac_Pft_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&cur_mth",
+                    "lib": "dw"
+                }
+            ]
+        }
     },
     "Facility_Table with OV.sas": {
         "item_no": "",
@@ -536,7 +2388,46 @@
         "owner": "josh",
         "rows": 366,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "imh": [
+                "imh.vi_iackr_cls_cd_ctl",
+                "imh.vi_momrm_cust_noid_cbg_cmth"
+            ],
+            "ds": [
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "fac_line_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "customer_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "US_TP",
+                    "source": "USMPF_AC_TP_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Oversea\\US\\source\\USMPF_AC_TP_&Cur_Mth..xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DW",
+                "path": "'F:\\XX\\Revenue by RM\\Working'"
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "Facility_Table.sas": {
         "item_no": "",
@@ -547,7 +2438,39 @@
         "owner": "josh",
         "rows": 333,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "imh": [
+                "imh.vi_iackr_cls_cd_ctl",
+                "imh.vi_momrm_cust_noid_cbg_cmth"
+            ],
+            "ds": [
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "fac_line_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "customer_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DW",
+                "path": "'F:\\XX\\Revenue by RM\\Working'"
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "FD_by_RM.sas": {
         "item_no": "",
@@ -558,7 +2481,29 @@
         "owner": "josh",
         "rows": 359,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Fixed_Dep_Over_&Cur_Mth.",
+                    "lib": "excpt_dt"
+                },
+                {
+                    "name": "Fixed_Dep_Campaign_&Cur_Mth",
+                    "lib": "fix_dep"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "EXCPT_DT",
+                "path": "'E:\\XX\\FIXED_DEP_EXCEPTION_REPORT\\BACKEND\\DATA\\XXDATA\\EXCEPT_DEPOSIT'"
+            }
+        ]
     },
     "FD_Transaction.sas": {
         "item_no": "",
@@ -569,7 +2514,39 @@
         "owner": "josh",
         "rows": 108,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Ac_Pft_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Fixed_Dep_&Cur_Day",
+                    "lib": "fix_dep"
+                },
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "FIX_DEP",
+                "path": "'E:\\XX\\FIXED_DEP_EXCEPTION_REPORT\\BACKEND\\DATA\\XXDATA\\FIXED_DEP'"
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "GCO_YTD_Cust.sas": {
         "item_no": "",
@@ -580,7 +2557,33 @@
         "owner": "josh",
         "rows": 131,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "RM_Map_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Line_Cust",
+                    "source": "Caroline_Cust_List5.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\Caroline_Cust_List5.xls"
+                },
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "Get_Data.sas": {
         "item_no": 1,
@@ -591,7 +2594,34 @@
         "owner": "josh",
         "rows": 342,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "imh": [
+                "imh.vi_iamfm_gl_tran"
+            ],
+            "ds": [
+                {
+                    "name": "Customer_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DW",
+                "path": "'F:\\XX\\Revenue by RM\\Working'"
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "import_export_bal.sas": {
         "item_no": "",
@@ -602,7 +2632,33 @@
         "owner": "mary",
         "rows": 122,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "fac_line_&FILEDATE_YYYYMM",
+                    "lib": "dw"
+                },
+                {
+                    "name": "customer_&FILEDATE_YYYYMM",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Bill_Turnover_&FILEDATE_YYYYMM",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_Acct",
+                    "lib": "dw"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            }
+        ]
     },
     "Insurance_Income.sas": {
         "item_no": "",
@@ -613,7 +2669,61 @@
         "owner": "josh",
         "rows": 574,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Insurance_Income_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Insurance_Income_&Run_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Insurance_Grp_Map",
+                    "source": "Insur_Grp_Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Insur_Grp_Mapping.xls"
+                },
+                {
+                    "name": "Insurance_Class_Map",
+                    "source": "Insur_Class_Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Insur_Class_Mapping.xls"
+                },
+                {
+                    "name": "CIBL",
+                    "source": "policy_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Insurance\\policy_&cur_mth..xls"
+                },
+                {
+                    "name": "Report_vbs",
+                    "source": "&Script_Path.&inData..src",
+                    "path": "&Script_Path.&inData..src"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DW",
+                "path": "'F:\\XX\\Revenue by RM\\Working'"
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "Loan_Movement_Drawdown_YTD.sas": {
         "item_no": "",
@@ -635,7 +2745,28 @@
         "owner": "mary",
         "rows": 367,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "e:\\XX\\revenue by rm\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "RM",
+                "path": "\"F:\\XX\\Revenue by RM\\Data\""
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "Main_Program4.sas": {
         "item_no": "",
@@ -646,7 +2777,135 @@
         "owner": "josh",
         "rows": 600,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "CPR_YTD_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "CPR_WBG",
+                    "source": "&CPR_Src_Path.CBG_Dataset_&Cur_Mth..xlsx",
+                    "path": "&CPR_Src_Path.CBG_Dataset_&Cur_Mth..xlsx"
+                },
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "&Src_Path.&GAM_FAM_Mapping",
+                    "path": "&Src_Path.&GAM_FAM_Mapping"
+                },
+                {
+                    "name": "MC_RM_Map",
+                    "source": "&Src_Path.MC_RM_MAP",
+                    "path": "&Src_Path.MC_RM_MAP"
+                },
+                {
+                    "name": "SG_RM_Map",
+                    "source": "&Src_Path.SG_RM_MAPPING",
+                    "path": "&Src_Path.SG_RM_MAPPING"
+                },
+                {
+                    "name": "Alt_RM_Map",
+                    "source": "&Src_Path.Alt RM Code",
+                    "path": "&Src_Path.Alt RM Code"
+                },
+                {
+                    "name": "CPB_Mapping",
+                    "source": "&Src_Path.CPB_Mapping.xls",
+                    "path": "&Src_Path.CPB_Mapping.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "IW_UAT",
+                "path": "oracle user=ucbgur1 pw='ucbgur1' path=iat schema=iatest"
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            },
+            {
+                "path": "&Pgm_Path.GAM_FAM_Summary_Report.txt",
+                "name": "&Pgm_Path.GAM_FAM_Summary_Report.txt"
+            },
+            {
+                "path": "&Pgm_Path.GAM_FAM_Detail_Report.txt",
+                "name": "&Pgm_Path.GAM_FAM_Detail_Report.txt"
+            },
+            {
+                "path": "&Pgm_Path.GAM_FAM_Detail_China_Report.txt",
+                "name": "&Pgm_Path.GAM_FAM_Detail_China_Report.txt"
+            },
+            {
+                "path": "&Pgm_Path.GAM_FAM_Summary_China_Report.txt",
+                "name": "&Pgm_Path.GAM_FAM_Summary_China_Report.txt"
+            },
+            {
+                "path": "&Pgm_Path.Revenue_by_RM_Report.txt",
+                "name": "&Pgm_Path.Revenue_by_RM_Report.txt"
+            },
+            {
+                "path": "&Pgm_Path.Revenue_by_RM_Summary.txt",
+                "name": "&Pgm_Path.Revenue_by_RM_Summary.txt"
+            },
+            {
+                "path": "&Pgm_Path.Revenue_by_RM_Team.txt",
+                "name": "&Pgm_Path.Revenue_by_RM_Team.txt"
+            },
+            {
+                "path": "&Pgm_Path.Revenue_by_RM_Sub_Team.txt",
+                "name": "&Pgm_Path.Revenue_by_RM_Sub_Team.txt"
+            },
+            {
+                "path": "&Pgm_Path.Revenue_by_RM_Group.txt",
+                "name": "&Pgm_Path.Revenue_by_RM_Group.txt"
+            },
+            {
+                "path": "&Pgm_Path.Revenue_by_RM_Trend.txt",
+                "name": "&Pgm_Path.Revenue_by_RM_Trend.txt"
+            },
+            {
+                "path": "&Pgm_Path.NIO_Revenue_by_Source_Code.txt",
+                "name": "&Pgm_Path.NIO_Revenue_by_Source_Code.txt"
+            },
+            {
+                "path": "&Pgm_Path.Revenue_by_RM_Alt_Off.txt",
+                "name": "&Pgm_Path.Revenue_by_RM_Alt_Off.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\adhoc\\No_of_Customers_Detail2.txt",
+                "name": "No_of_Customers_Detail2.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\adhoc\\ABC_Imex_Map2.txt",
+                "name": "ABC_Imex_Map2.txt"
+            }
+        ]
     },
     "Maturity_Distribution.sas": {
         "item_no": "",
@@ -657,7 +2916,78 @@
         "owner": "josh",
         "rows": 2172,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "ac_pft_&Cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "loans_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "fac_line_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Bill_Tran_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_acct",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "REF_Port",
+                    "source": "REF_portfolio.xls",
+                    "path": "E:\\XX\\Revenue by RM\\REF_portfolio.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "TEST",
+                "path": "'E:\\XX\\test'"
+            },
+            {
+                "name": "DW",
+                "path": "'F:\\XX\\Revenue by RM\\Working'"
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\adhoc\\Non_Bullet_Loan4.txt",
+                "name": "Non_Bullet_Loan4.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\adhoc\\Oversea_Maturity2.txt",
+                "name": "Oversea_Maturity2.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\adhoc\\Fac_Maturity_OD_Bills.txt",
+                "name": "Fac_Maturity_OD_Bills.txt"
+            }
+        ]
     },
     "Monthly_B_D_CASA.sas": {
         "item_no": "",
@@ -668,7 +2998,37 @@
         "owner": "josh",
         "rows": 147,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Custody_Acct",
+                    "source": "Custody_Account.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\Custody_Account.xlsx"
+                },
+                {
+                    "name": "B_D_List",
+                    "source": "B_D_List_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\B_D_List_&Cur_Mth..xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "Monthly_Bills_Turnover_CNY.sas": {
         "item_no": "",
@@ -679,7 +3039,35 @@
         "owner": "josh",
         "rows": 182,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Bill_Turnover_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Bill_Tran_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Bill_Cust_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "AC_Pft_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ]
+        }
     },
     "Monthly_ABC_Revenue.sas": {
         "item_no": "",
@@ -690,7 +3078,133 @@
         "owner": "josh",
         "rows": 1729,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Remittance_In_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Remittance_Out_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Amort_Fees_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "ac_pft_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Currency_Exchange",
+                    "lib": "exchange"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "CPR_YTD_&Prev_Mth",
+                    "lib": "rm"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Loan_Fee",
+                    "source": "FEE_SUMMARY_AS_OF_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Loan_Fee\\FEE_SUMMARY_AS_OF_&cur_mth..xls"
+                },
+                {
+                    "name": "Bills_Com",
+                    "source": "Bill_Commission_and_Interest_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Bill Commission and Interest\\Bill_Commission_and_Interest_&cur_mth..xls"
+                },
+                {
+                    "name": "Treasury",
+                    "source": "Shadow_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Treasury Shadow\\Shadow_&cur_mth..xls"
+                },
+                {
+                    "name": "Bills_FX",
+                    "source": "Commission_FX_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Commission_FX\\Commission_FX_&cur_mth..xls"
+                },
+                {
+                    "name": "Syn_Amort_Fee",
+                    "source": "syn_amort_fee_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Source\\Syn_Loan_Amort\\syn_amort_fee_&cur_mth..xls"
+                },
+                {
+                    "name": "Cust_3IN1",
+                    "source": "Facility_3IN1.XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Facility_3IN1\\Facility_3IN1.XLS"
+                },
+                {
+                    "name": "Insurance_Income",
+                    "source": "Insurance_Income_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Insurance Income\\Insurance_Income_&cur_mth..xls"
+                },
+                {
+                    "name": "CBI_China",
+                    "source": "3IN1_CBI_China.xls",
+                    "path": "E:\\XX\\Revenue by RM\\3IN1_CBI_China.xls"
+                },
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "&GAM_FAM_Mapping",
+                    "path": "E:\\XX\\Revenue by RM\\&GAM_FAM_Mapping"
+                },
+                {
+                    "name": "ABC_Branch_Map",
+                    "source": "ABC Source Code Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                },
+                {
+                    "name": "GBP_Branch_Map",
+                    "source": "ABC Source Code Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                },
+                {
+                    "name": "Expenses",
+                    "source": "expenses_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Expenses breakdown\\expenses_&Cur_Mth..xls"
+                },
+                {
+                    "name": "ABC_Adj",
+                    "source": "ABC_Adjustment.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\FMD Adjustment\\ABC_Adjustment.xls"
+                },
+                {
+                    "name": "Prev_List",
+                    "source": "GCO_Estimate_Revenue_&prev_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\&Prev_Mth.\\GCO_Estimate_Revenue_&prev_mth..xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "Monthly_Credit_Rating_Trend2.sas": {
         "item_no": "",
@@ -701,7 +3215,96 @@
         "owner": "josh",
         "rows": 491,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "imh": [
+                "imh.vi_sgmrm_cust_noid_cbg",
+                "imh.vi_momrm_cust_noid_cbg"
+            ],
+            "ds": [
+                {
+                    "name": "Customer_&RunDate",
+                    "lib": "dw"
+                },
+                {
+                    "name": "CPR_&RunDate",
+                    "lib": "rm"
+                },
+                {
+                    "name": "CPR_SG_MTD_&RunDate",
+                    "lib": "rm"
+                },
+                {
+                    "name": "CPR_MC_MTD_&RunDate",
+                    "lib": "rm"
+                },
+                {
+                    "name": "CPR_LA_Combo_&RunDate",
+                    "lib": "us_data"
+                },
+                {
+                    "name": "CPR_NY_Combo_&RunDate",
+                    "lib": "us_data"
+                },
+                {
+                    "name": "fac_line_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "SG_Credit",
+                    "source": "OV_Credit_list.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Credit Rating and POE_SOE Information\\Credit Rating\\temp\\OV_Credit_list.xlsx"
+                },
+                {
+                    "name": "MC_Credit",
+                    "source": "OV_Credit_list.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Credit Rating and POE_SOE Information\\Credit Rating\\temp\\OV_Credit_list.xlsx"
+                },
+                {
+                    "name": "NY_Credit",
+                    "source": "OV_Credit_list.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Credit Rating and POE_SOE Information\\Credit Rating\\temp\\OV_Credit_list.xlsx"
+                },
+                {
+                    "name": "LA_Credit",
+                    "source": "OV_Credit_list.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Credit Rating and POE_SOE Information\\Credit Rating\\temp\\OV_Credit_list.xlsx"
+                },
+                {
+                    "name": "Country_Map",
+                    "source": "Country_Code_Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\Country_Code_Mapping.xls"
+                },
+                {
+                    "name": "US_TP",
+                    "source": "USMPF_AC_TP_&RunDate..xls",
+                    "path": "E:\\XX\\Oversea\\US\\source\\USMPF_AC_TP_&RunDate..xls"
+                },
+                {
+                    "name": "SOEPOE",
+                    "source": "Loans_Category_&RunDate..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Credit Rating and POE_SOE Information\\POE_SOE\\Loans_Category_&RunDate..xlsx"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "US_DATA",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "Monthly_Customer_Movement.sas": {
         "item_no": "",
@@ -712,7 +3315,51 @@
         "owner": "josh",
         "rows": 275,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "Cust_List_C",
+                    "source": "No_of_Customer_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No_of_Customer_&Cur_Mth..xls"
+                },
+                {
+                    "name": "Cust_List_P",
+                    "source": "No_of_Customer_&Prev_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Detail\\No_of_Customer_&Prev_Mth..xls"
+                },
+                {
+                    "name": "Cust_List_LY",
+                    "source": "No_of_Customer_&Lst_Yr..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Detail\\No_of_Customer_&Lst_Yr..xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            },
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "Monthly_EJM_Movement.sas": {
         "item_no": "",
@@ -723,7 +3370,36 @@
         "owner": "josh",
         "rows": 160,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_Profile_&Last_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Facility1",
+                    "source": "CUST_DET_RANK_GRP_ALL_&Last_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\WBG Portfolio\\CUST_DET_RANK_GRP_ALL_&Last_Mth..xls"
+                },
+                {
+                    "name": "Facility2",
+                    "source": "CUST_DET_RANK_GRP_ALL_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\WBG Portfolio\\CUST_DET_RANK_GRP_ALL_&Cur_Mth..xls"
+                },
+                {
+                    "name": "Cust_3IN1",
+                    "source": "Facility_3IN1.XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Facility_3IN1\\Facility_3IN1.XLS"
+                }
+            ]
+        }
     },
     "Monthly_Guarantor3.sas": {
         "item_no": "",
@@ -734,7 +3410,58 @@
         "owner": "josh",
         "rows": 329,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Fac_Line_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Guarantor_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Guarantee_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "rm_map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Coll_Comn_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Exchange_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Pldg_coll_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Borrower",
+                    "source": "No_of_Customer_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Detail\\No_of_Customer_&Cur_Mth..xls"
+                }
+            ]
+        }
     },
     "Monthly_LD_Trend2.sas": {
         "item_no": "",
@@ -745,7 +3472,47 @@
         "owner": "josh",
         "rows": 295,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "DAILY_LOAN_DEPOSIT_&End_Mth",
+                    "lib": "movlib"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "SIC_Map",
+                    "source": "SIC_CODE_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\SIC_CODE_MAPPING.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "MOVLIB",
+                "path": "\"f:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\MOVEMENT_DB\\Output\\XXdata\""
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "Monthly_Loan_Drawdown_Matured.sas": {
         "item_no": "",
@@ -756,7 +3523,23 @@
         "owner": "josh",
         "rows": 114,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Fac_Line_&Prev_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Fac_Line_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ]
+        }
     },
     "Monthly_Loan_Drawdown_OV.sas": {
         "item_no": "",
@@ -767,7 +3550,31 @@
         "owner": "josh",
         "rows": 108,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "NRevol_&RunDate",
+                    "source": "Daily_Loan_Drawdown_&RunDate..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&RunDate..xls"
+                },
+                {
+                    "name": "Revol_&RunDate",
+                    "source": "Daily_Loan_Drawdown_&RunDate..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&RunDate..xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "Monthly_Loan_Spread_Movement2.sas": {
         "item_no": "",
@@ -778,7 +3585,39 @@
         "owner": "josh",
         "rows": 408,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "customer_Profile_&InData",
+                    "lib": "rm"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Fac_Line_&InData",
+                    "lib": "dw"
+                },
+                {
+                    "name": "LOANS2_&InData",
+                    "lib": "dw"
+                },
+                {
+                    "name": "LOANS_&InData",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                }
+            ]
+        }
     },
     "Monthly_MACC.sas": {
         "item_no": "",
@@ -789,7 +3628,35 @@
         "owner": "josh",
         "rows": 210,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "AV_Macc_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "AC_PFT_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                }
+            ]
+        }
     },
     "Monthly_Negative_NII2.sas": {
         "item_no": "",
@@ -800,7 +3667,22 @@
         "owner": "josh",
         "rows": 291,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Report_vbs",
+                    "source": "&inData..src",
+                    "path": "E:\\XX\\Revenue by RM\\Script\\&inData..src"
+                }
+            ]
+        }
     },
     "Monthly_New_Loan_Pricing.sas": {
         "item_no": "",
@@ -811,7 +3693,26 @@
         "owner": "josh",
         "rows": 183,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "New_Term_Loan_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Fac_Line_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "New_loan_Adj",
+                    "source": "New_Loan_Adj.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\New_Loan_Adj.xlsx"
+                }
+            ]
+        }
     },
     "Monthly_NRvol_Loan_Drawdown.sas": {
         "item_no": "",
@@ -822,7 +3723,30 @@
         "owner": "josh",
         "rows": 197,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "New_Loan_Drawdown_&cur_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Loan_Con",
+                    "source": "Loan_Consolidation.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Loan_Consolidation.xlsx"
+                }
+            ]
+        }
     },
     "Monthly_Remittance.sas": {
         "item_no": "",
@@ -833,7 +3757,34 @@
         "owner": "josh",
         "rows": 91,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Remittance_In_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Remittance_Out_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        }
     },
     "Monthly_SF_CASA.sas": {
         "item_no": "",
@@ -844,7 +3795,32 @@
         "owner": "josh",
         "rows": 122,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "SF_List",
+                    "source": "SF_List_&Cur_Mth..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\SF_List_&Cur_Mth..xlsx"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "Monthly_SF_OV_CASA.sas": {
         "item_no": "",
@@ -855,7 +3831,42 @@
         "owner": "josh",
         "rows": 62,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "CPR_SG_MTD_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "CPR_NY_MTD_&Cur_Mth",
+                    "lib": "us_data"
+                },
+                {
+                    "name": "CPR_LA_MTD_&Cur_Mth",
+                    "lib": "us_data"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "SF_List",
+                    "source": "SF_OV_List_&Cur_Mth..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\SF_OV_List_&Cur_Mth..xlsx"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "US_DATA",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            }
+        ],
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "Monthly_SS_DCM_SF_TB.sas": {
         "item_no": "",
@@ -866,7 +3877,43 @@
         "owner": "josh",
         "rows": 228,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "RM_Map_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "SS_List",
+                    "source": "SS_DCM_SF_TB_List_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\SS_DCM_SF_TB_List_&Cur_Mth..xls"
+                },
+                {
+                    "name": "DCM_List",
+                    "source": "SS_DCM_SF_TB_List_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\SS_DCM_SF_TB_List_&Cur_Mth..xls"
+                },
+                {
+                    "name": "SF_List",
+                    "source": "SS_DCM_SF_TB_List_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\SS_DCM_SF_TB_List_&Cur_Mth..xls"
+                },
+                {
+                    "name": "TB_List",
+                    "source": "SS_DCM_SF_TB_List_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\SS_DCM_SF_TB_List_&Cur_Mth..xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "Nei_Bao_Wai_Dai.sas": {
         "item_no": "",
@@ -877,7 +3924,51 @@
         "owner": "josh",
         "rows": 246,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_Profile_&Get_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Cust_Acct",
+                    "lib": "dw"
+                },
+                {
+                    "name": "amort_fee_res_&Get_Mth",
+                    "lib": "feesum"
+                },
+                {
+                    "name": "Pldg_coll_&Get_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Coll_Comn_&Get_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Guarantee_&Get_Mth",
+                    "lib": "dw"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "FEESUM",
+                "path": "\"e:\\XX\\Adhoc\\Daisy\\iw_fee_amort\\XXdata\""
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "NIO_Cust_List.sas": {
         "item_no": "",
@@ -888,7 +3979,35 @@
         "owner": "josh",
         "rows": 81,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Cur_Dep_Core_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Dep_Time_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Sav_Dep_Core_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "customer_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_Acct",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ]
+        }
     },
     "No_of_Customer_Tiers.sas": {
         "item_no": "",
@@ -899,7 +4018,69 @@
         "owner": "josh",
         "rows": 372,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "imh": [
+                "imh.vi_sgmrm_cust_noid_cbg",
+                "imh.vi_momrm_cust_noid_cbg"
+            ],
+            "ds": [
+                {
+                    "name": "CPR_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "CPR_SG_YTD_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "CPR_MC_MTD_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "CPR_NY_MTD_&Cur_Mth",
+                    "lib": "us_data"
+                },
+                {
+                    "name": "CPR_LA_MTD_&Cur_Mth",
+                    "lib": "us_data"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Cust_List",
+                    "source": "No_of_Customer_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Detail\\No_of_Customer_&Cur_Mth..xls"
+                },
+                {
+                    "name": "NY_Cust_List",
+                    "source": "No_of_Customer_ new template-&Cur_Mth..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Core Customers\\US\\No_of_Customer_ new template-&Cur_Mth..xlsx"
+                },
+                {
+                    "name": "LA_Cust_List",
+                    "source": "No_of_Customer_ LAB &CurMth &Year..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Core Customers\\US\\No_of_Customer_ LAB &CurMth &Year..xlsx"
+                },
+                {
+                    "name": "Product_Map",
+                    "source": "US_Product_Map.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\US_Product_Map.xlsx"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "US_DATA",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "No_of_Customers.sas": {
         "item_no": "",
@@ -910,7 +4091,150 @@
         "owner": "josh",
         "rows": 1960,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "ac_pft_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "AC_PFT_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Dep_Time_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Sav_Dep_Core_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cur_Dep_Core_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_Acct",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_Acct_history",
+                    "lib": "dw"
+                },
+                {
+                    "name": "AV_Custbp_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "AV_Acct_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_Group_&Prev_Yr",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_&Prev_Yr",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Fac_Line_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "AC_Pft_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Loans_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "SIC_Map",
+                    "source": "SIC_CODE_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\SIC_CODE_MAPPING.xls"
+                },
+                {
+                    "name": "EJM_Map",
+                    "source": "ECAI_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\ECAI_MAPPING.xls"
+                },
+                {
+                    "name": "Country_Map",
+                    "source": "Country_Code_Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Country_Code_Mapping.xls"
+                },
+                {
+                    "name": "Fac_Line",
+                    "source": "fac_line_checking_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Monthly Facility\\Fac_Type\\fac_line_checking_&Cur_Mth..xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DW",
+                "path": "'F:\\XX\\Revenue by RM\\Working'"
+            }
+        ],
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            },
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Facility_Table.txt",
+                "name": "Facility_Table.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Monthly_Customer_Movement.txt",
+                "name": "Monthly_Customer_Movement.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\NIO_Cust_List.txt",
+                "name": "NIO_Cust_List.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Export_Customer.txt",
+                "name": "Export_Customer.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Export_Loan_Acct.txt",
+                "name": "Export_Loan_Acct.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Online_Tran2.txt",
+                "name": "Online_Tran2.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\RMG_Group_Mapping2.txt",
+                "name": "RMG_Group_Mapping2.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Export_IW_Amort.txt",
+                "name": "Export_IW_Amort.txt"
+            }
+        ]
     },
     "OGL_Remap_Monthly.sas": {
         "item_no": "",
@@ -921,7 +4245,21 @@
         "owner": "mary",
         "rows": 214,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "imh": [
+                "imh.vi_iamfm_gl_tran",
+                "imh.vi_iamrm_cust_noid_cbg_cmth",
+                "imh.vi_iadrm_cust_noid_cbg_cday",
+                "imh.vi_iamkr_fac_line"
+            ]
+        },
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "Online_Tran2.sas": {
         "item_no": "",
@@ -932,7 +4270,46 @@
         "owner": "josh",
         "rows": 252,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Cust_Acct",
+                    "lib": "dw"
+                },
+                {
+                    "name": "CA_Tran_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "SA_Tran_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "FD_Tran_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "ITR_Term_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Tran_Map",
+                    "source": "Online_Tran_Code_Map.XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Online_Tran\\Online_Tran_Code_Map.XLS"
+                }
+            ]
+        }
     },
     "Op_Dep_HK.sas": {
         "item_no": "",
@@ -943,7 +4320,22 @@
         "owner": "mary",
         "rows": 50,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "CASA_Prem",
+                    "source": "SF_CASA",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\SF_CASA"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            }
+        ]
     },
     "OV_Loan_Bal.sas": {
         "item_no": "",
@@ -954,7 +4346,32 @@
         "owner": "josh",
         "rows": 324,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "US_Loan",
+                    "source": "USMPF_AC_TP_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Oversea\\US\\source\\USMPF_AC_TP_&Cur_Mth..xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "RM",
+                "path": "'F:\\XX\\Revenue by RM\\Data'"
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "E:\\XX\\Revenue by RM\\Macro\\Set_Macro.txt",
+                "name": "Set_Macro.txt"
+            }
+        ]
     },
     "OV_Maturity_Profile.sas": {
         "item_no": "",
@@ -965,7 +4382,26 @@
         "owner": "josh",
         "rows": 284,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "MBR",
+                    "source": "MC_Customer_Profile_&Cur_Mth",
+                    "path": "E:\\XX\\Oversea\\MBR\\MC_Customer_Profile_&Cur_Mth"
+                },
+                {
+                    "name": "SG",
+                    "source": "SG_Balance_&Cur_Mth",
+                    "path": "E:\\XX\\Oversea\\SG\\Monthly_SG_Balance\\SG_Balance_&Cur_Mth"
+                },
+                {
+                    "name": "US",
+                    "source": "USMPF_AC_TP_&Cur_Mth",
+                    "path": "E:\\XX\\Oversea\\US\\source\\USMPF_AC_TP_&Cur_Mth"
+                }
+            ]
+        }
     },
     "PBG_Referral.sas": {
         "item_no": "",
@@ -976,7 +4412,50 @@
         "owner": "josh",
         "rows": 146,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "CPR_YTD_&cur_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "CPR_NY_YTD_&Cur_Mth",
+                    "lib": "us_data"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "US_DATA",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            }
+        ],
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            },
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "Preliminary_Expenses.sas": {
         "item_no": "",
@@ -987,7 +4466,32 @@
         "owner": "josh",
         "rows": 167,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Expenses_Mapping",
+                    "source": "Expenses_Mapping.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\Expenses_Mapping.xlsx"
+                },
+                {
+                    "name": "GL_Mapping",
+                    "source": "Expenses_Mapping.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\Expenses_Mapping.xlsx"
+                },
+                {
+                    "name": "Expenses_Adj",
+                    "source": "Expenses_Adj.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\Expenses_Adj.xlsx"
+                }
+            ]
+        }
     },
     "Public_Sector.sas": {
         "item_no": "",
@@ -998,7 +4502,49 @@
         "owner": "mary",
         "rows": 143,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "customer_history",
+                    "lib": "dwlib"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "sub_type",
+                    "source": "Cust_Sub_Type_Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Cust_Sub_Type_Mapping.xls"
+                },
+                {
+                    "name": "holiday",
+                    "source": "holiday_calendar.xls",
+                    "path": "E:\\XX\\revenue by rm\\source\\calendar\\holiday_calendar.xls"
+                },
+                {
+                    "name": "public_sector",
+                    "source": "Public Sector List.xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\Public_Sector\\Public Sector List.xlsx"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "MOVLIB",
+                "path": "\"F:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\MOVEMENT_DB\\Output\\XXdata\""
+            }
+        ],
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            }
+        ]
     },
     "Regenerate_CPR.sas": {
         "item_no": "",
@@ -1009,7 +4555,69 @@
         "owner": "josh",
         "rows": 542,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "CPR_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "CPR_YTD_&Prev_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "CPR_YTD_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "RM_Map_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "CPR_WBG",
+                    "source": "&CPR_Src_Path.CBG_Dataset_&Cur_Mth..xlsx",
+                    "path": "&CPR_Src_Path.CBG_Dataset_&Cur_Mth..xlsx"
+                },
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "&Src_Path.&GAM_FAM_Mapping",
+                    "path": "&Src_Path.&GAM_FAM_Mapping"
+                },
+                {
+                    "name": "MC_RM_Map",
+                    "source": "&Src_Path.MC_RM_MAP",
+                    "path": "&Src_Path.MC_RM_MAP"
+                },
+                {
+                    "name": "SG_RM_Map",
+                    "source": "&Src_Path.SG_RM_MAPPING",
+                    "path": "&Src_Path.SG_RM_MAPPING"
+                },
+                {
+                    "name": "Alt_RM_Map",
+                    "source": "&Src_Path.Alt RM Code",
+                    "path": "&Src_Path.Alt RM Code"
+                },
+                {
+                    "name": "CPB_Mapping",
+                    "source": "&Src_Path.CPB_Mapping.xls",
+                    "path": "&Src_Path.CPB_Mapping.xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "Rerun_No_of_CustomerV3.sas": {
         "item_no": "",
@@ -1031,7 +4639,117 @@
         "owner": "josh",
         "rows": 817,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "ac_pft_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "CPR_YTD_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "AC_PFT_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Dep_Time_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Sav_Dep_Core_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cur_Dep_Core_&cur_mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_Acct_history",
+                    "lib": "dw"
+                },
+                {
+                    "name": "AV_Custbp_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "AV_Acct_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map_&Report_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "SIC_Map",
+                    "source": "SIC_CODE_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\SIC_CODE_MAPPING.xls"
+                },
+                {
+                    "name": "EJM_Map",
+                    "source": "ECAI_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\ECAI_MAPPING.xls"
+                },
+                {
+                    "name": "Country_Map",
+                    "source": "Country_Code_Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Country_Code_Mapping.xls"
+                },
+                {
+                    "name": "Fac_Line",
+                    "source": "fac_line_checking_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Monthly Facility\\Fac_Type\\fac_line_checking_&Cur_Mth..xls"
+                },
+                {
+                    "name": "DCM_Update",
+                    "source": "DCM_Update.xls",
+                    "path": "E:\\XX\\Revenue by RM\\DCM_Update.xls"
+                },
+                {
+                    "name": "CPR_Adj",
+                    "source": "CPR_Adj.xls",
+                    "path": "E:\\XX\\Revenue by RM\\CPR_Adj.xls"
+                },
+                {
+                    "name": "WBG_Cust_Override",
+                    "source": "New_No_of_Cust_&Cur_Mth - no personal.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Core Customers\\HK\\New_No_of_Cust_&Cur_Mth - no personal.xls"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DW",
+                "path": "'F:\\XX\\Revenue by RM\\Working'"
+            }
+        ],
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            },
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "Revenue_Analysis.sas": {
         "item_no": "",
@@ -1042,7 +4760,137 @@
         "owner": "josh",
         "rows": 1883,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_Group_&Prev_Yr",
+                    "lib": "rm"
+                },
+                {
+                    "name": "CPR_YTD_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "CPR_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Fac_Line_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "public_sector",
+                    "source": "Public Sector List.xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\Public_Sector\\Public Sector List.xlsx"
+                },
+                {
+                    "name": "SIC_Map",
+                    "source": "SIC_CODE_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\SIC_CODE_MAPPING.xls"
+                },
+                {
+                    "name": "EJM_Map",
+                    "source": "ECAI_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\ECAI_MAPPING.xls"
+                },
+                {
+                    "name": "Facility",
+                    "source": "CUST_DET_RANK_GRP_ALL_&cur_mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\WBG Portfolio\\CUST_DET_RANK_GRP_ALL_&cur_mth..xls"
+                },
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "&GAM_FAM_Mapping",
+                    "path": "E:\\XX\\Revenue by RM\\&GAM_FAM_Mapping"
+                },
+                {
+                    "name": "Cust_3IN1",
+                    "source": "Facility_3IN1.XLS",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Facility_3IN1\\Facility_3IN1.XLS"
+                },
+                {
+                    "name": "Citic_List",
+                    "source": "CITIC_FULL_CUST_LIST.xls",
+                    "path": "J:\\O&C\\BIU\\Daily report\\CITIC DEPOSITS\\CITIC_FULL_CUST_LIST.xls"
+                },
+                {
+                    "name": "CBI_China",
+                    "source": "3IN1_CBI_China.xls",
+                    "path": "E:\\XX\\Revenue by RM\\3IN1_CBI_China.xls"
+                },
+                {
+                    "name": "Country_Map",
+                    "source": "Country_Code_Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Country_Code_Mapping.xls"
+                },
+                {
+                    "name": "Facility_Type_MTD",
+                    "source": "fac_line_checking_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Monthly Facility\\Fac_Type\\fac_line_checking_&Cur_Mth..xls"
+                },
+                {
+                    "name": "Facility_Type_YTD",
+                    "source": "fac_line_checking_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Monthly Facility\\Fac_Type\\fac_line_checking_&Cur_Mth..xls"
+                },
+                {
+                    "name": "ABC_Branch_Map",
+                    "source": "ABC Source Code Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                },
+                {
+                    "name": "GBP_Branch_Map",
+                    "source": "ABC Source Code Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                },
+                {
+                    "name": "PBG_Branch_Map",
+                    "source": "ABC Source Code Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                },
+                {
+                    "name": "FMD_RC",
+                    "source": "&Src_Path.WBG_RC_MAP",
+                    "path": "&Src_Path.WBG_RC_MAP"
+                },
+                {
+                    "name": "Report_vbs",
+                    "source": "&Script_Path.&inData..src",
+                    "path": "&Script_Path.&inData..src"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "DW",
+                "path": "'F:\\XX\\Revenue by RM\\Working'"
+            },
+            {
+                "name": "RM",
+                "path": "'F:\\XX\\Revenue by RM\\Data'"
+            }
+        ],
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "Revenue_Main_HK.sas": {
         "item_no": "",
@@ -1053,7 +4901,38 @@
         "owner": "mary",
         "rows": 952,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "cpr_&FILEDATE",
+                    "lib": "cprlib"
+                },
+                {
+                    "name": "op_dep_&YEAR.&MON.",
+                    "lib": "outlib"
+                },
+                {
+                    "name": "normal_casa_mtd_&YEAR.&MON.",
+                    "lib": "outlib"
+                },
+                {
+                    "name": "cpr_ytd_&FILEDATE",
+                    "lib": "cprlib"
+                },
+                {
+                    "name": "normal_casa_ytd_&YEAR.&MON.",
+                    "lib": "outlib"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Skim_Agency_Fee",
+                    "source": "Skim_Fee_and_Agency_Fee_&YEAR..xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\HK\\Skim_Fee_and_Agency_Fee_&YEAR..xlsx"
+                }
+            ]
+        }
     },
     "Revenue_Main_LA.sas": {
         "item_no": "",
@@ -1064,7 +4943,36 @@
         "owner": "mary",
         "rows": 517,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "cpr_la_mtd_&Cur_Mth",
+                    "lib": "outlib"
+                },
+                {
+                    "name": "&tb_cpr_la_ytd",
+                    "lib": "outlib"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "cpr_la_mtd",
+                    "source": "LA_customer_revenue_&Cur_Mth..xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\US\\LA_customer_revenue_&Cur_Mth..xlsx"
+                },
+                {
+                    "name": "cpr_la_ytd",
+                    "source": "LA_customer_revenue_&Cur_Mth..xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\US\\LA_customer_revenue_&Cur_Mth..xlsx"
+                }
+            ]
+        }
     },
     "Revenue_Main_MO.sas": {
         "item_no": "",
@@ -1075,7 +4983,19 @@
         "owner": "mary",
         "rows": 425,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "&tb_cpr_mc_ytd",
+                    "lib": "cprlib"
+                },
+                {
+                    "name": "esg_bal_&Cur_Mth",
+                    "lib": "outlib"
+                }
+            ]
+        }
     },
     "Revenue_Main_NY.sas": {
         "item_no": "",
@@ -1086,7 +5006,40 @@
         "owner": "mary",
         "rows": 556,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "cpr_ny_mtd_&Cur_Mth",
+                    "lib": "outlib"
+                },
+                {
+                    "name": "esg_bal_&Cur_Mth",
+                    "lib": "outlib"
+                },
+                {
+                    "name": "&tb_cpr_ny_ytd",
+                    "lib": "outlib"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "cpr_ny_mtd",
+                    "source": "NY_customer_revenue_&Cur_Mth..xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\US\\NY_customer_revenue_&Cur_Mth..xlsx"
+                },
+                {
+                    "name": "cpr_ny_ytd",
+                    "source": "NY_customer_revenue_&Cur_Mth..xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\US\\NY_customer_revenue_&Cur_Mth..xlsx"
+                }
+            ]
+        }
     },
     "Revenue_Main_SG.sas": {
         "item_no": "",
@@ -1097,7 +5050,22 @@
         "owner": "mary",
         "rows": 597,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "&tb_cpr_sg_ytd",
+                    "lib": "cprlib"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "SG_Skim_Agency_Fee",
+                    "source": "Skim_Fee_and_Agency_Fee_&YEAR..xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\HK\\Skim_Fee_and_Agency_Fee_&YEAR..xlsx"
+                }
+            ]
+        }
     },
     "RMG_Group_Mapping2.sas": {
         "item_no": "",
@@ -1108,7 +5076,26 @@
         "owner": "josh",
         "rows": 172,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        }
     },
     "SBLC_by_Issuer4.sas": {
         "item_no": "",
@@ -1119,7 +5106,51 @@
         "owner": "josh",
         "rows": 429,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Coll_Comn_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Guarantee_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Pldg_coll_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_Acct",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Exchange_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Fac_Line_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "LOANS2_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "LOANS_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                }
+            ]
+        }
     },
     "SBLCLG_Turnover.sas": {
         "item_no": "",
@@ -1130,7 +5161,31 @@
         "owner": "josh",
         "rows": 128,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Bill_Turnover_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Bill_Tran_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_Acct",
+                    "lib": "dw"
+                }
+            ]
+        }
     },
     "SF_CASA_Trend.sas": {
         "item_no": "",
@@ -1141,7 +5196,60 @@
         "owner": "josh",
         "rows": 242,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "SF_CASA_&Prev_Yr",
+                    "lib": "rm"
+                },
+                {
+                    "name": "SF_CASA_&Cur_Yr",
+                    "lib": "rm"
+                },
+                {
+                    "name": "RM_Map_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "&GAM_FAM_Mapping",
+                    "path": "E:\\XX\\Revenue by RM\\&GAM_FAM_Mapping"
+                },
+                {
+                    "name": "SF_HK_&Month",
+                    "source": "SF_CASA_&RunDate",
+                    "path": "&Data_Path.\\&Cur_Yr.\\&Month.\\SF_CASA_&RunDate"
+                },
+                {
+                    "name": "SF_OV_&Month",
+                    "source": "SF_CASA_OV_&RunDate",
+                    "path": "&Data_Path.\\&Cur_Yr.\\&Month.\\SF_CASA_OV_&RunDate"
+                },
+                {
+                    "name": "SF_HK_&Month",
+                    "source": "SF_CASA_&Cur_Mth",
+                    "path": "&Data_Path.\\&Cur_Yr.\\&Month.\\SF_CASA_&Cur_Mth"
+                },
+                {
+                    "name": "SF_OV_&Month",
+                    "source": "SF_CASA_OV_&Cur_Mth",
+                    "path": "&Data_Path.\\&Cur_Yr.\\&Month.\\SF_CASA_OV_&Cur_Mth"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "SG_Bal.sas": {
         "item_no": "",
@@ -1152,7 +5260,28 @@
         "owner": "josh",
         "rows": 285,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "imh": [
+                "imh.vi_iambs_kw_ac_exp_ov"
+            ],
+            "ds": [
+                {
+                    "name": "Fac_Line_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Exchange_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "SOE_POE_Loan.sas": {
         "item_no": "",
@@ -1163,7 +5292,45 @@
         "owner": "josh",
         "rows": 216,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "CPR_&Cur_mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Basel_Exposure_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_Profile_&Cur_Mth",
+                    "lib": "rm"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "RMG_Mapping",
+                    "source": "RMG_SOEPOE_&Prev_Mth..xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\RMG_SOEPOE_&Prev_Mth..xlsx"
+                },
+                {
+                    "name": "Country_Map",
+                    "source": "Country_Code_Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Country_Code_Mapping.xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "SS_Trustee_Trend.sas": {
         "item_no": "",
@@ -1174,7 +5341,37 @@
         "owner": "josh",
         "rows": 151,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "RM_Map_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "&GAM_FAM_Mapping",
+                    "path": "E:\\XX\\Revenue by RM\\&GAM_FAM_Mapping"
+                },
+                {
+                    "name": "SS_&Month",
+                    "source": "Custody_Cash_NII_&RunDate",
+                    "path": "&Data_Path.\\&Cur_Yr.\\&Month.\\Custody_Cash_NII_&RunDate"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "Syn_Loan_Bal_HK.sas": {
         "item_no": "",
@@ -1185,7 +5382,27 @@
         "owner": "mary",
         "rows": 175,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "excel": [
+                {
+                    "name": "non_ref_syn_loan",
+                    "source": "Non-REF Syn Loan Balance_&yr..xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\HK\\Non-REF Syn Loan Balance_&yr..xlsx"
+                },
+                {
+                    "name": "hotel_syn_loan",
+                    "source": "Non-REF Syn Loan Balance_&yr..xlsx",
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\HK\\Non-REF Syn Loan Balance_&yr..xlsx"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "P:\\Libname.txt",
+                "name": "Libname.txt"
+            }
+        ]
     },
     "Trade_Info.sas": {
         "item_no": "",
@@ -1196,7 +5413,46 @@
         "owner": "josh",
         "rows": 518,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "EJM_Map",
+                    "source": "ECAI_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\ECAI_MAPPING.xls"
+                },
+                {
+                    "name": "Bills_Com&Set_Mth",
+                    "source": "Bill_Commission_Turnover_&Set_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Bill Commission and Interest\\Bill_Commission_Turnover_&Set_Mth..xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "TB_SBLC_Info.sas": {
         "item_no": "",
@@ -1207,7 +5463,53 @@
         "owner": "josh",
         "rows": 361,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "imh": [
+                "imh.vi_iampf_ac_pft_cbg",
+                "imh.vi_iambl_tran"
+            ],
+            "ds": [
+                {
+                    "name": "Bill_Turnover_&Set_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Bill_Income_&Set_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_Acct",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Customer_Group",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "EJM_Map",
+                    "source": "ECAI_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\ECAI_MAPPING.xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     },
     "TB_Standby_LCLG.sas": {
         "item_no": "",
@@ -1218,7 +5520,15 @@
         "owner": "josh",
         "rows": 20,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "CPR_&Cur_Mth",
+                    "lib": "rm"
+                }
+            ]
+        }
     },
     "Treasury_Maturity.sas": {
         "item_no": "",
@@ -1229,7 +5539,35 @@
         "owner": "josh",
         "rows": 413,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Exchange_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "Shadow_&Cur_Mth",
+                    "source": "IADOP_SHADOW_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Treasury Shadow\\&cur_mth.\\IADOP_SHADOW_&Cur_Mth..xls"
+                }
+            ]
+        }
     },
     "Treasury_Related_Trend.sas": {
         "item_no": "",
@@ -1240,7 +5578,31 @@
         "owner": "josh",
         "rows": 903,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "&Src_Path.&GAM_FAM_Mapping",
+                    "path": "&Src_Path.&GAM_FAM_Mapping"
+                },
+                {
+                    "name": "Bills_FX_&Set_Mth",
+                    "source": "Commission_FX_&Set_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Commission_FX\\Commission_FX_&Set_Mth..xls"
+                }
+            ]
+        }
     },
     "Treasury_Shadow_Income.sas": {
         "item_no": "",
@@ -1251,7 +5613,58 @@
         "owner": "josh",
         "rows": 475,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Shadow_&Cur_Mth",
+                    "lib": "rm"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Exchange_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                },
+                {
+                    "name": "vi_iamop_shadow_adj_cmth",
+                    "source": "IADOP_SHADOW_&Cur_Mth..xls",
+                    "path": "E:\\XX\\Revenue by RM\\Treasury Shadow\\&cur_mth.\\IADOP_SHADOW_&Cur_Mth..xls"
+                },
+                {
+                    "name": "NDF_3IN1",
+                    "source": "NDF_3in1_mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\NDF_3in1_mapping.xls"
+                },
+                {
+                    "name": "ABC_Branch_Map",
+                    "source": "ABC Source Code Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                },
+                {
+                    "name": "GBP_Branch_Map",
+                    "source": "ABC Source Code Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                }
+            ]
+        }
     },
     "Unfunded_RP_Projection.sas": {
         "item_no": "",
@@ -1262,7 +5675,23 @@
         "owner": "josh",
         "rows": 80,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "Bill_Tran_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "RM_Map",
+                    "lib": "dw"
+                }
+            ]
+        }
     },
     "US_TP3.sas": {
         "item_no": "",
@@ -1273,7 +5702,46 @@
         "owner": "josh",
         "rows": 511,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "imh": [
+                "imh.vi_usmpf_ac_tp",
+                "imh.vi_iambs_kw_ac_exp_ov"
+            ],
+            "ds": [
+                {
+                    "name": "Fac_Line_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_&Cur_Mth",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "Product_Map",
+                    "source": "US_Product_Map.xlsx",
+                    "path": "E:\\XX\\Revenue by RM\\source\\Interface_Source\\US_Product_Map.xlsx"
+                },
+                {
+                    "name": "US_TP_&InMonth",
+                    "source": "USMPF_AC_TP_&InMonth._FMG.xlsx",
+                    "path": "E:\\XX\\Oversea\\US\\source\\USMPF_AC_TP_&InMonth._FMG.xlsx"
+                },
+                {
+                    "name": "US_TP_202503",
+                    "source": "USMPF_AC_TP_202503_FMG.xlsx",
+                    "path": "E:\\XX\\Oversea\\US\\source\\USMPF_AC_TP_202503_FMG.xlsx"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            }
+        ]
     },
     "YTD_Turnover.sas": {
         "item_no": "",
@@ -1284,6 +5752,44 @@
         "owner": "josh",
         "rows": 343,
         "main_program": "Y",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "ds": [
+                {
+                    "name": "RM_Map_&Cur_Mth",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Customer_History",
+                    "lib": "dw"
+                },
+                {
+                    "name": "Cust_Acct_history",
+                    "lib": "dw"
+                }
+            ],
+            "excel": [
+                {
+                    "name": "EJM_Map",
+                    "source": "ECAI_MAPPING.xls",
+                    "path": "E:\\XX\\Revenue by RM\\ECAI_MAPPING.xls"
+                },
+                {
+                    "name": "GAM_FAM_Mapping",
+                    "source": "WBG GAM_FAM Mapping.xls",
+                    "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
+                }
+            ]
+        },
+        "include": [
+            {
+                "path": "p:\\libname.txt",
+                "name": "libname.txt"
+            },
+            {
+                "path": "&Macro_Path.Set_Macro.txt",
+                "name": "&Macro_Path.Set_Macro.txt"
+            }
+        ]
     }
 }

@@ -622,7 +622,17 @@
         "owner": "mary",
         "rows": 74,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "output": {
+            "ds": [
+                {
+                    "libname": "outslib.AVG_BALANCE_ANALYSIS_&Cur_Mth",
+                    "name": "AVG_BALANCE_ANALYSIS_&Cur_Mth",
+                    "lib": "outslib",
+                    "from": "AVG_BALANCE_ANALYSIS"
+                }
+            ]
+        }
     },
     "Average_Balance_Analysis.sas": {
         "item_no": "",
@@ -687,7 +697,23 @@
                 "path": "P:\\Libname.txt",
                 "name": "Libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "outlib.normal_casa_mtd_&Cur_Mth",
+                    "name": "normal_casa_mtd_&Cur_Mth",
+                    "lib": "outlib",
+                    "from": "normal_casa"
+                },
+                {
+                    "libname": "outlib.normal_casa_ytd_&Cur_Mth",
+                    "name": "normal_casa_ytd_&Cur_Mth",
+                    "lib": "outlib",
+                    "from": "normal_casa_ytd_&Cur_Mth"
+                }
+            ]
+        }
     },
     "Bill_Commission_and_Interest.sas": {
         "item_no": "",
@@ -882,6 +908,16 @@
             ],
             "imh": [
                 "iw.vi_iambl_Turnover_Adj"
+            ]
+        },
+        "output": {
+            "ds": [
+                {
+                    "libname": "dwlib.Bill_Turnover_&run_mth",
+                    "name": "Bill_Turnover_&run_mth",
+                    "lib": "dwlib",
+                    "from": "iw.vi_iambl_Turnover_Adj"
+                }
             ]
         }
     },
@@ -1111,7 +1147,95 @@
                 "path": "&Macro_Path.Set_Macro.txt",
                 "name": "&Macro_Path.Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "RM.&Indata._&Cur_Mth",
+                    "name": "&Indata._&Cur_Mth",
+                    "lib": "RM",
+                    "from": "&Indata"
+                },
+                {
+                    "libname": "&Outdata._3IN1",
+                    "name": "_3IN1",
+                    "lib": "&Outdata",
+                    "from": "NIO_Cust_List"
+                },
+                {
+                    "libname": "&Outdata._3IN1",
+                    "name": "_3IN1",
+                    "lib": "&Outdata",
+                    "from": "&Indata._3IN1"
+                },
+                {
+                    "libname": "&Outdata._3IN1_Bills",
+                    "name": "_3IN1_Bills",
+                    "lib": "&Outdata",
+                    "from": "NIO_Cust_List"
+                },
+                {
+                    "libname": "&Outdata._3IN1_Bills",
+                    "name": "_3IN1_Bills",
+                    "lib": "&Outdata",
+                    "from": "&Indata._3IN1_Bills"
+                },
+                {
+                    "libname": "&Outdata._3IN1",
+                    "name": "_3IN1",
+                    "lib": "&Outdata",
+                    "from": "&Outdata._3IN1"
+                },
+                {
+                    "libname": "&Outdata._3IN1",
+                    "name": "_3IN1",
+                    "lib": "&Outdata",
+                    "from": "Cur_Balance_3IN1"
+                },
+                {
+                    "libname": "&Outdata._3IN1",
+                    "name": "_3IN1",
+                    "lib": "&Outdata",
+                    "from": "&Outdata._3IN1_Bills"
+                },
+                {
+                    "libname": "RM.YTD_Revenue_ABC_&cur_mth",
+                    "name": "YTD_Revenue_ABC_&cur_mth",
+                    "lib": "RM",
+                    "from": "RM.YTD_Revenue_ABC_&cur_mth"
+                },
+                {
+                    "libname": "RM.YTD_Revenue_ABC_&cur_mth",
+                    "name": "YTD_Revenue_ABC_&cur_mth",
+                    "lib": "RM",
+                    "from": "Oceanwide_YTD"
+                },
+                {
+                    "libname": "RM.MTD_Revenue_ABC_&cur_mth",
+                    "name": "MTD_Revenue_ABC_&cur_mth",
+                    "lib": "RM",
+                    "from": "RM.MTD_Revenue_ABC_&cur_mth"
+                },
+                {
+                    "libname": "RM.MTD_Revenue_ABC_&cur_mth",
+                    "name": "MTD_Revenue_ABC_&cur_mth",
+                    "lib": "RM",
+                    "from": "Oceanwide_MTD"
+                },
+                {
+                    "libname": "&Indata._3IN1",
+                    "name": "_3IN1",
+                    "lib": "&Indata",
+                    "from": "&Indata"
+                },
+                {
+                    "libname": "&Indata._3IN1_Bills",
+                    "name": "_3IN1_Bills",
+                    "lib": "&Indata",
+                    "from": "&Indata"
+                }
+            ]
+        }
     },
     "ABC_KPI_Report.sas": {
         "item_no": "",
@@ -1918,7 +2042,17 @@
                 "path": "p:\\libname.txt",
                 "name": "libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "RM.Customer_Profile_Fee_&Cur_Mth",
+                    "name": "Customer_Profile_Fee_&Cur_Mth",
+                    "lib": "RM",
+                    "from": "Customer_Profile_Fee"
+                }
+            ]
+        }
     },
     "Customer_info_MC9.sas": {
         "item_no": "",
@@ -2214,7 +2348,113 @@
                 "path": "E:\\XX\\Revenue by RM\\adhoc\\FD_Transaction.txt",
                 "name": "FD_Transaction.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "Customer_Profile"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "RM.Customer_Profile_&cur_mth"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "Subsidy_tmp"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "Amort"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "Loan_Port_Desc"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "Fac_Type"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "CP_Prev"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "ABC_GPB_Mapping"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "OGL_1_3_Map"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "FD_Renew"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "SBLC_Combine"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "REF_Port"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "MLA"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "RWA"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "Public_Sector"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "Op_Deposit"
+                },
+                {
+                    "libname": "RM.Customer_Profile_&cur_mth",
+                    "name": "Customer_Profile_&cur_mth",
+                    "lib": "RM",
+                    "from": "Transfer_Rt_Alt"
+                }
+            ]
+        }
     },
     "ecrm_revenue_monthly.sas": {
         "item_no": "",
@@ -2304,7 +2544,17 @@
                 "path": "P:\\Libname.txt",
                 "name": "Libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "outlib.esg_bal_&Cur_Mth",
+                    "name": "esg_bal_&Cur_Mth",
+                    "lib": "outlib",
+                    "from": "esg_bal_3"
+                }
+            ]
+        }
     },
     "Export_Customer.sas": {
         "item_no": "",
@@ -2414,7 +2664,17 @@
                 "path": "p:\\libname.txt",
                 "name": "libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "feesum.amort_fee_res_&cur_mth",
+                    "name": "amort_fee_res_&cur_mth",
+                    "lib": "feesum",
+                    "from": "amort_fee_res"
+                }
+            ]
+        }
     },
     "Export_Loan_Acct.sas": {
         "item_no": "",
@@ -2730,7 +2990,281 @@
                 "path": "p:\\libname.txt",
                 "name": "libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "DW.exchange_&cur_mth",
+                    "name": "exchange_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamnx_exchange_cmth"
+                },
+                {
+                    "libname": "DW.tp_rate",
+                    "name": "tp_rate",
+                    "lib": "DW",
+                    "from": "iw.vi_iampf_tp_rate"
+                },
+                {
+                    "libname": "DW.cur_dep_core_&cur_mth",
+                    "name": "cur_dep_core_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamim_dep_core_cmth"
+                },
+                {
+                    "libname": "DW.sav_dep_core_&cur_mth",
+                    "name": "sav_dep_core_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamst_dep_core_cmth"
+                },
+                {
+                    "libname": "DW.OD_Line_&cur_mth",
+                    "name": "OD_Line_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamim_od_line_cmth"
+                },
+                {
+                    "libname": "DW.Loans_&cur_mth",
+                    "name": "Loans_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamam_loans_cmth"
+                },
+                {
+                    "libname": "DW.Loans_GDR_&cur_mth",
+                    "name": "Loans_GDR_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamam_loan_gdr_cmth"
+                },
+                {
+                    "libname": "DW.Bill_Cust_&cur_mth",
+                    "name": "Bill_Cust_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iambl_cust_cbg_cmth"
+                },
+                {
+                    "libname": "DW.Loans2_&cur_mth",
+                    "name": "Loans2_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamam_loans_2_cmth"
+                },
+                {
+                    "libname": "DW.Customer_&cur_mth",
+                    "name": "Customer_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamrm_cust_noid_cbg_cmth"
+                },
+                {
+                    "libname": "DW.Customer_&cur_mth",
+                    "name": "Customer_&cur_mth",
+                    "lib": "DW",
+                    "from": "DW.Customer_&cur_mth"
+                },
+                {
+                    "libname": "DW.Customer_&cur_mth",
+                    "name": "Customer_&cur_mth",
+                    "lib": "DW",
+                    "from": "Cust_Daily"
+                },
+                {
+                    "libname": "DW.Fac_Line_&cur_mth",
+                    "name": "Fac_Line_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamkr_fac_line_cmth"
+                },
+                {
+                    "libname": "DW.Dep_Time_&cur_mth",
+                    "name": "Dep_Time_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamst_dep_time_cmth"
+                },
+                {
+                    "libname": "DW.Cust_Acct",
+                    "name": "Cust_Acct",
+                    "lib": "DW",
+                    "from": "iw.vi_iadrm_custacct_cbg"
+                },
+                {
+                    "libname": "DW.Bill_Tran_&cur_mth",
+                    "name": "Bill_Tran_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iambl_tran_cmth"
+                },
+                {
+                    "libname": "DW.Bill_Limit_&cur_mth",
+                    "name": "Bill_Limit_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iambl_limit_cbg_cmth"
+                },
+                {
+                    "libname": "DW.Bill_Income_&cur_mth",
+                    "name": "Bill_Income_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iambl_income_cmth"
+                },
+                {
+                    "libname": "DW.Customer_History",
+                    "name": "Customer_History",
+                    "lib": "DW",
+                    "from": "iw.vi_iamrm_cust_noid_cbg"
+                },
+                {
+                    "libname": "DW.Cust_Acct_History",
+                    "name": "Cust_Acct_History",
+                    "lib": "DW",
+                    "from": "iw.vi_iamrm_acct_cbg"
+                },
+                {
+                    "libname": "DW.CA_Tran_&cur_mth",
+                    "name": "CA_Tran_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamim_core_tran_cmth"
+                },
+                {
+                    "libname": "DW.SA_Tran_&cur_mth",
+                    "name": "SA_Tran_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamst_core_tran_cmth"
+                },
+                {
+                    "libname": "DW.FD_Tran_&cur_mth",
+                    "name": "FD_Tran_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamst_time_tran_cmth"
+                },
+                {
+                    "libname": "DW.ITR_Term_&cur_mth",
+                    "name": "ITR_Term_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamkw_itr_term_cmth"
+                },
+                {
+                    "libname": "DW.PLDG_COLL_&cur_mth",
+                    "name": "PLDG_COLL_&cur_mth",
+                    "lib": "DW",
+                    "from": "IW.VI_IAMKR_PLDG_COLL_CMTH"
+                },
+                {
+                    "libname": "DW.COLL_COMN_&cur_mth",
+                    "name": "COLL_COMN_&cur_mth",
+                    "lib": "DW",
+                    "from": "IW.VI_IAMKR_COLL_COMN_CMTH"
+                },
+                {
+                    "libname": "DW.GUARANTOR_&cur_mth",
+                    "name": "GUARANTOR_&cur_mth",
+                    "lib": "DW",
+                    "from": "IW.vi_iamkr_guarantor_cmth"
+                },
+                {
+                    "libname": "dw.Guarantee_&cur_mth",
+                    "name": "Guarantee_&cur_mth",
+                    "lib": "dw",
+                    "from": "iw.vi_iamkr_guarantee_cmth"
+                },
+                {
+                    "libname": "DW.SG_CUSTOMER_&cur_mth",
+                    "name": "SG_CUSTOMER_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.Vi_sgmbl_cust_cbg_cmth"
+                },
+                {
+                    "libname": "DW.MC_CUSTOMER_&cur_mth",
+                    "name": "MC_CUSTOMER_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iadcn_mc_customer_cbg"
+                },
+                {
+                    "libname": "DW.Customer_Remain_&cur_mth",
+                    "name": "Customer_Remain_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iadcn_sh_customer_cbg"
+                },
+                {
+                    "libname": "DW.Customer_CN_&cur_mth",
+                    "name": "Customer_CN_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iadcn_sz_customer_cbg"
+                },
+                {
+                    "libname": "dw.Customer_MC_&Cur_Mth",
+                    "name": "Customer_MC_&Cur_Mth",
+                    "lib": "dw",
+                    "from": "iw.vi_iadcn_mc_customer_cbg"
+                },
+                {
+                    "libname": "dw.Customer_US_&Cur_Mth",
+                    "name": "Customer_US_&Cur_Mth",
+                    "lib": "dw",
+                    "from": "iw.vi_usmeb_cust_cmth"
+                },
+                {
+                    "libname": "dw.GL_Tran_&Cur_Mth",
+                    "name": "GL_Tran_&Cur_Mth",
+                    "lib": "dw",
+                    "from": "imh.vi_iamfm_gl_tran"
+                },
+                {
+                    "libname": "dw.RM_Map_&Cur_Mth",
+                    "name": "RM_Map_&Cur_Mth",
+                    "lib": "dw",
+                    "from": "dw.RM_Map"
+                },
+                {
+                    "libname": "DW.Money_Exchange_&cur_mth",
+                    "name": "Money_Exchange_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamex_mny_exch_cbg_cmth"
+                },
+                {
+                    "libname": "DW.Remittance_In_&cur_mth",
+                    "name": "Remittance_In_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamrt_inwd_remt_cbg_cmth"
+                },
+                {
+                    "libname": "DW.Remittance_Out_&cur_mth",
+                    "name": "Remittance_Out_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamrt_outwd_remt_cbg_cmth"
+                },
+                {
+                    "libname": "DW.Amort_Fees_&cur_mth",
+                    "name": "Amort_Fees_&cur_mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamam_amort_fees_cmth"
+                },
+                {
+                    "libname": "DW.SB_&Cur_Mth",
+                    "name": "SB_&Cur_Mth",
+                    "lib": "DW",
+                    "from": "iw.vi_iamsb_isfeht_cbg_cmth"
+                },
+                {
+                    "libname": "dw.SD_Tran_&Cur_Mth",
+                    "name": "SD_Tran_&Cur_Mth",
+                    "lib": "dw",
+                    "from": "iw.vi_iamsd_tran_port_cmth"
+                },
+                {
+                    "libname": "dw.SD_Info_&Cur_Mth",
+                    "name": "SD_Info_&Cur_Mth",
+                    "lib": "dw",
+                    "from": "iw.vi_iamsd_info_cmth"
+                },
+                {
+                    "libname": "dw.SD_Cust_&Cur_Mth",
+                    "name": "SD_Cust_&Cur_Mth",
+                    "lib": "dw",
+                    "from": "iw.vi_iamwm_custacct_noid_cmth"
+                },
+                {
+                    "libname": "dw.CASA_Int_&Cur_Mth",
+                    "name": "CASA_Int_&Cur_Mth",
+                    "lib": "dw",
+                    "from": "iw.vi_iamfc_casa_int_cmth"
+                }
+            ]
+        }
     },
     "import_export_bal.sas": {
         "item_no": "",
@@ -2832,7 +3366,17 @@
                 "path": "p:\\libname.txt",
                 "name": "libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "RM.Insurance_Income_&Cur_Mth",
+                    "name": "Insurance_Income_&Cur_Mth",
+                    "lib": "RM",
+                    "from": "Insurance_Income"
+                }
+            ]
+        }
     },
     "Loan_Movement_Drawdown_YTD.sas": {
         "item_no": "",
@@ -3105,7 +3649,149 @@
                 "path": "E:\\XX\\Revenue by RM\\adhoc\\Fac_Maturity_OD_Bills.txt",
                 "name": "Fac_Maturity_OD_Bills.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "&indata._detail",
+                    "name": "_detail",
+                    "lib": "&indata",
+                    "from": "&indata._detail"
+                },
+                {
+                    "libname": "&indata._detail",
+                    "name": "_detail",
+                    "lib": "&indata",
+                    "from": "product"
+                },
+                {
+                    "libname": "&indata._detail_Revol",
+                    "name": "_detail_Revol",
+                    "lib": "&indata",
+                    "from": "&indata._detail_Revol"
+                },
+                {
+                    "libname": "&indata._detail_Revol",
+                    "name": "_detail_Revol",
+                    "lib": "&indata",
+                    "from": "product_fac"
+                },
+                {
+                    "libname": "&indata._detail_REF",
+                    "name": "_detail_REF",
+                    "lib": "&indata",
+                    "from": "&indata._detail_REF"
+                },
+                {
+                    "libname": "&indata._detail_REF",
+                    "name": "_detail_REF",
+                    "lib": "&indata",
+                    "from": "Product_REF"
+                },
+                {
+                    "libname": "&indata._CNY_detail",
+                    "name": "_CNY_detail",
+                    "lib": "&indata",
+                    "from": "&indata._CNY_detail"
+                },
+                {
+                    "libname": "&indata._CNY_detail",
+                    "name": "_CNY_detail",
+                    "lib": "&indata",
+                    "from": "product"
+                },
+                {
+                    "libname": "&indata._NCNY_detail",
+                    "name": "_NCNY_detail",
+                    "lib": "&indata",
+                    "from": "&indata._NCNY_detail"
+                },
+                {
+                    "libname": "&indata._NCNY_detail",
+                    "name": "_NCNY_detail",
+                    "lib": "&indata",
+                    "from": "product"
+                },
+                {
+                    "libname": "&indata._Detail",
+                    "name": "_Detail",
+                    "lib": "&indata",
+                    "from": "&indata._Detail"
+                },
+                {
+                    "libname": "&indata._Detail_Revol",
+                    "name": "_Detail_Revol",
+                    "lib": "&indata",
+                    "from": "&indata._Detail_Revol"
+                },
+                {
+                    "libname": "&indata._Detail_REF",
+                    "name": "_Detail_REF",
+                    "lib": "&indata",
+                    "from": "&indata._Detail_REF"
+                },
+                {
+                    "libname": "&indata._CNY_Detail",
+                    "name": "_CNY_Detail",
+                    "lib": "&indata",
+                    "from": "&indata._CNY_Detail"
+                },
+                {
+                    "libname": "&indata._NCNY_Detail",
+                    "name": "_NCNY_Detail",
+                    "lib": "&indata",
+                    "from": "&indata._NCNY_Detail"
+                },
+                {
+                    "libname": "&indata._Detail_Old",
+                    "name": "_Detail_Old",
+                    "lib": "&indata",
+                    "from": "&indata._Detail_Old"
+                },
+                {
+                    "libname": "&inData._BreakDown",
+                    "name": "_BreakDown",
+                    "lib": "&inData",
+                    "from": "&inData"
+                },
+                {
+                    "libname": "&indata._detail",
+                    "name": "_detail",
+                    "lib": "&indata",
+                    "from": "&indata"
+                },
+                {
+                    "libname": "&indata._detail_Revol",
+                    "name": "_detail_Revol",
+                    "lib": "&indata",
+                    "from": "&indata"
+                },
+                {
+                    "libname": "&indata._detail_REF",
+                    "name": "_detail_REF",
+                    "lib": "&indata",
+                    "from": "&indata"
+                },
+                {
+                    "libname": "&indata._CNY_detail",
+                    "name": "_CNY_detail",
+                    "lib": "&indata",
+                    "from": "&indata"
+                },
+                {
+                    "libname": "&indata._NCNY_detail",
+                    "name": "_NCNY_detail",
+                    "lib": "&indata",
+                    "from": "&indata"
+                },
+                {
+                    "libname": "&indata._Detail_Old",
+                    "name": "_Detail_Old",
+                    "lib": "&indata",
+                    "from": "&indata._Detail"
+                }
+            ]
+        }
     },
     "Monthly_B_D_CASA.sas": {
         "item_no": "",
@@ -3187,6 +3873,16 @@
             ],
             "imh": [
                 "IW.VI_iambl_Turnover_Adj"
+            ]
+        },
+        "output": {
+            "ds": [
+                {
+                    "libname": "DW.Bill_Turnover_&Cur_Mth",
+                    "name": "Bill_Turnover_&Cur_Mth",
+                    "lib": "DW",
+                    "from": "IW.VI_iambl_Turnover_Adj"
+                }
             ]
         }
     },
@@ -3814,6 +4510,16 @@
                     "path": "E:\\XX\\Revenue by RM\\Script\\&inData..src"
                 }
             ]
+        },
+        "output": {
+            "ds": [
+                {
+                    "libname": "&InReport._tmp",
+                    "name": "_tmp",
+                    "lib": "&InReport",
+                    "from": "&InReport"
+                }
+            ]
         }
     },
     "Monthly_New_Loan_Pricing.sas": {
@@ -4374,7 +5080,17 @@
                 "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Export_IW_Amort.txt",
                 "name": "Export_IW_Amort.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "rm.No_of_Cust_&Cur_Mth",
+                    "name": "No_of_Cust_&Cur_Mth",
+                    "lib": "rm",
+                    "from": "List_Cust"
+                }
+            ]
+        }
     },
     "OGL_Remap_Monthly.sas": {
         "item_no": "",
@@ -4478,7 +5194,17 @@
                 "path": "P:\\Libname.txt",
                 "name": "Libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "outlib.op_dep_&Cur_Mth",
+                    "name": "op_dep_&Cur_Mth",
+                    "lib": "outlib",
+                    "from": "op_dep"
+                }
+            ]
+        }
     },
     "OV_Loan_Bal.sas": {
         "item_no": "",
@@ -4773,7 +5499,35 @@
                 "path": "&Macro_Path.Set_Macro.txt",
                 "name": "&Macro_Path.Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "RM.CPR_&Cur_Mth",
+                    "name": "CPR_&Cur_Mth",
+                    "lib": "RM",
+                    "from": "CPR"
+                },
+                {
+                    "libname": "RM.CPR_YTD_&Cur_Mth",
+                    "name": "CPR_YTD_&Cur_Mth",
+                    "lib": "RM",
+                    "from": "RM.CPR_&Cur_Mth"
+                },
+                {
+                    "libname": "RM.CPR_YTD_&Cur_Mth",
+                    "name": "CPR_YTD_&Cur_Mth",
+                    "lib": "RM",
+                    "from": "RM.CPR_YTD_&Prev_Mth"
+                },
+                {
+                    "libname": "RM.CPR_YTD_&Cur_Mth",
+                    "name": "CPR_YTD_&Cur_Mth",
+                    "lib": "RM",
+                    "from": "RM.CPR_YTD_&Cur_Mth"
+                }
+            ]
+        }
     },
     "Rerun_No_of_CustomerV3.sas": {
         "item_no": "",
@@ -5091,6 +5845,16 @@
             "imh": [
                 "IW.VI_IAMRM_CUST_NOID_CBG"
             ]
+        },
+        "output": {
+            "ds": [
+                {
+                    "libname": "outlib.cpr_combo_&FILEDATE.",
+                    "name": "cpr_combo_&FILEDATE.",
+                    "lib": "outlib",
+                    "from": "final_cpr_combo_&FILEDATE"
+                }
+            ]
         }
     },
     "Revenue_Main_LA.sas": {
@@ -5131,6 +5895,34 @@
                     "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\US\\LA_customer_revenue_&Cur_Mth..xlsx"
                 }
             ]
+        },
+        "output": {
+            "ds": [
+                {
+                    "libname": "outlib.cpr_la_mtd_&Cur_Mth.",
+                    "name": "cpr_la_mtd_&Cur_Mth.",
+                    "lib": "outlib",
+                    "from": "cpr_la_mtd"
+                },
+                {
+                    "libname": "outlib.cpr_la_ytd_&Cur_Mth",
+                    "name": "cpr_la_ytd_&Cur_Mth",
+                    "lib": "outlib",
+                    "from": "cpr_la_ytd_&Cur_Mth"
+                },
+                {
+                    "libname": "outlib.cpr_la_ytd_&Cur_Mth",
+                    "name": "cpr_la_ytd_&Cur_Mth",
+                    "lib": "outlib",
+                    "from": "LA_Cust"
+                },
+                {
+                    "libname": "outlib.cpr_la_combo_&Cur_Mth",
+                    "name": "cpr_la_combo_&Cur_Mth",
+                    "lib": "outlib",
+                    "from": "cpr_la_combo_&Cur_Mth,gam_fam_mapping,rm_map_la,customer_us"
+                }
+            ]
         }
     },
     "Revenue_Main_MO.sas": {
@@ -5156,6 +5948,22 @@
             ],
             "imh": [
                 "iw.vi_modrm_cust_noid"
+            ]
+        },
+        "output": {
+            "ds": [
+                {
+                    "libname": "&outdata._treasury",
+                    "name": "_treasury",
+                    "lib": "&outdata",
+                    "from": "&outdata."
+                },
+                {
+                    "libname": "outlib.cpr_mc_combo_&Cur_Mth",
+                    "name": "cpr_mc_combo_&Cur_Mth",
+                    "lib": "outlib",
+                    "from": "cpr_mc_combo_&Cur_Mth,Customer_mc,gam_fam_mapping,outlib.rm_map_mc"
+                }
             ]
         }
     },
@@ -5201,6 +6009,34 @@
                     "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\US\\NY_customer_revenue_&Cur_Mth..xlsx"
                 }
             ]
+        },
+        "output": {
+            "ds": [
+                {
+                    "libname": "outlib.cpr_ny_mtd_&Cur_Mth.",
+                    "name": "cpr_ny_mtd_&Cur_Mth.",
+                    "lib": "outlib",
+                    "from": "cpr_ny_mtd"
+                },
+                {
+                    "libname": "outlib.cpr_ny_ytd_&Cur_Mth",
+                    "name": "cpr_ny_ytd_&Cur_Mth",
+                    "lib": "outlib",
+                    "from": "cpr_ny_ytd_&Cur_Mth"
+                },
+                {
+                    "libname": "outlib.cpr_ny_ytd_&Cur_Mth",
+                    "name": "cpr_ny_ytd_&Cur_Mth",
+                    "lib": "outlib",
+                    "from": "NY_Cust"
+                },
+                {
+                    "libname": "outlib.cpr_ny_combo_&Cur_Mth",
+                    "name": "cpr_ny_combo_&Cur_Mth",
+                    "lib": "outlib",
+                    "from": "cpr_ny_combo_&Cur_Mth,gam_fam_mapping,rm_map_ny,customer_us"
+                }
+            ]
         }
     },
     "Revenue_Main_SG.sas": {
@@ -5229,6 +6065,16 @@
             ],
             "imh": [
                 "iw.Vi_sgdrm_cust_noid"
+            ]
+        },
+        "output": {
+            "ds": [
+                {
+                    "libname": "outlib.cpr_sg_combo_&Cur_Mth",
+                    "name": "cpr_sg_combo_&Cur_Mth",
+                    "lib": "outlib",
+                    "from": "cpr_sg_combo_&Cur_Mth,Customer_sg,gam_fam_mapping,outlib.rm_map_sg"
+                }
             ]
         }
     },
@@ -5418,7 +6264,41 @@
                 "path": "&Macro_Path.Set_Macro.txt",
                 "name": "&Macro_Path.Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "RM.SF_CASA_&Cur_Yr",
+                    "name": "SF_CASA_&Cur_Yr",
+                    "lib": "RM",
+                    "from": "RM.SF_CASA_&Prev_Yr"
+                },
+                {
+                    "libname": "RM.SF_CASA_&Cur_Yr",
+                    "name": "SF_CASA_&Cur_Yr",
+                    "lib": "RM",
+                    "from": "RM.SF_CASA_&Cur_Yr"
+                },
+                {
+                    "libname": "RM.SF_CASA_&Cur_Yr",
+                    "name": "SF_CASA_&Cur_Yr",
+                    "lib": "RM",
+                    "from": "SF_CASA"
+                },
+                {
+                    "libname": "rm.SF_CASA_&Cur_Yr",
+                    "name": "SF_CASA_&Cur_Yr",
+                    "lib": "rm",
+                    "from": "rm.SF_CASA_&Cur_Yr"
+                },
+                {
+                    "libname": "rm.SF_CASA_&Cur_Yr",
+                    "name": "SF_CASA_&Cur_Yr",
+                    "lib": "rm",
+                    "from": "Customer_History"
+                }
+            ]
+        }
     },
     "SG_Bal.sas": {
         "item_no": "",
@@ -5577,7 +6457,17 @@
                 "path": "P:\\Libname.txt",
                 "name": "Libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "outlib.syn_loan_bal_&Cur_Mth",
+                    "name": "syn_loan_bal_&Cur_Mth",
+                    "lib": "outlib",
+                    "from": "syn_loan_bal"
+                }
+            ]
+        }
     },
     "Trade_Info.sas": {
         "item_no": "",
@@ -5838,6 +6728,16 @@
                     "name": "GBP_Branch_Map",
                     "source": "ABC Source Code Mapping.xls",
                     "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                }
+            ]
+        },
+        "output": {
+            "ds": [
+                {
+                    "libname": "RM.Shadow_&Cur_Mth",
+                    "name": "Shadow_&Cur_Mth",
+                    "lib": "RM",
+                    "from": "Shadow"
                 }
             ]
         }

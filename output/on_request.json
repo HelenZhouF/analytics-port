@@ -229,6 +229,40 @@
                     "lib": "rm"
                 }
             ]
+        },
+        "output": {
+            "ds": [
+                {
+                    "libname": "&indata.5",
+                    "name": "5",
+                    "lib": "&indata",
+                    "from": "Top_Analysis_Group"
+                },
+                {
+                    "libname": "&indata.10",
+                    "name": "10",
+                    "lib": "&indata",
+                    "from": "Top_Analysis_Group"
+                },
+                {
+                    "libname": "&indata.20",
+                    "name": "20",
+                    "lib": "&indata",
+                    "from": "Top_Analysis_Group"
+                },
+                {
+                    "libname": "&indata.30",
+                    "name": "30",
+                    "lib": "&indata",
+                    "from": "Top_Analysis_Group"
+                },
+                {
+                    "libname": "&indata._All",
+                    "name": "_All",
+                    "lib": "&indata",
+                    "from": "Top_Analysis_Group"
+                }
+            ]
         }
     },
     "New_Customer_YTD_Revenue.sas": {
@@ -512,7 +546,17 @@
                 "path": "P:\\Libname.txt",
                 "name": "Libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "ds": [
+                {
+                    "libname": "out.email_list",
+                    "name": "email_list",
+                    "lib": "out",
+                    "from": "deposit_alert"
+                }
+            ]
+        }
     },
     "$Holiday_Table_Run.sas": {
         "item_no": "",

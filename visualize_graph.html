@@ -669,8 +669,8 @@
                 <div class="section">
                     <div class="section-title">Layout</div>
                     <div class="layout-selector">
-                        <button class="layout-btn active" data-layout="klay">K-Layered</button>
-                        <button class="layout-btn" data-layout="dagre">Dagre (Hierarchy)</button>
+                        <button class="layout-btn" data-layout="klay">K-Layered</button>
+                        <button class="layout-btn active" data-layout="dagre">Dagre (Hierarchy)</button>
                         <button class="layout-btn" data-layout="cose">COSE (Force)</button>
                         <button class="layout-btn" data-layout="grid">Grid</button>
                     </div>
@@ -750,9 +750,16 @@
     </div>
 
     <script>
+        if (typeof cytoscapeKlay !== 'undefined') {
+            cytoscape.use(cytoscapeKlay);
+        }
+        if (typeof cytoscapeDagre !== 'undefined') {
+            cytoscape.use(cytoscapeDagre);
+        }
+
         let cy = null;
         let originalElements = { nodes: [], edges: [] };
-        let currentLayout = 'klay';
+        let currentLayout = 'dagre';
         let selectedNode = null;
         let debugMode = false;
 

@@ -38,6 +38,15 @@
                 "name": "CPRLIB",
                 "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\Risk_Top20\\output\\Risk_top20_&yyyy.&mm..xlsx",
+                    "from": "Risk_top20",
+                    "name": "Risk_top20_&yyyy.&mm..xlsx"
+                }
+            ]
+        }
     }
 }

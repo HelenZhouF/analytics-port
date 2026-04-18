@@ -37,7 +37,21 @@
                 "path": "&Macro_Path.Set_Macro.txt",
                 "name": "&Macro_Path.Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Referral_List_&cur_mth..XLS",
+                    "from": "NIO_ABC",
+                    "name": "Referral_List_&cur_mth..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Referral_List_&cur_mth..XLS",
+                    "from": "NIO_Citic",
+                    "name": "Referral_List_&cur_mth..XLS"
+                }
+            ]
+        }
     },
     "TB_KPI_Remapped.sas": {
         "item_no": "",
@@ -88,7 +102,16 @@
                 "path": "&Macro_Path.Set_Macro.txt",
                 "name": "&Macro_Path.Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\TB KPI_Customer &rpt_mth..xls",
+                    "from": "TB_KPI",
+                    "name": "TB KPI_Customer &rpt_mth..xls"
+                }
+            ]
+        }
     },
     "Weighted_Tenor.sas": {
         "item_no": "",
@@ -99,7 +122,31 @@
         "owner": "josh",
         "rows": 276,
         "main_program": "Y",
-        "type": "on_request"
+        "type": "on_request",
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Weighted_Avg_Tenor_&Cur_Mth..XLS",
+                    "from": "Weighted_Tenor",
+                    "name": "Weighted_Avg_Tenor_&Cur_Mth..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Weighted_Avg_Tenor_&Cur_Mth..XLS",
+                    "from": "Weighted_Tenor_Sum",
+                    "name": "Weighted_Avg_Tenor_&Cur_Mth..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Weighted_Avg_Tenor_&Cur_Mth..XLS",
+                    "from": "Weighted_Tenor_MG",
+                    "name": "Weighted_Avg_Tenor_&Cur_Mth..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Weighted_Avg_Tenor_&Cur_Mth..XLS",
+                    "from": "Weighted_Tenor_MG_Sum",
+                    "name": "Weighted_Avg_Tenor_&Cur_Mth..XLS"
+                }
+            ]
+        }
     },
     "Loan_3_4_Pag.sas": {
         "item_no": "",
@@ -135,6 +182,15 @@
                     "name": "ABC_Branch_Map",
                     "source": "ABC Source Code Mapping.xls",
                     "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\ABC Referral\\ABC Source Code Mapping.xls"
+                }
+            ]
+        },
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Loan_Portfolio_3_4_Pag_&cur_mth..XLS",
+                    "from": "Loan_Portfolio_3_4_Pag",
+                    "name": "Loan_Portfolio_3_4_Pag_&cur_mth..XLS"
                 }
             ]
         }
@@ -210,7 +266,16 @@
                 "path": "&Macro_Path.Set_Macro.txt",
                 "name": "&Macro_Path.Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\WBG_Loan_&Cur_Mth..XLS",
+                    "from": "Fac_Line",
+                    "name": "WBG_Loan_&Cur_Mth..XLS"
+                }
+            ]
+        }
     },
     "Top_Analysis.sas": {
         "item_no": "",
@@ -261,6 +326,23 @@
                     "name": "_All",
                     "lib": "&indata",
                     "from": "Top_Analysis_Group"
+                }
+            ],
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Top_Group_Analysis_&Cur_Mth..XLS",
+                    "from": "Result",
+                    "name": "Top_Group_Analysis_&Cur_Mth..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Top_Group_Analysis_&Cur_Mth..XLS",
+                    "from": "Top_Analysis_Group",
+                    "name": "Top_Group_Analysis_&Cur_Mth..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Top_Group_Analysis_&Cur_Mth..XLS",
+                    "from": "Top_Analysis",
+                    "name": "Top_Group_Analysis_&Cur_Mth..XLS"
                 }
             ]
         }
@@ -342,6 +424,15 @@
                 "iw.vi_iamkr_cust_rel_cmth",
                 "iw.vi_iamkr_group_cmth"
             ]
+        },
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\YTD_New_Customer_Revenue_&Cur_Mth..XLS",
+                    "from": "YTD_Revenue",
+                    "name": "YTD_New_Customer_Revenue_&Cur_Mth..XLS"
+                }
+            ]
         }
     },
     "REF_Dimension_Checking.sas": {
@@ -375,6 +466,20 @@
                     "name": "REF_Prev",
                     "source": "REF Portfolio Dimensions as of Jul 2025_v3.xlsm",
                     "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\REF Portfolio Dimensions\\&Prev_Mth.\\REF Portfolio Dimensions as of Jul 2025_v3.xlsm"
+                }
+            ]
+        },
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\REF_Dimension_Checking_&cur_mth..XLS",
+                    "from": "Result(keep=Map_Fac_Ref",
+                    "name": "REF_Dimension_Checking_&cur_mth..XLS"
+                },
+                {
+                    "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\REF_Dimension_Checking_&cur_mth..XLS",
+                    "from": "Miss(keep=Map_Fac_Ref",
+                    "name": "REF_Dimension_Checking_&cur_mth..XLS"
                 }
             ]
         }
@@ -440,7 +545,21 @@
                 "path": "&Macro_Path.Set_Macro.txt",
                 "name": "&Macro_Path.Set_Macro.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\&Filename",
+                    "from": "Result",
+                    "name": "&Filename"
+                },
+                {
+                    "path": "E:\\XX\\&Filename",
+                    "from": "Fac_Ref",
+                    "name": "&Filename"
+                }
+            ]
+        }
     },
     "WBG Customer_Emily.sas": {
         "item_no": "",
@@ -488,7 +607,16 @@
                 "path": "p:\\libname.txt",
                 "name": "libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\WBG_Cust_List_&Report_Date..XLS",
+                    "from": "result",
+                    "name": "WBG_Cust_List_&Report_Date..XLS"
+                }
+            ]
+        }
     },
     "crm_us_gl_mapping.sas": {
         "item_no": "",
@@ -514,7 +642,26 @@
                 "path": "P:\\Libname.txt",
                 "name": "Libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\CRM_Revenue\\output\\US_GL_Mapping_CRM_&batch_dt..xls",
+                    "from": "US_GL_Mapping2",
+                    "name": "US_GL_Mapping_CRM_&batch_dt..xls"
+                },
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\CRM_Revenue\\output\\US_GL_Mapping_CRM_&batch_dt..csv",
+                    "from": "US_GL_Mapping3",
+                    "name": "US_GL_Mapping_CRM_&batch_dt..csv"
+                },
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\CRM_Revenue\\output\\US_GL_Mapping_CRM_&batch_dt..csv",
+                    "from": "end=last",
+                    "name": "US_GL_Mapping_CRM_&batch_dt..csv"
+                }
+            ]
+        }
     },
     "Deposit alert contact list.sas": {
         "item_no": "",
@@ -582,6 +729,15 @@
                 "path": "p:\\libname.txt",
                 "name": "libname.txt"
             }
-        ]
+        ],
+        "output": {
+            "excel": [
+                {
+                    "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\Regular_Report\\Holiday_Table\\Output\\holiday.xls",
+                    "from": "holiday",
+                    "name": "holiday.xls"
+                }
+            ]
+        }
     }
 }

@@ -61,6 +61,12 @@ def load_data_from_excel():
             'columns': ['Input_data_1']
         },
         {
+            'file': '2_input_database_tables.xlsx',
+            'sheet': 'input_iw_tables',
+            'data_type': 'imh',
+            'columns': ['Input_data_1']
+        },
+        {
             'file': '3_input_library_data.xlsx',
             'sheet': 'libraries_source_data',
             'data_type': 'ds',

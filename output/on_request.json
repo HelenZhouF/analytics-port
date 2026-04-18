@@ -163,7 +163,10 @@
         "input": {
             "imh": [
                 "imh.vi_iackr_cls_cd_ctl",
-                "imh.vi_momrm_cust_noid_cbg_cmth"
+                "imh.vi_momrm_cust_noid_cbg_cmth",
+                "iw.vi_iackr_cls_cd_ctl",
+                "iw.vi_sgmrm_cust_noid",
+                "iw.vi_iadbs_kw_ac_exp_cbg"
             ],
             "ds": [
                 {
@@ -300,6 +303,10 @@
                     "source": "CUST_DET_RANK_GRP_ALL_&cur_mth..xls",
                     "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\WBG Portfolio\\CUST_DET_RANK_GRP_ALL_&cur_mth..xls"
                 }
+            ],
+            "imh": [
+                "iw.vi_iamkr_cust_rel_cmth",
+                "iw.vi_iamkr_group_cmth"
             ]
         }
     },
@@ -351,7 +358,9 @@
         "input": {
             "imh": [
                 "imh.vi_iadkr_fac_line_cday",
-                "imh.vi_iadkr_fac_line"
+                "imh.vi_iadkr_fac_line",
+                "iw.vi_iadbs_kw_ac_exp_cbg",
+                "iw.vi_iackr_cls_cd_ctl"
             ],
             "ds": [
                 {
@@ -426,6 +435,12 @@
                     "source": "WBG GAM_FAM Mapping.xls",
                     "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\custgrp\\output\\WBG GAM_FAM Mapping.xls"
                 }
+            ],
+            "imh": [
+                "iw.vi_iadrm_custacct_cbg",
+                "iw.vi_iadrm_customer_noid_cbg",
+                "iw.vi_iadbl_cust_cbg_cday",
+                "iw.vi_iadkr_fac_line_cday"
             ]
         },
         "libname": [

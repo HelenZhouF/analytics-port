@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dependency Graph Visualizer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape-klay/3.1.4/cytoscape-klay.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape-dagre/2.5.0/cytoscape-dagre.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -564,7 +562,6 @@
         .badge.main { background: #fce4ec; color: #c2185b; }
 
         .debug-info {
-            display: none;
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -573,14 +570,26 @@
             padding: 10px 15px;
             border-radius: 6px;
             font-size: 11px;
-            max-width: 300px;
-            max-height: 200px;
+            max-width: 350px;
+            max-height: 250px;
             overflow-y: auto;
             z-index: 2001;
+            display: none;
         }
 
         .debug-info.visible {
             display: block;
+        }
+
+        .debug-info h4 {
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #555;
+        }
+
+        .debug-info p {
+            margin: 2px 0;
+            font-family: monospace;
         }
     </style>
 </head>
@@ -589,7 +598,10 @@
         <div class="loading-spinner"></div>
     </div>
 
-    <div class="debug-info" id="debugInfo"></div>
+    <div class="debug-info" id="debugInfo">
+        <h4>Debug Info</h4>
+        <div id="debugLog"></div>
+    </div>
 
     <div class="app-container">
         <div class="sidebar">
@@ -605,7 +617,7 @@
                         <div class="file-upload-icon">📁</div>
                         <div class="file-upload-text">
                             Click or drag JSON file here
-                            <small>Supports: dependency_graph.json or dependency_graph_cytoscape.json</small>
+                            <small>Supports: dependency_graph.json</small>
                         </div>
                     </div>
                     <input type="file" id="fileInput" accept=".json">
@@ -669,9 +681,9 @@
                 <div class="section">
                     <div class="section-title">Layout</div>
                     <div class="layout-selector">
-                        <button class="layout-btn" data-layout="klay">K-Layered</button>
-                        <button class="layout-btn active" data-layout="dagre">Dagre (Hierarchy)</button>
-                        <button class="layout-btn" data-layout="cose">COSE (Force)</button>
+                        <button class="layout-btn active" data-layout="breadthfirst">Breadth First</button>
+                        <button class="layout-btn" data-layout="circle">Circle</button>
+                        <button class="layout-btn" data-layout="concentric">Concentric</button>
                         <button class="layout-btn" data-layout="grid">Grid</button>
                     </div>
                 </div>
@@ -750,202 +762,197 @@
     </div>
 
     <script>
-        if (typeof cytoscapeKlay !== 'undefined') {
-            cytoscape.use(cytoscapeKlay);
-        }
-        if (typeof cytoscapeDagre !== 'undefined') {
-            cytoscape.use(cytoscapeDagre);
-        }
-
         let cy = null;
         let originalElements = { nodes: [], edges: [] };
-        let currentLayout = 'dagre';
+        let currentLayout = 'breadthfirst';
         let selectedNode = null;
         let debugMode = false;
 
         function logDebug(message, data) {
             console.log(message, data || '');
             if (debugMode) {
-                const debugInfo = document.getElementById('debugInfo');
+                const debugLog = document.getElementById('debugLog');
                 const timestamp = new Date().toLocaleTimeString();
-                const msg = `[${timestamp}] ${message}`;
-                debugInfo.innerHTML = msg + '<br>' + debugInfo.innerHTML;
+                const dataStr = data ? JSON.stringify(data, null, 2).substring(0, 200) : '';
+                const msg = `[${timestamp}] ${message} ${dataStr}`;
+                const p = document.createElement('p');
+                p.textContent = msg;
+                debugLog.insertBefore(p, debugLog.firstChild);
             }
         }
 
         function initCytoscape() {
             logDebug('Initializing Cytoscape...');
             
-            cy = cytoscape({
-                container: document.getElementById('cy'),
-                elements: [],
-                style: [
-                    {
-                        selector: 'node',
-                        style: {
-                            'label': 'data(label)',
-                            'text-valign': 'center',
-                            'text-halign': 'center',
-                            'background-color': '#667eea',
-                            'color': '#333',
-                            'text-outline-width': 2,
-                            'text-outline-color': '#fff',
-                            'font-size': '10px',
-                            'width': '60px',
-                            'height': '60px',
-                            'shape': 'ellipse',
-                            'border-width': 2,
-                            'border-color': '#5568d3',
-                            'text-wrap': 'ellipsis',
-                            'text-max-width': '55px'
+            try {
+                cy = cytoscape({
+                    container: document.getElementById('cy'),
+                    elements: [],
+                    style: [
+                        {
+                            selector: 'node',
+                            style: {
+                                'label': 'data(label)',
+                                'text-valign': 'center',
+                                'text-halign': 'center',
+                                'background-color': '#667eea',
+                                'color': '#333',
+                                'text-outline-width': 2,
+                                'text-outline-color': '#fff',
+                                'font-size': '10px',
+                                'width': '60px',
+                                'height': '60px',
+                                'shape': 'ellipse',
+                                'border-width': 2,
+                                'border-color': '#5568d3',
+                                'text-wrap': 'ellipsis',
+                                'text-max-width': '55px'
+                            }
+                        },
+                        {
+                            selector: 'node[main_program = "Y"]',
+                            style: {
+                                'background-color': '#e91e63',
+                                'border-color': '#c2185b',
+                                'width': '70px',
+                                'height': '70px',
+                                'font-size': '11px'
+                            }
+                        },
+                        {
+                            selector: 'node[type = "daily"]',
+                            style: {
+                                'background-color': '#2196f3',
+                                'border-color': '#1976d2'
+                            }
+                        },
+                        {
+                            selector: 'node[type = "monthly"]',
+                            style: {
+                                'background-color': '#9c27b0',
+                                'border-color': '#7b1fa2'
+                            }
+                        },
+                        {
+                            selector: 'node[type = "quarterly"]',
+                            style: {
+                                'background-color': '#ff9800',
+                                'border-color': '#f57c00'
+                            }
+                        },
+                        {
+                            selector: 'node[type = "on_request"]',
+                            style: {
+                                'background-color': '#4caf50',
+                                'border-color': '#388e3c'
+                            }
+                        },
+                        {
+                            selector: 'node:selected',
+                            style: {
+                                'background-color': '#ffeb3b',
+                                'border-color': '#ffc107',
+                                'border-width': 3
+                            }
+                        },
+                        {
+                            selector: 'edge',
+                            style: {
+                                'width': 2,
+                                'line-color': '#999',
+                                'target-arrow-color': '#999',
+                                'target-arrow-shape': 'triangle',
+                                'curve-style': 'bezier',
+                                'label': 'data(label)',
+                                'font-size': '8px',
+                                'color': '#666',
+                                'text-rotation': 'autorotate',
+                                'text-margin-y': -8
+                            }
+                        },
+                        {
+                            selector: 'edge[type = "include"]',
+                            style: {
+                                'line-color': '#2196f3',
+                                'target-arrow-color': '#2196f3',
+                                'width': 2.5
+                            }
+                        },
+                        {
+                            selector: 'edge[type = "dependency"]',
+                            style: {
+                                'line-color': '#f44336',
+                                'target-arrow-color': '#f44336',
+                                'width': 2.5,
+                                'line-style': 'dashed'
+                            }
+                        },
+                        {
+                            selector: '.highlighted',
+                            style: {
+                                'background-color': '#ffeb3b',
+                                'border-color': '#ffc107',
+                                'border-width': 3,
+                                'transition-property': 'background-color, line-color, target-arrow-color',
+                                'transition-duration': '0.25s'
+                            }
+                        },
+                        {
+                            selector: '.faded',
+                            style: {
+                                'opacity': 0.25,
+                                'text-opacity': 0
+                            }
+                        },
+                        {
+                            selector: '.neighbor',
+                            style: {
+                                'background-color': '#00bcd4',
+                                'border-color': '#0097a7',
+                                'opacity': 1,
+                                'text-opacity': 1
+                            }
+                        },
+                        {
+                            selector: '.neighbor-edge',
+                            style: {
+                                'width': 3,
+                                'opacity': 1
+                            }
                         }
+                    ],
+                    layout: {
+                        name: 'breadthfirst',
+                        directed: true,
+                        padding: 10
                     },
-                    {
-                        selector: 'node[main_program = "Y"]',
-                        style: {
-                            'background-color': '#e91e63',
-                            'border-color': '#c2185b',
-                            'width': '70px',
-                            'height': '70px',
-                            'font-size': '11px'
-                        }
-                    },
-                    {
-                        selector: 'node[type = "daily"]',
-                        style: {
-                            'background-color': '#2196f3',
-                            'border-color': '#1976d2'
-                        }
-                    },
-                    {
-                        selector: 'node[type = "monthly"]',
-                        style: {
-                            'background-color': '#9c27b0',
-                            'border-color': '#7b1fa2'
-                        }
-                    },
-                    {
-                        selector: 'node[type = "quarterly"]',
-                        style: {
-                            'background-color': '#ff9800',
-                            'border-color': '#f57c00'
-                        }
-                    },
-                    {
-                        selector: 'node[type = "on_request"]',
-                        style: {
-                            'background-color': '#4caf50',
-                            'border-color': '#388e3c'
-                        }
-                    },
-                    {
-                        selector: 'node:selected',
-                        style: {
-                            'background-color': '#ffeb3b',
-                            'border-color': '#ffc107',
-                            'border-width': 3
-                        }
-                    },
-                    {
-                        selector: 'edge',
-                        style: {
-                            'width': 2,
-                            'line-color': '#999',
-                            'target-arrow-color': '#999',
-                            'target-arrow-shape': 'triangle',
-                            'curve-style': 'bezier',
-                            'label': 'data(label)',
-                            'font-size': '8px',
-                            'color': '#666',
-                            'text-rotation': 'autorotate',
-                            'text-margin-y': -8
-                        }
-                    },
-                    {
-                        selector: 'edge[type = "include"]',
-                        style: {
-                            'line-color': '#2196f3',
-                            'target-arrow-color': '#2196f3',
-                            'width': 2.5
-                        }
-                    },
-                    {
-                        selector: 'edge[type = "dependency"]',
-                        style: {
-                            'line-color': '#f44336',
-                            'target-arrow-color': '#f44336',
-                            'width': 2.5,
-                            'line-style': 'dashed'
-                        }
-                    },
-                    {
-                        selector: '.highlighted',
-                        style: {
-                            'background-color': '#ffeb3b',
-                            'border-color': '#ffc107',
-                            'border-width': 3,
-                            'transition-property': 'background-color, line-color, target-arrow-color',
-                            'transition-duration': '0.25s'
-                        }
-                    },
-                    {
-                        selector: '.faded',
-                        style: {
-                            'opacity': 0.25,
-                            'text-opacity': 0
-                        }
-                    },
-                    {
-                        selector: '.neighbor',
-                        style: {
-                            'background-color': '#00bcd4',
-                            'border-color': '#0097a7',
-                            'opacity': 1,
-                            'text-opacity': 1
-                        }
-                    },
-                    {
-                        selector: '.neighbor-edge',
-                        style: {
-                            'width': 3,
-                            'opacity': 1
-                        }
+                    userZoomingEnabled: true,
+                    userPanningEnabled: true,
+                    boxSelectionEnabled: true,
+                    minZoom: 0.1,
+                    maxZoom: 3
+                });
+
+                cy.on('tap', 'node', function(evt) {
+                    showNodeDetails(evt.target);
+                });
+
+                cy.on('tap', function(evt) {
+                    if (evt.target === cy) {
+                        hideNodeDetails();
+                        clearHighlight();
                     }
-                ],
-                layout: {
-                    name: 'klay',
-                    nodeDimensionsIncludeLabels: true,
-                    klay: {
-                        direction: 'RIGHT',
-                        layering: 'LONGEST_PATH',
-                        spacing: 80,
-                        inLayerSpacing: 40
-                    }
-                },
-                userZoomingEnabled: true,
-                userPanningEnabled: true,
-                boxSelectionEnabled: true,
-                minZoom: 0.1,
-                maxZoom: 3
-            });
+                });
 
-            cy.on('tap', 'node', function(evt) {
-                showNodeDetails(evt.target);
-            });
+                cy.on('zoom', function() {
+                    updateZoomInfo();
+                });
 
-            cy.on('tap', function(evt) {
-                if (evt.target === cy) {
-                    hideNodeDetails();
-                    clearHighlight();
-                }
-            });
-
-            cy.on('zoom', function() {
-                updateZoomInfo();
-            });
-
-            logDebug('Cytoscape initialized successfully');
-            return cy;
+                logDebug('Cytoscape initialized successfully');
+            } catch (error) {
+                logDebug('Error initializing Cytoscape:', error.message);
+                alert('Error initializing graph: ' + error.message);
+            }
         }
 
         function loadJSONFile(file) {
@@ -958,6 +965,7 @@
                     logDebug('Parsing JSON...');
                     const data = JSON.parse(e.target.result);
                     logDebug('JSON parsed successfully');
+                    
                     processData(data);
                     
                     document.getElementById('fileInfo').style.display = 'block';
@@ -985,30 +993,9 @@
             logDebug('Processing data...');
             originalElements = { nodes: [], edges: [] };
             
-            if (data.elements && data.elements.nodes && data.elements.edges) {
-                logDebug('Detected Cytoscape format');
-                logDebug('Elements nodes:', data.elements.nodes.length);
-                logDebug('Elements edges:', data.elements.edges.length);
-                
-                originalElements.nodes = data.elements.nodes.map(n => ({
-                    data: {
-                        ...n.data,
-                        id: String(n.data.id)
-                    }
-                }));
-                originalElements.edges = data.elements.edges.map(e => ({
-                    data: {
-                        ...e.data,
-                        source: String(e.data.source),
-                        target: String(e.data.target),
-                        id: e.data.id || `${e.data.source}-${e.data.target}-${e.data.type || Math.random()}`
-                    }
-                }));
-            } else if (data.nodes && data.edges) {
-                logDebug('Detected original format (nodes + edges)');
-                
-                const nodeCount = Object.keys(data.nodes).length;
-                logDebug('Nodes count:', nodeCount);
+            if (data.nodes && data.edges) {
+                logDebug('Detected format: nodes + edges');
+                logDebug('Nodes count:', Object.keys(data.nodes).length);
                 logDebug('Edges count:', data.edges.length);
                 
                 for (const [id, nodeData] of Object.entries(data.nodes)) {
@@ -1026,11 +1013,32 @@
                         ...e,
                         source: String(e.source),
                         target: String(e.target),
-                        id: e.id || `${e.source}-${e.target}-${e.type}-${idx}`
+                        id: e.id || `edge-${e.source}-${e.target}-${e.type}-${idx}`
                     }
                 }));
+                
+            } else if (data.elements && data.elements.nodes && data.elements.edges) {
+                logDebug('Detected format: elements.nodes + elements.edges');
+                logDebug('Nodes count:', data.elements.nodes.length);
+                logDebug('Edges count:', data.elements.edges.length);
+                
+                originalElements.nodes = data.elements.nodes.map(n => ({
+                    data: {
+                        ...n.data,
+                        id: String(n.data.id)
+                    }
+                }));
+                originalElements.edges = data.elements.edges.map(e => ({
+                    data: {
+                        ...e.data,
+                        source: String(e.data.source),
+                        target: String(e.data.target),
+                        id: e.data.id || `edge-${e.data.source}-${e.data.target}-${e.data.type}-${Math.random()}`
+                    }
+                }));
+                
             } else {
-                throw new Error('Unsupported JSON format. Expected either (elements.nodes + elements.edges) or (nodes + edges).');
+                throw new Error('Unsupported JSON format. Expected either (nodes + edges) or (elements.nodes + elements.edges).');
             }
 
             logDebug('Processed nodes:', originalElements.nodes.length);
@@ -1075,7 +1083,10 @@
         }
 
         function renderGraph() {
-            if (!cy) return;
+            if (!cy) {
+                logDebug('Warning: Cytoscape not initialized');
+                return;
+            }
             
             logDebug('Rendering graph...');
             
@@ -1161,50 +1172,42 @@
 
             logDebug('Nodes with edges:', edgeNodeIds.size);
 
-            let finalNodes;
+            let finalNodes = filteredNodes;
             
-            const hasActiveFilter = searchTerm || typeFilter || ownerFilter || mainProgramFilter;
-            
-            if (hasActiveFilter) {
-                finalNodes = filteredNodes;
-                logDebug('Using filtered nodes (has active filter)');
-            } else {
-                finalNodes = filteredNodes.filter(n => 
-                    edgeNodeIds.has(n.data.id) || n.data.main_program === 'Y'
-                );
-                logDebug('Using nodes with edges or main_program=Y');
-            }
-
             logDebug('Final nodes:', finalNodes.length);
 
             if (finalNodes.length === 0) {
                 logDebug('WARNING: No final nodes to display!');
             }
 
-            cy.elements().remove();
-            logDebug('Removed old elements');
-            
-            if (finalNodes.length > 0) {
-                cy.add(finalNodes);
-                logDebug('Added nodes');
-            }
-            
-            if (filteredEdges.length > 0) {
-                cy.add(filteredEdges);
-                logDebug('Added edges');
-            }
+            try {
+                cy.elements().remove();
+                logDebug('Removed old elements');
+                
+                if (finalNodes.length > 0) {
+                    cy.add(finalNodes);
+                    logDebug('Added nodes');
+                }
+                
+                if (filteredEdges.length > 0) {
+                    cy.add(filteredEdges);
+                    logDebug('Added edges');
+                }
 
-            logDebug('Total elements in cy:', cy.elements().length);
+                logDebug('Total elements in cy:', cy.elements().length);
 
-            if (cy.elements().length > 0) {
-                runLayout();
-                cy.fit();
-                logDebug('Layout complete');
-            } else {
-                logDebug('No elements to layout');
+                if (cy.elements().length > 0) {
+                    runLayout();
+                    cy.fit();
+                    logDebug('Layout complete');
+                } else {
+                    logDebug('No elements to layout');
+                }
+                
+                updateZoomInfo();
+            } catch (error) {
+                logDebug('Error in renderGraph:', error.message);
             }
-            
-            updateZoomInfo();
         }
 
         function runLayout() {
@@ -1218,34 +1221,23 @@
             let layoutOptions;
             
             switch (currentLayout) {
-                case 'dagre':
+                case 'circle':
                     layoutOptions = {
-                        name: 'dagre',
+                        name: 'circle',
                         nodeDimensionsIncludeLabels: true,
-                        rankDir: 'LR',
-                        rankSep: 80,
-                        nodeSep: 50
+                        radius: 150,
+                        fit: true,
+                        padding: 30
                     };
                     break;
-                case 'cose':
+                case 'concentric':
                     layoutOptions = {
-                        name: 'cose',
+                        name: 'concentric',
                         nodeDimensionsIncludeLabels: true,
-                        idealEdgeLength: 100,
-                        nodeOverlap: 20,
-                        refresh: 20,
                         fit: true,
                         padding: 30,
-                        randomize: false,
-                        componentSpacing: 100,
-                        nodeRepulsion: 400000,
-                        edgeElasticity: 100,
-                        nestingFactor: 5,
-                        gravity: 80,
-                        numIter: 500,
-                        initialTemp: 200,
-                        coolingFactor: 0.95,
-                        minTemp: 1.0
+                        minNodeSpacing: 50,
+                        levels: 5
                     };
                     break;
                 case 'grid':
@@ -1253,25 +1245,30 @@
                         name: 'grid',
                         nodeDimensionsIncludeLabels: true,
                         rows: Math.ceil(Math.sqrt(cy.nodes().length)),
-                        cols: Math.ceil(Math.sqrt(cy.nodes().length))
+                        cols: Math.ceil(Math.sqrt(cy.nodes().length)),
+                        fit: true,
+                        padding: 30
                     };
                     break;
-                case 'klay':
+                case 'breadthfirst':
                 default:
                     layoutOptions = {
-                        name: 'klay',
+                        name: 'breadthfirst',
                         nodeDimensionsIncludeLabels: true,
-                        klay: {
-                            direction: 'RIGHT',
-                            layering: 'LONGEST_PATH',
-                            spacing: 80,
-                            inLayerSpacing: 40,
-                            edgeSpacingFactor: 0.5
-                        }
+                        directed: true,
+                        padding: 30,
+                        fit: true,
+                        circle: false,
+                        spacingFactor: 1.5
                     };
             }
 
-            cy.layout(layoutOptions).run();
+            try {
+                cy.layout(layoutOptions).run();
+                logDebug('Layout run completed');
+            } catch (error) {
+                logDebug('Error running layout:', error.message);
+            }
         }
 
         function showNodeDetails(node) {
@@ -1462,6 +1459,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             logDebug('Page loaded, initializing...');
+            
             initCytoscape();
 
             const fileUploadArea = document.getElementById('fileUploadArea');
@@ -1536,6 +1534,8 @@
                 hideNodeDetails();
                 clearHighlight();
             });
+
+            logDebug('DOM ready, event listeners attached');
         });
     </script>
 </body>

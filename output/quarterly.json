@@ -1,0 +1,13 @@
+{
+    "Risk_top20.sas": {
+        "item_no": 1,
+        "task": "RMG Top 20 concentration",
+        "path": "S:\\Adhoc\\Davin\\ESPACE\\Regular_Report\\Risk_Top20",
+        "comments": "RMG Top 20 concentration",
+        "is_complicated": "",
+        "owner": "mary",
+        "rows": 85,
+        "main_program": "Y",
+        "type": "quarterly"
+    }
+}

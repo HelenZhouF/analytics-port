@@ -1,0 +1,156 @@
+{
+    "ABC_List_to_Frank.sas": {
+        "item_no": 1,
+        "task": "ABC Customer List (to TMG Frank)",
+        "path": "S:\\Revenue by RM\\Report\\Analysis\\",
+        "comments": "Generate a ABC customer list to Frank",
+        "is_complicated": "",
+        "owner": "josh",
+        "rows": 115,
+        "main_program": "Y",
+        "type": "on_request"
+    },
+    "TB_KPI_Remapped.sas": {
+        "item_no": "",
+        "task": "TB KPI Remap",
+        "path": "S:\\Revenue by RM\\Report\\Analysis\\",
+        "comments": "Remap the RM information and generate the TB KPI report",
+        "is_complicated": "",
+        "owner": "josh",
+        "rows": 123,
+        "main_program": "Y",
+        "type": "on_request"
+    },
+    "Weighted_Tenor.sas": {
+        "item_no": "",
+        "task": "Weighted Average Tenor",
+        "path": "S:\\Revenue by RM\\Report\\Analysis\\",
+        "comments": "Loan weighted average tenor",
+        "is_complicated": "",
+        "owner": "josh",
+        "rows": 276,
+        "main_program": "Y",
+        "type": "on_request"
+    },
+    "Loan_3_4_Pag.sas": {
+        "item_no": "",
+        "task": "3/4 party Loan Report",
+        "path": "S:\\Revenue by RM\\Report\\Analysis\\",
+        "comments": "3/4 party report for product cap monitoring purpose",
+        "is_complicated": "",
+        "owner": "josh",
+        "rows": 133,
+        "main_program": "Y",
+        "type": "on_request"
+    },
+    "Liquidity_Position_Actual_Movement.sas": {
+        "item_no": "",
+        "task": "Liquidity Position Report",
+        "path": "S:\\Revenue by RM\\Report\\Analysis\\",
+        "comments": "Bi-weekly Liquidify Position Report",
+        "is_complicated": "",
+        "owner": "josh",
+        "rows": 557,
+        "main_program": "Y",
+        "type": "on_request"
+    },
+    "SF_Loan_Facility_HKOV.sas": {
+        "item_no": "",
+        "task": "SF Loan Facility",
+        "path": "S:\\Revenue by RM\\Report\\Analysis\\",
+        "comments": "SF Loan Facility (HK+OV) to SF team",
+        "is_complicated": "",
+        "owner": "josh",
+        "rows": 356,
+        "main_program": "Y",
+        "type": "on_request"
+    },
+    "Top_Analysis.sas": {
+        "item_no": "",
+        "task": "Top Analysis Report",
+        "path": "S:\\Revenue by RM\\Report\\Analysis\\",
+        "comments": "Top Analysis by Customer & Group",
+        "is_complicated": "",
+        "owner": "josh",
+        "rows": 105,
+        "main_program": "Y",
+        "type": "on_request"
+    },
+    "New_Customer_YTD_Revenue.sas": {
+        "item_no": "",
+        "task": "Revenue Report from New Group",
+        "path": "S:\\Revenue by RM\\Report\\Analysis\\",
+        "comments": "Revenue report from New Customer Group",
+        "is_complicated": "",
+        "owner": "josh",
+        "rows": 529,
+        "main_program": "Y",
+        "type": "on_request"
+    },
+    "REF_Dimension_Checking.sas": {
+        "item_no": "",
+        "task": "REF Dimension Report",
+        "path": "S:\\Revenue by RM\\Report\\Analysis\\",
+        "comments": "REF Dimension 2nd party checking report",
+        "is_complicated": "",
+        "owner": "josh",
+        "rows": 144,
+        "main_program": "Y",
+        "type": "on_request"
+    },
+    "Country_Search2.sas": {
+        "item_no": "",
+        "task": "Country Search",
+        "path": "S:\\Revenue by RM\\Report\\Analysis\\",
+        "comments": "Risk Country, incorporation location & loan usage country checking",
+        "is_complicated": "",
+        "owner": "josh",
+        "rows": 270,
+        "main_program": "Y",
+        "type": "on_request"
+    },
+    "WBG Customer_Emily.sas": {
+        "item_no": "",
+        "task": "Customer List checking for BCM",
+        "path": "S:\\Revenue by RM\\Report\\Analysis\\",
+        "comments": "A customer list checking report for BCM",
+        "is_complicated": "",
+        "owner": "josh",
+        "rows": 172,
+        "main_program": "Y",
+        "type": "on_request"
+    },
+    "crm_us_gl_mapping.sas": {
+        "item_no": "",
+        "task": "CRM Revenue Report",
+        "path": "S:\\Adhoc\\Davin\\ESPACE\\Regular_Report\\CRM_Revenue",
+        "comments": "CRM Revenue Report",
+        "is_complicated": "",
+        "owner": "mary",
+        "rows": 66,
+        "main_program": "Y",
+        "type": "on_request"
+    },
+    "Deposit alert contact list.sas": {
+        "item_no": "",
+        "task": "Deposit Movement Alert",
+        "path": "S:\\Adhoc\\Davin\\ESPACE\\Regular_Report\\Deposit_Altert_Contact_List",
+        "comments": "Deposit Movement Alert",
+        "is_complicated": "",
+        "owner": "mary",
+        "rows": 19,
+        "main_program": "Y",
+        "type": "on_request"
+    },
+    "$Holiday_Table_Run.sas": {
+        "item_no": "",
+        "task": "Holiday Table for FD deal",
+        "path": "S:\\Adhoc\\Davin\\ESPACE\\Regular_Report\\Holiday_Table",
+        "comments": "Holiday Table for FD deal",
+        "is_complicated": "",
+        "owner": "mary",
+        "rows": 40,
+        "main_program": "Y",
+        "type": "on_request"
+    }
+}

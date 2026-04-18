@@ -8,6 +8,36 @@
         "owner": "mary",
         "rows": 85,
         "main_program": "Y",
-        "type": "quarterly"
+        "type": "quarterly",
+        "input": {
+            "ds": [
+                {
+                    "name": "cpr_combo_&yyyy.&mm.",
+                    "lib": "cprlib"
+                },
+                {
+                    "name": "cpr_sg_combo_&yyyy.&mm.",
+                    "lib": "cprlib"
+                },
+                {
+                    "name": "cpr_mc_combo_&yyyy.&mm.",
+                    "lib": "cprlib"
+                },
+                {
+                    "name": "cpr_ny_combo_&yyyy.&mm.",
+                    "lib": "cprlib"
+                },
+                {
+                    "name": "cpr_la_combo_&yyyy.&mm.",
+                    "lib": "cprlib"
+                }
+            ]
+        },
+        "libname": [
+            {
+                "name": "CPRLIB",
+                "path": "\"E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Output\\XXdata\""
+            }
+        ]
     }
 }

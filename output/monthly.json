@@ -539,6 +539,22 @@
                     "source": "WBG GAM_FAM Mapping.xls",
                     "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\custgrp\\output\\WBG GAM_FAM Mapping.xls"
                 }
+            ],
+            "imh": [
+                "IW.VI_IADPF_AC_PFT_CBG",
+                "IW.VI_IADAM_LOANS_HIST",
+                "IW.VI_IADRM_CUST_NOID_CBG",
+                "IW.VI_IADRM_ACCT_CBG",
+                "IW.VI_IADBL_TRAN",
+                "IW.VI_IADBL_CUST_CBG",
+                "IW.VI_IADIM_DEP_CORE_HIST",
+                "IW.VI_IADST_DEP_CORE_HIST",
+                "IW.VI_IADNX_RATES_HIST",
+                "IW.VI_IADRM_CUSTACCT_ADDRESS",
+                "IW.VI_MODRM_CUSTACCT_ADDRESS",
+                "IW.VI_SGDRM_CUSTACCT_ADDRESS",
+                "IW.vi_iadst_dep_time_hist",
+                "IW.vi_iamst_dep_time"
             ]
         },
         "libname": [
@@ -795,6 +811,9 @@
                     "source": "&Src_Path.&GAM_FAM_Mapping",
                     "path": "&Src_Path.&GAM_FAM_Mapping"
                 }
+            ],
+            "imh": [
+                "iw.vi_iambl_cust_cbg"
             ]
         }
     },
@@ -814,6 +833,10 @@
                     "name": "Customer_History",
                     "lib": "dwlib"
                 }
+            ],
+            "imh": [
+                "iw.vi_iambl_tran",
+                "iw.vi_iampf_ac_pft_cbg"
             ]
         },
         "libname": [
@@ -856,6 +879,9 @@
                     "source": "Bill_Commission_and_Interest_&run_mth..xls",
                     "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Bill Commission and Interest\\Bill_Commission_and_Interest_&run_mth..xls"
                 }
+            ],
+            "imh": [
+                "iw.vi_iambl_Turnover_Adj"
             ]
         }
     },
@@ -922,7 +948,13 @@
         "owner": "mary",
         "rows": 110,
         "main_program": "",
-        "type": "monthly"
+        "type": "monthly",
+        "input": {
+            "imh": [
+                "iw.vi_iambl_limit_cbg",
+                "iw.vi_iambl_cust_cbg"
+            ]
+        }
     },
     "ca_bal_summary.sas": {
         "item_no": "",
@@ -1172,6 +1204,11 @@
                     "source": "Daily_Loan_Drawdown_&Cur_Mth..XLS",
                     "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Daily_Loan_Drawdown\\Daily_Loan_Drawdown_&Cur_Mth..XLS"
                 }
+            ],
+            "imh": [
+                "iw.vi_iadrm_customer_noid_cbg",
+                "iw.vi_iamnx_exchange",
+                "iw.vi_iadkr_fac_line"
             ]
         },
         "include": [
@@ -1237,6 +1274,10 @@
                     "name": "RM_Map",
                     "lib": "dw"
                 }
+            ],
+            "imh": [
+                "iw.vi_iadex_mny_exch_cbg_mtd",
+                "iw.vi_iadrm_customer_noid_cbg"
             ]
         }
     },
@@ -1862,6 +1903,10 @@
                     "source": "No_of_Customer_&Cur_Mth..xls",
                     "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\No of Customers\\Detail\\No_of_Customer_&Cur_Mth..xls"
                 }
+            ],
+            "imh": [
+                "iw.vi_iamam_amort_fees",
+                "iw.vi_iamst_time_tran_cmth"
             ]
         },
         "include": [
@@ -2129,6 +2174,17 @@
                     "source": "&Script_Path.&inData..src",
                     "path": "&Script_Path.&inData..src"
                 }
+            ],
+            "imh": [
+                "iw.vi_iacpf_prod_lvl",
+                "iw.vi_iackr_cls_cd_ctl",
+                "iw.vi_iamam_bill_sched_cmth",
+                "iw.vi_iamav_cld_pos",
+                "iw.vi_iamav_sd_pos",
+                "iw.vi_iambs_kw_car_cbg_cmth",
+                "iw.vi_iambl_tran",
+                "iw.vi_iamst_time_tran",
+                "iw.vi_iadrm_custacct_address"
             ]
         },
         "libname": [
@@ -2333,6 +2389,10 @@
                     "name": "rm_map",
                     "lib": "dw"
                 }
+            ],
+            "imh": [
+                "iw.vi_iamam_amort_fees_cmth",
+                "iw.vi_iamkr_fac_line"
             ]
         },
         "libname": [
@@ -2392,7 +2452,9 @@
         "input": {
             "imh": [
                 "imh.vi_iackr_cls_cd_ctl",
-                "imh.vi_momrm_cust_noid_cbg_cmth"
+                "imh.vi_momrm_cust_noid_cbg_cmth",
+                "iw.vi_sgmrm_cust_noid",
+                "iw.vi_iackr_cls_cd_ctl"
             ],
             "ds": [
                 {
@@ -2442,7 +2504,9 @@
         "input": {
             "imh": [
                 "imh.vi_iackr_cls_cd_ctl",
-                "imh.vi_momrm_cust_noid_cbg_cmth"
+                "imh.vi_momrm_cust_noid_cbg_cmth",
+                "iw.vi_sgmrm_cust_noid",
+                "iw.vi_iackr_cls_cd_ctl"
             ],
             "ds": [
                 {
@@ -2533,6 +2597,10 @@
                     "name": "RM_Map",
                     "lib": "dw"
                 }
+            ],
+            "imh": [
+                "IW.VI_IADRM_CUSTOMER_NOID_CBG",
+                "IW.VI_IADRM_CUSTACCT_CBG"
             ]
         },
         "libname": [
@@ -2597,7 +2665,48 @@
         "type": "monthly",
         "input": {
             "imh": [
-                "imh.vi_iamfm_gl_tran"
+                "imh.vi_iamfm_gl_tran",
+                "iw.vi_iamnx_exchange_cmth",
+                "iw.vi_iampf_tp_rate",
+                "iw.vi_iamim_dep_core_cmth",
+                "iw.vi_iamst_dep_core_cmth",
+                "iw.vi_iamim_od_line_cmth",
+                "iw.vi_iamam_loans_cmth",
+                "iw.vi_iamam_loan_gdr_cmth",
+                "iw.vi_iambl_cust_cbg_cmth",
+                "iw.vi_iamam_loans_2_cmth",
+                "iw.vi_iamrm_cust_noid_cbg_cmth",
+                "iw.vi_iamkr_fac_line_cmth",
+                "iw.vi_iamst_dep_time_cmth",
+                "iw.vi_iadrm_custacct_cbg",
+                "iw.vi_iambl_tran_cmth",
+                "iw.vi_iambl_limit_cbg_cmth",
+                "iw.vi_iambl_income_cmth",
+                "iw.vi_iamrm_cust_noid_cbg",
+                "iw.vi_iamrm_acct_cbg",
+                "iw.vi_iamim_core_tran_cmth",
+                "iw.vi_iamst_core_tran_cmth",
+                "iw.vi_iamst_time_tran_cmth",
+                "iw.vi_iamkw_itr_term_cmth",
+                "IW.VI_IAMKR_PLDG_COLL_CMTH",
+                "IW.VI_IAMKR_COLL_COMN_CMTH",
+                "IW.vi_iamkr_guarantor_cmth",
+                "iw.vi_iamkr_guarantee_cmth",
+                "iw.Vi_sgmbl_cust_cbg_cmth",
+                "iw.vi_iadcn_mc_customer_cbg",
+                "iw.vi_iadcn_sh_customer_cbg",
+                "iw.vi_iadcn_sz_customer_cbg",
+                "iw.vi_usmeb_cust_cmth",
+                "iw.vi_iadrm_customer_noid_cbg",
+                "iw.vi_iamex_mny_exch_cbg_cmth",
+                "iw.vi_iamrt_inwd_remt_cbg_cmth",
+                "iw.vi_iamrt_outwd_remt_cbg_cmth",
+                "iw.vi_iamam_amort_fees_cmth",
+                "iw.vi_iamsb_isfeht_cbg_cmth",
+                "iw.vi_iamsd_tran_port_cmth",
+                "iw.vi_iamsd_info_cmth",
+                "iw.vi_iamwm_custacct_noid_cmth",
+                "iw.vi_iamfc_casa_int_cmth"
             ],
             "ds": [
                 {
@@ -2832,6 +2941,12 @@
                     "source": "&Src_Path.CPB_Mapping.xls",
                     "path": "&Src_Path.CPB_Mapping.xls"
                 }
+            ],
+            "imh": [
+                "iw.vi_iadtr_ac_tp_cbg_mtd",
+                "iw.vi_iadof_ac_ftp_cbg",
+                "IW.VI_IADKR_FAC_LINE",
+                "IW.vi_iadb3_dtl_outflow_cbg"
             ]
         },
         "libname": [
@@ -2958,6 +3073,9 @@
                     "source": "REF_portfolio.xls",
                     "path": "E:\\XX\\Revenue by RM\\REF_portfolio.xls"
                 }
+            ],
+            "imh": [
+                "iw.vi_iacpf_prod_lvl"
             ]
         },
         "libname": [
@@ -3066,6 +3184,9 @@
                     "name": "RM_Map",
                     "lib": "dw"
                 }
+            ],
+            "imh": [
+                "IW.VI_iambl_Turnover_Adj"
             ]
         }
     },
@@ -3219,7 +3340,8 @@
         "input": {
             "imh": [
                 "imh.vi_sgmrm_cust_noid_cbg",
-                "imh.vi_momrm_cust_noid_cbg"
+                "imh.vi_momrm_cust_noid_cbg",
+                "iw.vi_usmeb_cust"
             ],
             "ds": [
                 {
@@ -3499,6 +3621,9 @@
                     "source": "SIC_CODE_MAPPING.xls",
                     "path": "E:\\XX\\Revenue by RM\\SIC_CODE_MAPPING.xls"
                 }
+            ],
+            "imh": [
+                "iw.vi_iadrm_customer_noid_cbg"
             ]
         },
         "libname": [
@@ -3616,6 +3741,9 @@
                     "name": "Customer_Profile_&Cur_Mth",
                     "lib": "rm"
                 }
+            ],
+            "imh": [
+                "iw.vi_iackr_cls_cd_ctl"
             ]
         }
     },
@@ -3655,6 +3783,10 @@
                     "name": "Customer_History",
                     "lib": "dw"
                 }
+            ],
+            "imh": [
+                "iw.vi_iamav_custbp_rel",
+                "iw.vi_iamav_acct"
             ]
         }
     },
@@ -3745,6 +3877,10 @@
                     "source": "Loan_Consolidation.xlsx",
                     "path": "E:\\XX\\Revenue by RM\\Loan_Consolidation.xlsx"
                 }
+            ],
+            "imh": [
+                "iw.vi_iamam_loan_tran",
+                "iw.vi_iamam_loans"
             ]
         }
     },
@@ -4022,7 +4158,8 @@
         "input": {
             "imh": [
                 "imh.vi_sgmrm_cust_noid_cbg",
-                "imh.vi_momrm_cust_noid_cbg"
+                "imh.vi_momrm_cust_noid_cbg",
+                "iw.vi_usmpf_ac_tp"
             ],
             "ds": [
                 {
@@ -4185,6 +4322,9 @@
                     "source": "fac_line_checking_&Cur_Mth..xls",
                     "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Monthly Facility\\Fac_Type\\fac_line_checking_&Cur_Mth..xls"
                 }
+            ],
+            "imh": [
+                "iw.vi_iackr_cls_cd_ctl"
             ]
         },
         "libname": [
@@ -4308,6 +4448,9 @@
                     "source": "Online_Tran_Code_Map.XLS",
                     "path": "E:\\XX\\Revenue by RM\\Report\\Analysis\\Online_Tran\\Online_Tran_Code_Map.XLS"
                 }
+            ],
+            "imh": [
+                "iw.vi_iacsy_brh_ctl"
             ]
         }
     },
@@ -4354,6 +4497,16 @@
                     "source": "USMPF_AC_TP_&Cur_Mth..xls",
                     "path": "E:\\XX\\Oversea\\US\\source\\USMPF_AC_TP_&Cur_Mth..xls"
                 }
+            ],
+            "imh": [
+                "IW.VI_IAMCN_MC_AC_PFT_CBG",
+                "IW.Vi_mombl_tran",
+                "iw.vi_moMbl_cust",
+                "iw.vi_sgmam_loans",
+                "iw.vi_sgmbl_tran",
+                "IW.VI_IADCN_MC_CUSTOMER_CBG",
+                "iw.vi_iamnx_exchange",
+                "iw.vi_sgmrm_cust_noid"
             ]
         },
         "libname": [
@@ -4438,6 +4591,9 @@
                     "source": "WBG GAM_FAM Mapping.xls",
                     "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
                 }
+            ],
+            "imh": [
+                "iw.vi_iadrm_customer_noid_cbg"
             ]
         },
         "libname": [
@@ -4931,6 +5087,9 @@
                     "source": "Skim_Fee_and_Agency_Fee_&YEAR..xlsx",
                     "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\HK\\Skim_Fee_and_Agency_Fee_&YEAR..xlsx"
                 }
+            ],
+            "imh": [
+                "IW.VI_IAMRM_CUST_NOID_CBG"
             ]
         }
     },
@@ -4994,6 +5153,9 @@
                     "name": "esg_bal_&Cur_Mth",
                     "lib": "outlib"
                 }
+            ],
+            "imh": [
+                "iw.vi_modrm_cust_noid"
             ]
         }
     },
@@ -5064,6 +5226,9 @@
                     "source": "Skim_Fee_and_Agency_Fee_&YEAR..xlsx",
                     "path": "E:\\XX\\Adhoc\\Davin\\ESPACE\\EREPORT\\REVENUE_DB\\Input\\HK\\Skim_Fee_and_Agency_Fee_&YEAR..xlsx"
                 }
+            ],
+            "imh": [
+                "iw.Vi_sgdrm_cust_noid"
             ]
         }
     },
@@ -5094,6 +5259,10 @@
                     "source": "WBG GAM_FAM Mapping.xls",
                     "path": "E:\\XX\\Revenue by RM\\WBG GAM_FAM Mapping.xls"
                 }
+            ],
+            "imh": [
+                "iw.vi_iamkr_cust_rel_cmth",
+                "iw.vi_iamkr_group_cmth"
             ]
         }
     },
@@ -5263,7 +5432,13 @@
         "type": "monthly",
         "input": {
             "imh": [
-                "imh.vi_iambs_kw_ac_exp_ov"
+                "imh.vi_iambs_kw_ac_exp_ov",
+                "iw.vi_sgmim_dep_core",
+                "iw.Vi_sgmst_dep_time",
+                "iw.vi_sgmam_loans",
+                "iw.vi_sgmbl_tran",
+                "iw.vi_sgmrm_cust_noid",
+                "iw.vi_sgmbl_cust_cbg"
             ],
             "ds": [
                 {
@@ -5467,7 +5642,8 @@
         "input": {
             "imh": [
                 "imh.vi_iampf_ac_pft_cbg",
-                "imh.vi_iambl_tran"
+                "imh.vi_iambl_tran",
+                "IW.VI_iambl_Turnover_Adj"
             ],
             "ds": [
                 {
@@ -5690,6 +5866,9 @@
                     "name": "RM_Map",
                     "lib": "dw"
                 }
+            ],
+            "imh": [
+                "iw.vi_iampf_ac_pft_cbg"
             ]
         }
     },
@@ -5706,7 +5885,8 @@
         "input": {
             "imh": [
                 "imh.vi_usmpf_ac_tp",
-                "imh.vi_iambs_kw_ac_exp_ov"
+                "imh.vi_iambs_kw_ac_exp_ov",
+                "iw.vi_usmeb_cust"
             ],
             "ds": [
                 {

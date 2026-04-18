@@ -562,12 +562,34 @@
         .badge.quarterly { background: #fff3e0; color: #ef6c00; }
         .badge.on_request { background: #e8f5e9; color: #2e7d32; }
         .badge.main { background: #fce4ec; color: #c2185b; }
+
+        .debug-info {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 11px;
+            max-width: 300px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 2001;
+        }
+
+        .debug-info.visible {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
     </div>
+
+    <div class="debug-info" id="debugInfo"></div>
 
     <div class="app-container">
         <div class="sidebar">
@@ -686,6 +708,7 @@
                     <button class="toolbar-btn" id="resetFilterBtn">🔄 Reset Filters</button>
                     <button class="toolbar-btn" id="fitBtn">🔍 Fit to View</button>
                     <button class="toolbar-btn" id="neighborhoodBtn">👥 Show Neighborhood</button>
+                    <button class="toolbar-btn" id="debugBtn">🐛 Debug</button>
                 </div>
                 <div class="toolbar-right">
                     <div class="zoom-controls">
@@ -731,8 +754,21 @@
         let originalElements = { nodes: [], edges: [] };
         let currentLayout = 'klay';
         let selectedNode = null;
+        let debugMode = false;
+
+        function logDebug(message, data) {
+            console.log(message, data || '');
+            if (debugMode) {
+                const debugInfo = document.getElementById('debugInfo');
+                const timestamp = new Date().toLocaleTimeString();
+                const msg = `[${timestamp}] ${message}`;
+                debugInfo.innerHTML = msg + '<br>' + debugInfo.innerHTML;
+            }
+        }
 
         function initCytoscape() {
+            logDebug('Initializing Cytoscape...');
+            
             cy = cytoscape({
                 container: document.getElementById('cy'),
                 elements: [],
@@ -874,7 +910,7 @@
                     nodeDimensionsIncludeLabels: true,
                     klay: {
                         direction: 'RIGHT',
-                        layering: 'LONGLEST_PATH',
+                        layering: 'LONGEST_PATH',
                         spacing: 80,
                         inLayerSpacing: 40
                     }
@@ -901,16 +937,20 @@
                 updateZoomInfo();
             });
 
+            logDebug('Cytoscape initialized successfully');
             return cy;
         }
 
         function loadJSONFile(file) {
+            logDebug('Loading file:', file.name);
             showLoading();
             
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
+                    logDebug('Parsing JSON...');
                     const data = JSON.parse(e.target.result);
+                    logDebug('JSON parsed successfully');
                     processData(data);
                     
                     document.getElementById('fileInfo').style.display = 'block';
@@ -925,6 +965,7 @@
                     document.getElementById('highlightNote').style.display = 'block';
                     
                 } catch (error) {
+                    logDebug('Error:', error.message);
                     alert('Error parsing JSON file: ' + error.message);
                 } finally {
                     hideLoading();
@@ -934,9 +975,14 @@
         }
 
         function processData(data) {
+            logDebug('Processing data...');
             originalElements = { nodes: [], edges: [] };
             
             if (data.elements && data.elements.nodes && data.elements.edges) {
+                logDebug('Detected Cytoscape format');
+                logDebug('Elements nodes:', data.elements.nodes.length);
+                logDebug('Elements edges:', data.elements.edges.length);
+                
                 originalElements.nodes = data.elements.nodes.map(n => ({
                     data: {
                         ...n.data,
@@ -952,6 +998,12 @@
                     }
                 }));
             } else if (data.nodes && data.edges) {
+                logDebug('Detected original format (nodes + edges)');
+                
+                const nodeCount = Object.keys(data.nodes).length;
+                logDebug('Nodes count:', nodeCount);
+                logDebug('Edges count:', data.edges.length);
+                
                 for (const [id, nodeData] of Object.entries(data.nodes)) {
                     originalElements.nodes.push({
                         data: {
@@ -971,7 +1023,14 @@
                     }
                 }));
             } else {
-                throw new Error('Unsupported JSON format');
+                throw new Error('Unsupported JSON format. Expected either (elements.nodes + elements.edges) or (nodes + edges).');
+            }
+
+            logDebug('Processed nodes:', originalElements.nodes.length);
+            logDebug('Processed edges:', originalElements.edges.length);
+
+            if (originalElements.nodes.length === 0) {
+                logDebug('WARNING: No nodes found!');
             }
 
             updateOwnerFilter();
@@ -1011,12 +1070,23 @@
         function renderGraph() {
             if (!cy) return;
             
+            logDebug('Rendering graph...');
+            
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const includeEnabled = document.getElementById('includeCheck').checked;
             const dependencyEnabled = document.getElementById('dependencyCheck').checked;
             const typeFilter = document.getElementById('typeFilter').value;
             const ownerFilter = document.getElementById('ownerFilter').value;
             const mainProgramFilter = document.getElementById('mainProgramFilter').value;
+
+            logDebug('Filter settings:', {
+                searchTerm,
+                includeEnabled,
+                dependencyEnabled,
+                typeFilter,
+                ownerFilter,
+                mainProgramFilter
+            });
 
             let filteredNodeIds = new Set();
             
@@ -1055,6 +1125,8 @@
                 }
             });
 
+            logDebug('Filtered node IDs count:', filteredNodeIds.size);
+
             const filteredNodes = originalElements.nodes.filter(n => filteredNodeIds.has(n.data.id));
             const filteredEdges = originalElements.edges.filter(edge => {
                 const source = edge.data.source;
@@ -1071,27 +1143,70 @@
                 return true;
             });
 
+            logDebug('Filtered nodes:', filteredNodes.length);
+            logDebug('Filtered edges:', filteredEdges.length);
+
             const edgeNodeIds = new Set();
             filteredEdges.forEach(e => {
                 edgeNodeIds.add(e.data.source);
                 edgeNodeIds.add(e.data.target);
             });
 
-            const finalNodes = searchTerm || typeFilter || ownerFilter || mainProgramFilter 
-                ? filteredNodes 
-                : filteredNodes.filter(n => edgeNodeIds.has(n.data.id) || n.data.main_program === 'Y');
+            logDebug('Nodes with edges:', edgeNodeIds.size);
+
+            let finalNodes;
+            
+            const hasActiveFilter = searchTerm || typeFilter || ownerFilter || mainProgramFilter;
+            
+            if (hasActiveFilter) {
+                finalNodes = filteredNodes;
+                logDebug('Using filtered nodes (has active filter)');
+            } else {
+                finalNodes = filteredNodes.filter(n => 
+                    edgeNodeIds.has(n.data.id) || n.data.main_program === 'Y'
+                );
+                logDebug('Using nodes with edges or main_program=Y');
+            }
+
+            logDebug('Final nodes:', finalNodes.length);
+
+            if (finalNodes.length === 0) {
+                logDebug('WARNING: No final nodes to display!');
+            }
 
             cy.elements().remove();
-            cy.add(finalNodes);
-            cy.add(filteredEdges);
+            logDebug('Removed old elements');
+            
+            if (finalNodes.length > 0) {
+                cy.add(finalNodes);
+                logDebug('Added nodes');
+            }
+            
+            if (filteredEdges.length > 0) {
+                cy.add(filteredEdges);
+                logDebug('Added edges');
+            }
 
-            runLayout();
-            cy.fit();
+            logDebug('Total elements in cy:', cy.elements().length);
+
+            if (cy.elements().length > 0) {
+                runLayout();
+                cy.fit();
+                logDebug('Layout complete');
+            } else {
+                logDebug('No elements to layout');
+            }
+            
             updateZoomInfo();
         }
 
         function runLayout() {
-            if (!cy || cy.elements().length === 0) return;
+            if (!cy || cy.elements().length === 0) {
+                logDebug('No elements to layout');
+                return;
+            }
+
+            logDebug('Running layout:', currentLayout);
 
             let layoutOptions;
             
@@ -1120,7 +1235,7 @@
                         edgeElasticity: 100,
                         nestingFactor: 5,
                         gravity: 80,
-                        numIter: 1000,
+                        numIter: 500,
                         initialTemp: 200,
                         coolingFactor: 0.95,
                         minTemp: 1.0
@@ -1155,6 +1270,8 @@
         function showNodeDetails(node) {
             selectedNode = node;
             const data = node.data();
+            
+            logDebug('Showing node details:', data.id);
             
             document.getElementById('nodeTitle').textContent = data.id;
             
@@ -1337,6 +1454,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+            logDebug('Page loaded, initializing...');
             initCytoscape();
 
             const fileUploadArea = document.getElementById('fileUploadArea');
@@ -1390,6 +1508,12 @@
                 if (cy) cy.fit();
             });
             document.getElementById('neighborhoodBtn').addEventListener('click', showNeighborhood);
+            
+            document.getElementById('debugBtn').addEventListener('click', () => {
+                debugMode = !debugMode;
+                document.getElementById('debugInfo').classList.toggle('visible', debugMode);
+                logDebug('Debug mode:', debugMode ? 'ON' : 'OFF');
+            });
             
             document.getElementById('zoomInBtn').addEventListener('click', () => {
                 if (cy) cy.zoom(cy.zoom() * 1.2);

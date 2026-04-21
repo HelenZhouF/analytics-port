@@ -1445,6 +1445,8 @@
             }
 
             try {
+                const hasSearchFocus = searchFocusedNodeId !== null;
+                
                 cy.elements().remove();
                 logDebug('Removed old elements');
                 
@@ -1464,6 +1466,30 @@
                     runLayout();
                     cy.fit();
                     logDebug('Layout complete');
+                    
+                    if (hasSearchFocus && searchFocusedNodeId) {
+                        const focusedNode = cy.getElementById(searchFocusedNodeId);
+                        if (focusedNode) {
+                            logDebug('Restoring search focus for node:', searchFocusedNodeId);
+                            
+                            const connectedEdges = focusedNode.connectedEdges();
+                            const neighbors = focusedNode.neighborhood().nodes();
+
+                            focusedNode.addClass('search-focused');
+                            neighbors.addClass('search-focused-neighbor');
+                            connectedEdges.addClass('search-focused-edge');
+
+                            const allOtherNodes = cy.nodes().not(focusedNode).not(neighbors);
+                            const allOtherEdges = cy.edges().not(connectedEdges);
+                            allOtherNodes.addClass('faded');
+                            allOtherEdges.addClass('faded');
+                            
+                            logDebug('Search focus restored');
+                        } else {
+                            logDebug('Search focused node not found after filter, clearing focus');
+                            searchFocusedNodeId = null;
+                        }
+                    }
                 } else {
                     logDebug('No elements to layout');
                 }

@@ -145,6 +145,104 @@
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
+        .search-container {
+            position: relative;
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 300px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            display: none;
+        }
+
+        .search-results.visible {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 10px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-item:hover {
+            background: #f8f9ff;
+        }
+
+        .search-result-item.highlight {
+            background: #eef2ff;
+        }
+
+        .search-result-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: #333;
+            word-break: break-all;
+        }
+
+        .search-result-meta {
+            font-size: 11px;
+            color: #888;
+            margin-top: 4px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-result-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .search-no-results {
+            padding: 15px;
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .search-result-count {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 11px;
+            color: #888;
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .focused-node {
+            animation: pulse-highlight 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-highlight {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 235, 59, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(255, 235, 59, 0);
+            }
+        }
+
         .filter-select {
             width: 100%;
             padding: 8px 12px;
@@ -747,7 +845,11 @@
                     
                     <div class="filter-group">
                         <label class="filter-label">Search Node</label>
-                        <input type="text" class="filter-input" id="searchInput" placeholder="Search by name, task, or owner...">
+                        <div class="search-container">
+                            <input type="text" class="filter-input" id="searchInput" placeholder="Search by name, task, or owner...">
+                            <span class="search-result-count" id="searchResultCount" style="display: none;"></span>
+                            <div class="search-results" id="searchResults"></div>
+                        </div>
                     </div>
 
                     <div class="filter-group">
@@ -1046,6 +1148,48 @@
                             style: {
                                 'width': 3,
                                 'opacity': 1
+                            }
+                        },
+                        {
+                            selector: '.search-focused',
+                            style: {
+                                'background-color': '#ff5722',
+                                'border-color': '#e64a19',
+                                'border-width': 5,
+                                'width': '100px',
+                                'height': '100px',
+                                'font-size': '18px',
+                                'font-weight': 'bold',
+                                'color': '#ffffff',
+                                'text-outline-color': '#ff5722',
+                                'text-outline-width': 4,
+                                'z-index': 9999,
+                                'transition-property': 'background-color, border-color, width, height, font-size',
+                                'transition-duration': '0.3s'
+                            }
+                        },
+                        {
+                            selector: '.search-focused-neighbor',
+                            style: {
+                                'background-color': '#ff9800',
+                                'border-color': '#f57c00',
+                                'border-width': 4,
+                                'width': '85px',
+                                'height': '85px',
+                                'font-size': '15px',
+                                'opacity': 1,
+                                'text-opacity': 1,
+                                'z-index': 9998
+                            }
+                        },
+                        {
+                            selector: '.search-focused-edge',
+                            style: {
+                                'width': 4,
+                                'line-color': '#ff5722',
+                                'target-arrow-color': '#ff5722',
+                                'opacity': 1,
+                                'z-index': 9997
                             }
                         }
                     ],
@@ -1573,6 +1717,7 @@
 
         function clearHighlight() {
             cy.elements().removeClass('faded').removeClass('neighbor').removeClass('neighbor-edge');
+            clearSearchFocus();
         }
 
         function showNeighborhood() {
@@ -1614,7 +1759,167 @@
             
             hideNodeDetails();
             clearHighlight();
+            clearSearchFocus();
+            hideSearchResults();
             renderGraph();
+        }
+
+        function searchNodes(searchTerm) {
+            if (!searchTerm || searchTerm.trim() === '') {
+                return [];
+            }
+
+            const term = searchTerm.toLowerCase();
+            const matches = [];
+
+            originalElements.nodes.forEach(node => {
+                const data = node.data;
+                const searchFields = [
+                    data.id, data.label, data.task, data.owner,
+                    data.path, data.comments
+                ].map(s => String(s || '').toLowerCase());
+
+                const matchIndex = searchFields.findIndex(field => field.includes(term));
+                
+                if (matchIndex !== -1) {
+                    matches.push({
+                        id: data.id,
+                        label: data.label || data.id,
+                        type: data.type,
+                        owner: data.owner,
+                        task: data.task,
+                        main_program: data.main_program,
+                        matchField: matchIndex
+                    });
+                }
+            });
+
+            matches.sort((a, b) => {
+                const aStartsWith = a.id.toLowerCase().startsWith(term);
+                const bStartsWith = b.id.toLowerCase().startsWith(term);
+                if (aStartsWith && !bStartsWith) return -1;
+                if (!aStartsWith && bStartsWith) return 1;
+                return a.id.localeCompare(b.id);
+            });
+
+            return matches;
+        }
+
+        function updateSearchResults(matches) {
+            const resultsContainer = document.getElementById('searchResults');
+            const resultCount = document.getElementById('searchResultCount');
+
+            if (matches.length === 0) {
+                resultsContainer.innerHTML = '<div class="search-no-results">No matching nodes found</div>';
+                resultsContainer.classList.add('visible');
+                resultCount.style.display = 'none';
+                return;
+            }
+
+            resultCount.textContent = `${matches.length} found`;
+            resultCount.style.display = 'block';
+
+            let html = '';
+            matches.slice(0, 20).forEach((match, index) => {
+                const typeBadge = match.type ? `<span class="badge ${match.type}">${match.type}</span>` : '';
+                const mainBadge = match.main_program === 'Y' ? '<span class="badge main">Main</span>' : '';
+                const ownerText = match.owner ? `👤 ${match.owner}` : '';
+                const taskText = match.task ? `📋 ${match.task.substring(0, 30)}${match.task.length > 30 ? '...' : ''}` : '';
+
+                html += `
+                    <div class="search-result-item" data-node-id="${match.id}" data-index="${index}">
+                        <div class="search-result-name">${highlightMatch(match.id, document.getElementById('searchInput').value)}</div>
+                        <div class="search-result-meta">
+                            ${typeBadge}${mainBadge}
+                            ${ownerText ? `<span>${ownerText}</span>` : ''}
+                            ${taskText ? `<span>${taskText}</span>` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+
+            if (matches.length > 20) {
+                html += `<div class="search-no-results">... and ${matches.length - 20} more</div>`;
+            }
+
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.add('visible');
+
+            resultsContainer.querySelectorAll('.search-result-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const nodeId = this.dataset.nodeId;
+                    focusOnNode(nodeId);
+                    hideSearchResults();
+                });
+
+                item.addEventListener('mouseenter', function() {
+                    resultsContainer.querySelectorAll('.search-result-item').forEach(i => i.classList.remove('highlight'));
+                    this.classList.add('highlight');
+                });
+            });
+        }
+
+        function highlightMatch(text, searchTerm) {
+            if (!searchTerm) return text;
+            const regex = new RegExp(`(${escapeRegExp(searchTerm)})`, 'gi');
+            return text.replace(regex, '<strong style="color: #667eea; background: #eef2ff;">$1</strong>');
+        }
+
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function hideSearchResults() {
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.classList.remove('visible');
+        }
+
+        function focusOnNode(nodeId) {
+            if (!cy) return;
+
+            const node = cy.getElementById(nodeId);
+            if (!node) {
+                logDebug('Node not found:', nodeId);
+                return;
+            }
+
+            clearSearchFocus();
+
+            const connectedEdges = node.connectedEdges();
+            const neighbors = node.neighborhood().nodes();
+
+            node.addClass('search-focused');
+            neighbors.addClass('search-focused-neighbor');
+            connectedEdges.addClass('search-focused-edge');
+
+            const allOtherNodes = cy.nodes().not(node).not(neighbors);
+            const allOtherEdges = cy.edges().not(connectedEdges);
+            allOtherNodes.addClass('faded');
+            allOtherEdges.addClass('faded');
+
+            cy.animate({
+                center: { eles: node },
+                zoom: 1.8
+            }, {
+                duration: 800,
+                easing: 'ease-out-cubic'
+            });
+
+            showNodeDetails(node);
+
+            logDebug('Focused on node:', nodeId);
+        }
+
+        function clearSearchFocus() {
+            if (!cy) return;
+
+            cy.elements().removeClass('search-focused');
+            cy.elements().removeClass('search-focused-neighbor');
+            cy.elements().removeClass('search-focused-edge');
+            cy.elements().removeClass('faded');
+
+            const resultCount = document.getElementById('searchResultCount');
+            resultCount.style.display = 'none';
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -1652,7 +1957,81 @@
                 }
             });
 
-            document.getElementById('searchInput').addEventListener('input', renderGraph);
+            const searchInput = document.getElementById('searchInput');
+            let selectedSearchIndex = -1;
+            let currentSearchMatches = [];
+
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.trim();
+                if (searchTerm === '') {
+                    hideSearchResults();
+                    clearSearchFocus();
+                    renderGraph();
+                    return;
+                }
+
+                currentSearchMatches = searchNodes(searchTerm);
+                selectedSearchIndex = -1;
+                updateSearchResults(currentSearchMatches);
+            });
+
+            searchInput.addEventListener('focus', function() {
+                const searchTerm = this.value.trim();
+                if (searchTerm !== '' && currentSearchMatches.length > 0) {
+                    document.getElementById('searchResults').classList.add('visible');
+                }
+            });
+
+            searchInput.addEventListener('keydown', function(e) {
+                const resultsContainer = document.getElementById('searchResults');
+                const visible = resultsContainer.classList.contains('visible');
+
+                if (!visible || currentSearchMatches.length === 0) return;
+
+                const items = resultsContainer.querySelectorAll('.search-result-item');
+
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    selectedSearchIndex = Math.min(selectedSearchIndex + 1, items.length - 1);
+                    updateSearchSelection(items);
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    selectedSearchIndex = Math.max(selectedSearchIndex - 1, -1);
+                    updateSearchSelection(items);
+                } else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (selectedSearchIndex >= 0 && selectedSearchIndex < items.length) {
+                        const nodeId = currentSearchMatches[selectedSearchIndex].id;
+                        focusOnNode(nodeId);
+                        hideSearchResults();
+                    } else if (currentSearchMatches.length > 0) {
+                        const nodeId = currentSearchMatches[0].id;
+                        focusOnNode(nodeId);
+                        hideSearchResults();
+                    }
+                } else if (e.key === 'Escape') {
+                    hideSearchResults();
+                }
+            });
+
+            function updateSearchSelection(items) {
+                items.forEach((item, idx) => {
+                    if (idx === selectedSearchIndex) {
+                        item.classList.add('highlight');
+                        item.scrollIntoView({ block: 'nearest' });
+                    } else {
+                        item.classList.remove('highlight');
+                    }
+                });
+            }
+
+            document.addEventListener('click', function(e) {
+                const searchContainer = document.querySelector('.search-container');
+                if (searchContainer && !searchContainer.contains(e.target)) {
+                    hideSearchResults();
+                }
+            });
+
             document.getElementById('includeCheck').addEventListener('change', renderGraph);
             document.getElementById('dependencyCheck').addEventListener('change', renderGraph);
             document.getElementById('typeFilter').addEventListener('change', renderGraph);

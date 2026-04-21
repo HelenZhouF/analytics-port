@@ -1354,7 +1354,7 @@
             document.getElementById('statDependency').textContent = dependencyCount;
         }
 
-        function renderGraph() {
+        function renderGraph(keepSearchValue = false) {
             if (!cy) {
                 logDebug('Warning: Cytoscape not initialized');
                 return;
@@ -1362,7 +1362,6 @@
             
             logDebug('Rendering graph...');
             
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const includeEnabled = document.getElementById('includeCheck').checked;
             const dependencyEnabled = document.getElementById('dependencyCheck').checked;
             const typeFilter = document.getElementById('typeFilter').value;
@@ -1370,7 +1369,6 @@
             const mainProgramFilter = document.getElementById('mainProgramFilter').value;
 
             logDebug('Filter settings:', {
-                searchTerm,
                 includeEnabled,
                 dependencyEnabled,
                 typeFilter,
@@ -1384,15 +1382,6 @@
                 const data = node.data;
                 
                 let matches = true;
-                
-                if (searchTerm) {
-                    const searchFields = [
-                        data.id, data.label, data.task, data.owner, 
-                        data.path, data.comments
-                    ].map(s => String(s || '').toLowerCase());
-                    
-                    matches = searchFields.some(field => field.includes(searchTerm));
-                }
                 
                 if (matches && typeFilter) {
                     matches = data.type === typeFilter;
@@ -1877,10 +1866,35 @@
         function focusOnNode(nodeId) {
             if (!cy) return;
 
-            const node = cy.getElementById(nodeId);
-            if (!node) {
-                logDebug('Node not found:', nodeId);
+            const nodeExistsInOriginal = originalElements.nodes.some(n => n.data.id === nodeId);
+            if (!nodeExistsInOriginal) {
+                logDebug('Node not found in original data:', nodeId);
+                alert('Node not found: ' + nodeId);
                 return;
+            }
+
+            let node = cy.getElementById(nodeId);
+            
+            if (!node) {
+                logDebug('Node exists but is filtered out. Resetting node filters...');
+                
+                const searchValue = document.getElementById('searchInput').value;
+                
+                document.getElementById('typeFilter').value = '';
+                document.getElementById('ownerFilter').value = '';
+                document.getElementById('mainProgramFilter').value = '';
+                
+                renderGraph();
+                
+                document.getElementById('searchInput').value = searchValue;
+                
+                node = cy.getElementById(nodeId);
+                
+                if (!node) {
+                    logDebug('Node still not found after reset:', nodeId);
+                    alert('Unable to locate node. It may be hidden by edge filters.');
+                    return;
+                }
             }
 
             clearSearchFocus();
